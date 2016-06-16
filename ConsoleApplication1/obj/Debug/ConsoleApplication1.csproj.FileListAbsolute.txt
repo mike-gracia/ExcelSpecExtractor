@@ -1,0 +1,12 @@
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\michael.gracia\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

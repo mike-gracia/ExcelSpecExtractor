@@ -1,0 +1,463 @@
+Ref #	Form / Wkst Line #	Data Type	Description	TA Calculation Notes (Plain Language)	Calculation	Override Condition	Model Type (Dev)	Property Name (Dev)
+			HEADER					
+TC40BTPSSN	"TC-40B, Header"	SSN/ITIN	SSN	TP's SSN	[FD1040PIcalc:PITp05]			
+TC40BTPLastName	"TC-40B, Header"	Text	Last Name	TP's Last Name	[FD1040PIcalc:PITp03]			
+TC40BNR	"TC-40B, Header"	Yes/No/Blank	Residency Status: Nonresident	IF Residency Status for UT equals NR THEN check the box; otherwise leave blank	"IF [FDAWCalc:PYNRAWRes] = NR     WHERE [FDAWCalc:PYNRAWState] = UT;       RETURN YES;ELSE RETURN Blank"			
+TC40BNRState	"TC-40B, Header"	Enum: State	Residency Status: Home State Abbreviation	IF Nonresident checkbox is selected THEN return the Residency State; otherwise leave blank	"IF [TC40BNR] = YES      RETURN [FDAWCalc:AWState];ELSE RETURN Blank"			
+TC40BPY	"TC-40B, Header"	Yes/No/Blank	Residency Status: Part-Year Resident	IF Residency Status for UT equals PY THEN check the box; otherwise leave blank	"IF [FDAWCalc:PYNRAWRes] = PY     WHERE [FDAWCalc:PYNRAWState] = UT;       RETURN YES;ELSE RETURN Blank"			
+TC40BPYDateFrom	"TC-40B, Header"	Date	Residency Status: Date From: (mm/dd/yy)	IF TP is PY then return the TP's PY Resident Beginning Date; otherwise if SP is PY then return SP's PY Resident Beginning Date; otherwise leave blank	"IF [FDAWCalc:PYNRAWResTp] = PY     WHERE [FDAWCalc:PYNRAWState] = UT;      RETURN [FDAWCalc:PYNRAWDate01Tp]                         WHERE [FDAWCalc:PYNRAWState] = UT;ELSE IF [FDAWCalc:PYNRAWResSp] = PY              WHERE [FDAWCalc:PYNRAWState] = UT;      RETURN [FDAWCalc:PYNRAWDate01Sp]                        WHERE [FDAWCalc:PYNRAWState] = UT;ELSE RETURN Blank;"			
+TC40BPYDateTo	"TC-40B, Header"	Date	Residency Status: Date To: (mm/dd/yy)	IF TP is PY then return the TP's PY Resident Ending Date; otherwise if SP is PY then return SP's PY Resident Ending Date; otherwise leave blank	"IF [FDAWCalc:PYNRAWResTp] = PY     WHERE [FDAWCalc:PYNRAWState] = UT;      RETURN [FDAWCalc:PYNRAWDate02Tp]                         WHERE [FDAWCalc:PYNRAWState] = UT;ELSE IF [FDAWCalc:PYNRAWResSp] = PY              WHERE [FDAWCalc:PYNRAWState] = UT;      RETURN [FDAWCalc:PYNRAWDate02Sp]                        WHERE [FDAWCalc:PYNRAWState] = UT;ELSE RETURN Blank;"			
+			INCOME					
+TC40BWagesA	"TC-40B, Line 1 Column A"	Money (non-negative)	"Wages, salaries, tips, etc. (1040/1040A Line 7, 1040EZ, Line 1) - Column A - UTAH"	"Populate with only the UT Wages, salaries, tips, etc."	"IF MFJ     RETURN ([FDAWCalc:PYNRAW1]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW2]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW1]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BWagesB	"TC-40B, Line 1 Column B"	Money (non-negative)	"Wages, salaries, tips, etc. (1040/1040A Line 7, 1040EZ, Line 1) - Column B - TOTAL"	Federal Form 1040 Line 7	[FD1040calc:F1040L7]			
+TC40BInterestA	"TC-40B, Line 2 Column A"	Money (non-negative)	"Taxable Interest Income (1040/1040A Line 8a, 1040EZ Line 2) - Column A - UTAH"	Populate with only the UT Taxable Interest Income	"IF MFJ     RETURN ([FDAWCalc:PYNRAW45]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW46]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW45]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BInterestB	"TC-40B, Line 2 Column B"	Money (non-negative)	"Taxable Interest Income (1040/1040A Line 8a, 1040EZ Line 2) - Column B - TOTAL"	Federal Form 1040 Line 8a	[FD1040calc:F1040L8a]			
+TC40BDividendsA	"TC-40B, Line 3 Column A"	Money (non-negative)	Ordinary Dividends (1040/1040A Line 9a) - Column A - UTAH	Populate with only the UT Ordinary Dividends	"IF MFJ     RETURN ([FDAWCalc:PYNRAW55]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW56]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW55]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BDividendsB	"TC-40B, Line 3 Column B"	Money (non-negative)	Ordinary Dividends (1040/1040A Line 9a) - Column B - TOTAL	Federal Form 1040 Line 9a	[FD1040calc:F1040L9a]			
+TC40BTaxRefA	"TC-40B, Line 4 Column A"	Money (non-negative)	"Taxable Refunds, Credits, or Offsets of State and Local Income Taxes (1040 Line 10) - Column A - UTAH"	Populate with only the UT Taxable Refunds	"IF MFJ     RETURN ([FDAWCalc:PYNRAW63]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW64]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW63]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BTaxRefB	"TC-40B, Line 4 Column B"	Money (non-negative)	"Taxable Refunds, Credits, or Offsets of State and Local Income Taxes (1040 Line 10) - Column B - TOTAL"	Federal Form 1040 Line 10	[FD1040calc:F1040L10]			
+TC40BAlimRecA	"TC-40B, Line 5 Column A"	Money (non-negative)	Alimony Received (1040 Line 11) - Column A - UTAH	Populate with only the UT Alimony Received	"IF MFJ     RETURN ([FDAWCalc:PYNRAW65]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW66]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW65]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BAlimRecB	"TC-40B, Line 5 Column B"	Money (non-negative)	Alimony Received (1040 Line 11) - Column B - TOTAL	Federal Form 1040 Line 11	[FD1040calc:F1040L11]			
+TC40BBusIncA	"TC-40B, Line 6 Column A"	Money (allow negative)	Business Income or (Loss) (1040 Line 12) - Column A - UTAH	Populate with only the UT Business Income/Loss	"IF MFJ     RETURN ([FDAWCalc:PYNRAW67]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW68]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW67]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BBusIncB	"TC-40B, Line 6 Column B"	Money (allow negative)	Business Income or (Loss) (1040 Line 12) - Column B - TOTAL	Federal Form 1040 Line 12	[FD1040calc:F1040L12]			
+TC40BCapGLA	"TC-40B, Line 7 Column A"	Money (allow negative)	"Capital Gain or (Loss) (1040 Line 13, 1040A Line 10) - Column A - UTAH"	Populate with only the UT Capital Gain/Loss	"IF MFJ     RETURN ([FDAWCalc:PYNRAW69]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW70]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW69]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BCapGLB	"TC-40B, Line 7 Column B"	Money (allow negative)	"Capital Gain or (Loss) (1040 Line 13, 1040A Line 10) - Column B - TOTAL"	Federal Form 1040 Line 13	[FD1040calc:F1040L13]			
+TC40BOthGLA	"TC-40B, Line 8 Column A"	Money (allow negative)	Other Gains or (Losses) (1040 Line 14) - Column A - UTAH	Populate with only the UT Other Gains/Losses	"IF MFJ     RETURN ([FDAWCalc:PYNRAW71]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW72]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW71]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BOthGLB	"TC-40B, Line 8 Column B"	Money (allow negative)	Other Gains or (Losses) (1040 Line 14) - Column B - TOTAL	Federal Form 1040 Line 14	[FD1040calc:F1040L14]			
+TC40BIRADistA	"TC-40B, Line 9 Column A"	Money (non-negative)	"IRA Distributions - Taxable Amount (1040 Line 15b, 1040A Line 11b) - Column A - UTAH"	Populate with only the IRA Distributions attributed to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW75]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW76]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW75]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BIRADistB	"TC-40B, Line 9 Column B"	Money (non-negative)	"IRA Distributions - Taxable Amount (1040 Line 15b, 1040A Line 11b) - Column B - TOTAL"	Federal Form 1040 Line 15b	[FD1040calc:F1040L15b]			
+TC40BPenA	"TC-40B, Line 10 Column A"	Money (non-negative)	"Pensions and Annuities - Taxable Amount (1040 Line 16b, 1040A Line 12b) - Column A - UTAH"	Populate with only the UT Pensions and Annuities	"IF MFJ     RETURN ([FDAWCalc:PYNRAW81]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW82]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW81]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BPenB	"TC-40B, Line 10 Column B"	Money (non-negative)	"Pensions and Annuities - Taxable Amount (1040 Line 16b, 1040A Line 12b) - Column B - TOTAL"	Federal Form 1040 Line 16b	[FD1040calc:F1040L16b]			
+TC40BSchEA	"TC-40B, Line 11 Column A"	Money (non-negative)	"Rental Real Estate, Royalties, Partnerships, S Corporations, Trusts, etc. (1040 Line 17) - Column A - UTAH"	Populate with only the UT Schedule E Income	"IF MFJ     RETURN ([FDAWCalc:PYNRAW85]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW86]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW85]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BSchEB	"TC-40B, Line 11 Column B"	Money (non-negative)	"Rental Real Estate, Royalties, Partnerships, S Corporations, Trusts, etc. (1040 Line 17) - Column B - TOTAL"	Federal Form 1040 Line 17	[FD1040calc:F1040L17]			
+TC40BSchFA	"TC-40B, Line 12 Column A"	Money (allow negative)	Farm Income or (Loss) (1040 Line 18) - Column A - UTAH	Populate with only the UT Schedule F Income/Loss	"IF MFJ     RETURN ([FDAWCalc:PYNRAW101]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW102]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW101]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BSchFB	"TC-40B, Line 12 Column B"	Money (allow negative)	Farm Income or (Loss) (1040 Line 18) - Column B - TOTAL	Federal Form 1040 Line 18	[FD1040calc:F1040L18]			
+TC40BUnempA	"TC-40B, Line 13 Column A"	Money (non-negative)	"Unemployment Compensation (1040 Line 19, 1040A Line 13, 1040EZ Line 3) - Column A - UTAH"	Populate with only the Unemployment Compensation received in UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW103]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW104]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW103]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BUnempB	"TC-40B, Line 13 Column B"	Money (non-negative)	"Unemployment Compensation (1040 Line 19, 1040A Line 13, 1040EZ Line 3) - Column B - TOTAL"	Federal Form 1040 Line 19	[FD1040calc:F1040L19]			
+TC40BSSBA	"TC-40B, Line 14 Column A"	Money (non-negative)	"Social Security Benefits - Taxable Amount (1040 Line 20b, 1040A Line 14b) - Column A - UTAH"	Populate with only the Social Security Benefits received in UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW109]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW110]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW109]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BSSBB	"TC-40B, Line 14 Column B"	Money (non-negative)	"Social Security Benefits - Taxable Amount (1040 Line 20b, 1040A Line 14b) - Column B - TOTAL"	Federal Form 1040 Line 20b	[FD1040calc:F1040L20b]			
+TC40BOthIncA	"TC-40B, Line 15 Column A"	Money (non-negative)	Other Income (1040 Line 21) - Column A - UTAH	Populate with only the UT Other Income	"IF MFJ     RETURN ([FDAWCalc:PYNRAW113]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW114]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW113]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BOthIncB	"TC-40B, Line 15 Column B"	Money (non-negative)	Other Income (1040 Line 21) - Column B - TOTAL	Federal Form 1040 Line 21	[FD1040calc:F1040L21]			
+TC40BAddIncA	"TC-40B, Line 16 Column A"	Money (non-negative)	"Additions to Income from TC-40A, Part 1 (Utah portion only in Utah column) - Column A - UTAH"	direct entry in UI	direct entry in UI			
+TC40BAddIncB	"TC-40B, Line 16 Column B"	Money (non-negative)	"Additions to Income from TC-40A, Part 1 (Utah portion only in Utah column) - Column B - TOTAL"	TC-40A Part 1 Total	[UTTC40APg1Calc:UTTC40AP1Tol]			
+TC40BTotalIncA	"TC-40B, Line 17 Column A"	Money (allow negative)	Total Income (Loss) - Add Lines 1 through 16 for Column A	Add Lines 1 through 16 together from Column A	"[TC40BWagesA] plus[TC40BInterestA] plus[TC40BDividendsA] plus[TC40BTaxRefA] plus[TC40BAlimRecA] plus[TC40BBusIncA] plus[TC40BCapGLA] plus[TC40BOthGLA] plus[TC40BIRADistA] plus[TC40BPenA] plus[TC40BSchEA] plus[TC40BSchFA] plus[TC40BUnempA] plus[TC40BSSBA] plus[TC40BOthIncA] plus[TC40BAddIncA]"			
+TC40BTotalIncB	"TC-40B, Line 17 Column B"	Money (allow negative)	Total Income (Loss) - Add Lines 1 through 16 for Column B	j	"[TC40BWagesB] plus[TC40BInterestB] plus[TC40BDividendsB] plus[TC40BTaxRefB] plus[TC40BAlimRecB] plus[TC40BBusIncB] plus[TC40BCapGLB] plus[TC40BOthGLB] plus[TC40BIRADistB] plus[TC40BPenB] plus[TC40BSchEB] plus[TC40BSchFB] plus[TC40BUnempB] plus[TC40BSSBB] plus[TC40BOthIncB] plus[TC40BAddIncB]"			
+			ADJUSTMENTS					
+TC40BEduExpA	"TC-40B, Line 18 Column A"	Money (non-negative)	"Educator Expenses (1040 Line 23, 1040A Line 16) - Column A - UTAH"	Populate with only the UT Educator Expenses	"IF MFJ     RETURN ([FDAWCalc:PYNRAW137]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW138]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW137]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BEduExpB	"TC-40B, Line 18 Column B"	Money (non-negative)	"Educator Expenses (1040 Line 23, 1040A Line 16) - Column B - TOTAL"	Federal Form 1040 Line 23	[FD1040calc:F1040L23]			
+TC40BBusExpA	"TC-40B, Line 19 Column A"	Money (non-negative)	"Certain Business Expenses of Reservists, Performing Artists, etc. (1040 Line 24) - Column A - UTAH"	Populate with only the Certain Business Expenses attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW139]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW140]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW139]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BBusExpB	"TC-40B, Line 19 Column B"	Money (non-negative)	"Certain Business Expenses of Reservists, Performing Artists, etc. (1040 Line 24) - Column B - TOTAL"	Federal Form 1040 Line 24	[FD1040calc:F1040L24]			
+TC40BHSADedA	"TC-40B, Line 20 Column A"	Money (non-negative)	Health Savings Account Deduction (1040 Line 25) - Column A - UTAH	Populate with only the Health Savings Account Deduction attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW147]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW148]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW147]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BHSADedB	"TC-40B, Line 20 Column B"	Money (non-negative)	Health Savings Account Deduction (1040 Line 25) - Column B - TOTAL	Federal Form 1040 Line 25	[FD1040calc:F1040L25]			
+TC40BMovingA	"TC-40B, Line 21 Column A"	Money (non-negative)	Moving expenses (1040 Line 26) - enter in Column A only Expenses moving into Utah - Column A - UTAH	Populate with only the Moving Expenses to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW149]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW150]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW149]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BMovingB	"TC-40B, Line 21 Column B"	Money (non-negative)	Moving expenses (1040 Line 26) - enter in Column A only Expenses moving into Utah - Column B - TOTAL	Federal Form 1040 Line 26	[FD1040calc:F1040L26]			
+TC40BDedSETaxA	"TC-40B, Line 22 Column A"	Money (non-negative)	Deductible Part of Self-Employment Tax (1040 Line 27) - Column A - UTAH	Populate with only the Deductible Part of Self-Employment Tax attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW151]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW152]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW151]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BDedSETaxB	"TC-40B, Line 22 Column B"	Money (non-negative)	Deductible Part of Self-Employment Tax (1040 Line 27) - Column B - TOTAL	Federal Form 1040 Line 27	[FD1040calc:F1040L27]			
+TC40BSEPSimQualA	"TC-40B, Line 23 Column A"	Money (non-negative)	"Self-Employed SEP, SIMPLE and Qualified Plans (1040 Line 28) - Column A - UTAH"	"Populate with only the Self-Employed SEP, SIMPLE and Qualified Plans attributable to UT"	"IF MFJ     RETURN ([FDAWCalc:PYNRAW155]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW156]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW155]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BSEPSimQualB	"TC-40B, Line 23 Column B"	Money (non-negative)	"Self-Employed SEP, SIMPLE and Qualified Plans (1040 Line 28) - Column B - TOTAL"	Federal Form 1040 Line 28	[FD1040calc:F1040L28]			
+TC40BSEHInsDedA	"TC-40B, Line 24 Column A"	Money (non-negative)	Self-Employed Health Insurance Deduction (1040 Line 29) - Column A - UTAH	Populate with only the Self-Employed Health Insurance Deduction attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW153]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW154]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW153]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BSEHInsDedB	"TC-40B, Line 24 Column B"	Money (non-negative)	Self-Employed Health Insurance Deduction (1040 Line 29) - Column B - TOTAL	Federal Form 1040 Line 29	[FD1040calc:F1040L29]			
+TC40BPenEarlySavA	"TC-40B, Line 25 Column A"	Money (non-negative)	Penalty on Early Withdrawal of Savings (1040 Line 30) - Column A - UTAH	Populate with only the Penalty on Early Withdrawal of Savings attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW157]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW158]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW157]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BPenEarlySavB	"TC-40B, Line 25 Column B"	Money (non-negative)	Penalty on Early Withdrawal of Savings (1040 Line 30) - Column B - TOTAL	Federal Form 1040 Line 30	[FD1040calc:F1040L30]			
+TC40BAlimPaidA	"TC-40B, Line 26 Column A"	Money (non-negative)	Alimony Paid (1040 Line 31a) - Column A - UTAH	Populate with only the Alimony Paid attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW159]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW160]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW159]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BAlimPaidB	"TC-40B, Line 26 Column B"	Money (non-negative)	Alimony Paid (1040 Line 31a) - Column B - TOTAL	Federal Form 1040 Line 31a	[FD1040calc:F1040L31a]			
+TC40BIRADedA	"TC-40B, Line 27 Column A"	Money (non-negative)	"IRA Deduction (1040 Line 32, 1040A Line 17) - Column A - UTAH"	Populate with only the IRA Deduction attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW141]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW142]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW141]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BIRADedB	"TC-40B, Line 27 Column B"	Money (non-negative)	"IRA Deduction (1040 Line 32, 1040A Line 17) - Column B - TOTAL"	Federal Form 1040 Line 32	[FD1040calc:F1040L32]			
+TC40BStudentA	"TC-40B, Line 28 Column A"	Money (non-negative)	"Student Loan Interest Deduction (1040 Line 33, 1040A Line 18) - Column A - UTAH"	Populate with only the Student Loan Interest Deduction attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW143]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW144]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW143]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BStudentB	"TC-40B, Line 28 Column B"	Money (non-negative)	"Student Loan Interest Deduction (1040 Line 33, 1040A Line 18) - Column B - TOTAL"	Federal Form 1040 Line 33	[FD1040calc:F1040L33]			
+TC40BTuitionFeesA	"TC-40B, Line 29 Column A"	Money (non-negative)	"Tuition and Fees (1040 Line 34, 1040A Line 19) - Column A - UTAH"	Populate with only the Tuition and Fees attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW145]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW146]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW145]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BTuitionFeesB	"TC-40B, Line 29 Column B"	Money (non-negative)	"Tuition and Fees (1040 Line 34, 1040A Line 19) - Column B - TOTAL"	Fedearl Form 1040 Line 34	[FD1040calc:F1040L34]			
+TC40BDomProdA	"TC-40B, Line 30 Column A"	Money (non-negative)	Domestic Production Activities Deduction (1040 Line 35) - Column A - UTAH	Populate with only the Domestic Production Activities Deduction attributable to UT	"IF MFJ     RETURN ([FDAWCalc:PYNRAW161]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW162]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW161]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BDomProdB	"TC-40B, Line 30 Column B"	Money (non-negative)	Domestic Production Activities Deduction (1040 Line 35) - Column B - TOTAL	Federal Form 1040 Line 35	[FD1040calc:F1040L35]			
+TC40BTaxRefSubA	"TC-40B, Line 31 Column A"	Money (non-negative)	"Taxable Refunds, Credits, or Offsets of State and Local Income Taxes (1040 Line 10) - Column A - UTAH"	Populate with only the UT Taxable Refunds	"IF MFJ     RETURN ([FDAWCalc:PYNRAW63]                      WHERE [FDAWCalc:PYNRAWState] = UT) plus                      ([FDAWCalc:PYNRAW64]                      WHERE [FDAWCalc:PYNRAWState] = UT);ELSE RETURN [FDAWCalc:PYNRAW63]                           WHERE [FDAWCalc:PYNRAWState] = UT "			
+TC40BTaxRefSubB	"TC-40B, Line 31 Column B"	Money (non-negative)	"Taxable Refunds, Credits, or Offsets of State and Local Income Taxes (1040 Line 10) - Column B - TOTAL"	Federal Form 1040 Line 10	[FD1040calc:F1040L10]			
+TC40BSubIncA	"TC-40B, Line 32 Column A"	Money (non-negative)	"Subtractions from Income from TC-40A, Part 2 (Utah Portion only in Utah column) - Column A - UTAH"	direct entry in UI	direct entry in UI			
+TC40BSubIncB	"TC-40B, Line 32 Column B"	Money (non-negative)	"Subtractions from Income from TC-40A, Part 2 (Utah Portion only in Utah column) - Column B - TOTAL"	TC-40A Part 2 Total	[UTTC40APg1Calc:UTTC40AP2Tol]			
+TC40BFedAdjGroup		Collection Start	Collection of Federal Other Adjustments on Federal Form 1040 Line 36	"Populate the first description to Line 33, all others for MeF, if needed"				
+TC40BFedAdjDescrip		Text	Line 33 (see instructions) - Description	Federal Form 1040 Line 36a description	[FD1040calc:F1040AOthAdjMargDesc]			
+TC40BFedAdjAmt		Money (non-negative)	Line 33 (see instructions) - Amount	Populate with only the other adjustments related to UT	"[FD1040calc:F1040L36ME01]WHERE [FDAWCalc:PYNRAWState] = UT"			
+TC40BFedAdjGroup		Collection End						
+TC40BFedAdjA	"TC-40B, Line 33 Column A"	Money (non-negative)	Line 33 (see instructions) - Column A - UTAH	Total ALL Amounts from user entries	SUM ALL [TC40BFedAdjAmt]			
+TC40BFedAdjB	"TC-40B, Line 33 Column B"	Money (non-negative)	Line 33 (see instructions) - Column B - TOTAL	Federal Form 1040 Line 36	[FD1040calc:F1040L36]			
+TC40BTotalAdjA	"TC-40B, Line 34 Column A"	Money (non-negative)	Total Adjustments - Add Lines 18 through 33 for Column A	Add Lines 18 through 33 together for Column A	"[TC40BEduExpA] plus[TC40BBusExpA] plus[TC40BHSADedA] plus[TC40BMovingA] plus[TC40BDedSETaxA] plus[TC40BSEPSimQualA] plus[TC40BSEHInsDedA] plus[TC40BPenEarlySavA] plus[TC40BAlimPaidA] plus[TC40BIRADedA] plus[TC40BStudentA] plus[TC40BTuitionFeesA] plus[TC40BDomProdA] plus[TC40BTaxRefSubA] plus[TC40BSubIncA] plus[TC40BFedAdjA]"			
+TC40BTotalAdjB	"TC-40B, Line 34 Column B"	Money (non-negative)	Total Adjustments - Add Lines 18 through 33 for Column B	Add Lines 18 through 33 together for Column B	"[TC40BEduExpB] plus[TC40BBusExpB] plus[TC40BHSADedB] plus[TC40BMovingB] plus[TC40BDedSETaxB] plus[TC40BSEPSimQualB] plus[TC40BSEHInsDedB] plus[TC40BPenEarlySavB] plus[TC40BAlimPaidB] plus[TC40BIRADedB] plus[TC40BStudentB] plus[TC40BTuitionFeesB] plus[TC40BDomProdB] plus[TC40BTaxRefSubB] plus[TC40BSubIncB] plus[TC40BFedAdjB]"			
+			TOTALS					
+TC40BTotalIncA	"TC-40B, Line 35 Column A"	Money (allow negative)	Subtract Line 34 from Line 17 for Column A	Line 17 Column A minus Line 34 Column A	"[TC40BTotalIncA] minus[TC40BTotalAdjA]"			
+TC40BTotalIncB	"TC-40B, Line 35 Column B"	Money (allow negative)	"Subtract Line 34 from Line 17 for Column B (Line 35, Column B MUST equal TC-40, Line 9)"	Line 17 Column B minus Line 34 Column B	"[TC40BTotalIncB] minus[TC40BTotalAdjB]"			
+			NON or PART-YEAR RESIDENT UTAH TAX					
+TC40BPYNRRatio	"TC-40B, Line 36"	Ratio/Percentage	Divide Line 35 Column A by Line 35 Column B (to 4 decimal places) - Do not enter a number greater than 1.0000 or less than 0.0000.	Line 35 Column A divided by Line 35 Column B (to 4 decimal places) (cannot be greater than 1.0000 or less than 0.0000)	"[TC40BTotalIncA] divided by[TC40BTotalIncB]"			
+TC40BTaxIncome	"TC-40B, Line 37"	Money (non-negative)	"Subtract TC-40, Line 24 from TC-40, Line 23 and enter the result (not less than zero) here"	"TC-40, Line 23 minus TC-40 Line 24 (but not less than 0)"	"[UTTC40Calc:UTTC40Tax3] minus[UTTC40Calc:UTTC40ANRCR]"			
+TC40BUtahTax	"TC-40B, Line 38"	Money (non-negative)	"Multiply Line 37 by the decimal on Line 36. This is your Utah tax. Enter on TC-40, Page 2, Line 25."	Multiply Line 37 by the decimal on Line 36	"[TC40BTaxIncome] *[TC40BPYNRRatio]"			
+			END OF FORM					
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								

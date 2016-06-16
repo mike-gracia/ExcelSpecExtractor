@@ -1,0 +1,3 @@
+PhaseOutAmount			UTTC40PhOAmt	UT TC-40 line 19	Money (non-negative)	Phase-out amount	Multiply Line 18 by Utah phase out amount credit rate	"[UTTC40PhOInc] * <br />[UTPhOCR]"
+TaxpayerTaxCredit		UTTC40TCR	UT TC-40 line 20	Money (non-negative)	Taxpayer tax credit	Subtract line 19 from line 16 (not less than zero)	"[UTTC40ICR] minus<br />[UTTC40PhOAmt]"
+IsQualifiedExempt		UTTC40QualExmp	UT TC-40 line 21	Yes/No	Qualified Exempt Taxpayers checkbox	IF federal AGI is =< federal allowable standard deduction plus federal exemption amount, then yes; ELSE, no	"IF [UTQExmpWrkt05] = 0<br />      RETURN YES;<br />ELSE RETURN NO"

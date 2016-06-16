@@ -1,0 +1,51 @@
+#region decimal PhaseOutAmount (Line UT TC-40 line 19)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _phaseOutAmount;
+/// <summary> 
+/// Phase-out amount  (Calculatable) 
+/// Reference Number UTTC40PhOAmt
+/// </summary> 
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
+[Description("Phase-out amount"), Category("Category"), ReferenceNumber("UTTC40PhOAmt"), LineNumber("UT TC-40 line 19")] 
+public decimal PhaseOutAmount { get { return _phaseOutAmount.Calculate(PhaseOutAmount_Calculation); } } 
+private decimal PhaseOutAmount_Calculation() 
+{ 
+	 //"[UTTC40PhOInc] * 
+// [UTPhOCR]"
+	 //TODO: Enter code for PhaseOutAmount calculation 
+} 
+#endregion PhaseOutAmount 
+
+#region decimal TaxpayerTaxCredit (Line UT TC-40 line 20)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _taxpayerTaxCredit;
+/// <summary> 
+/// Taxpayer tax credit  (Calculatable) 
+/// Reference Number UTTC40TCR
+/// </summary> 
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
+[Description("Taxpayer tax credit"), Category("Category"), ReferenceNumber("UTTC40TCR"), LineNumber("UT TC-40 line 20")] 
+public decimal TaxpayerTaxCredit { get { return _taxpayerTaxCredit.Calculate(TaxpayerTaxCredit_Calculation); } } 
+private decimal TaxpayerTaxCredit_Calculation() 
+{ 
+	 //"[UTTC40ICR] minus
+// [UTTC40PhOAmt]"
+	 //TODO: Enter code for TaxpayerTaxCredit calculation 
+} 
+#endregion TaxpayerTaxCredit 
+
+#region bool IsQualifiedExempt (Line UT TC-40 line 21)
+internal Calculatable<bool> _isQualifiedExempt;
+/// <summary> 
+/// Qualified Exempt Taxpayers checkbox  (Calculatable) 
+/// Reference Number UTTC40QualExmp
+/// </summary> 
+[Description("Qualified Exempt Taxpayers checkbox"), Category("Category"), ReferenceNumber("UTTC40QualExmp"), LineNumber("UT TC-40 line 21")] 
+public bool IsQualifiedExempt { get { return _isQualifiedExempt.Calculate(IsQualifiedExempt_Calculation); } } 
+private bool IsQualifiedExempt_Calculation() 
+{ 
+	 //"IF [UTQExmpWrkt05] = 0
+//       RETURN YES;
+// ELSE RETURN NO"
+	 //TODO: Enter code for IsQualifiedExempt calculation 
+} 
+#endregion IsQualifiedExempt 
+
