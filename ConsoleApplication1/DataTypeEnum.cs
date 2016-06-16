@@ -14,7 +14,8 @@ namespace ExcelSpecExtractor
         WholeNumber,
         YesNo,
         YesNoBlank,
-        Ratio
+        Ratio,
+        Date
 
 
     }

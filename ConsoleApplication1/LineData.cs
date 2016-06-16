@@ -20,9 +20,13 @@ namespace ExcelSpecExtractor
         public string InternalFieldName = "";
         public string allowNegative = "false";
         public string precisionType = ".Zero";
+        public string Category = "Category";
 
-        public LineData(string[] stringInput)
+        public LineData(string[] stringInput, string _category)
         {
+            if (_category.Length > 0)
+                Category = _category;
+
             int i = 0;
             FieldName = stringInput[i++];
             ReferenceId = stringInput[i++];
@@ -31,6 +35,9 @@ namespace ExcelSpecExtractor
 
             switch (stringInput[i++])
             {
+                case "Date":
+                    DataType = DataType.Date;
+                    break;
                 case "Whole number (non-negative)":
                     DataType = DataType.WholeNumber;
                     AllowNegative = false;

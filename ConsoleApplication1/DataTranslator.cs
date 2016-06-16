@@ -16,6 +16,9 @@ namespace ExcelSpecExtractor
         { 
                 switch (ld.DataType)
                     {
+                    case DataType.Date:
+                            translation = Date(ld);
+                            break;
                     case DataType.WholeNumber:
                             translation = WholeNumber(ld);
                             break;
@@ -32,6 +35,27 @@ namespace ExcelSpecExtractor
                     }
 
             }
+
+        public string Date(LineData input)
+        {
+
+            return
+            "#region Date " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
+           + "internal Calculatable<Date, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
+           + "/// <summary> " + eol
+           + "/// " + input.Description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// </summary> " + eol
+           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+           + "public Date " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
+           + "private Date " + input.FieldName + "_Calculation() " + eol
+           + "{ " + eol
+           + "\t " + input.Calculation + "" + eol
+           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "} " + eol
+           + "#endregion " + input.FieldName + " " + eol;
+
+        }
         public string WholeNumber(LineData input)
         {
 
@@ -43,7 +67,7 @@ namespace ExcelSpecExtractor
            + "/// Reference Number " + input.ReferenceId + "" + eol
            + "/// </summary> " + eol
            + "[Number(AllowNegative = " + input.allowNegative + ")]" + eol
-           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
            + "public int " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
            + "private int " + input.FieldName + "_Calculation() " + eol
            + "{ " + eol
@@ -66,7 +90,7 @@ namespace ExcelSpecExtractor
            + "/// Reference Number " + input.ReferenceId + "" + eol
            + "/// </summary> " + eol
            + "[Money(AllowNegative = " + input.allowNegative + ", Precision = PrecisionType.Zero)] " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
            + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
            + "private decimal " + input.FieldName + "_Calculation() " + eol
            + "{ " + eol
@@ -90,7 +114,7 @@ namespace ExcelSpecExtractor
             + "/// Reference Number " + input.ReferenceId + "" + eol
             + "/// </summary> " + eol
             + "[Ratio(Precision = PrecisionType.Zero)]" + eol
-            + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+            + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
             + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
             + "private decimal " + input.FieldName + "_Calculation() " + eol
             + "{ " + eol
@@ -112,7 +136,7 @@ namespace ExcelSpecExtractor
            + "/// " + input.Description + "  (Calculatable) " + eol
            + "/// Reference Number " + input.ReferenceId + "" + eol
            + "/// </summary> " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
            + "public bool " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
            + "private bool " + input.FieldName + "_Calculation() " + eol
            + "{ " + eol

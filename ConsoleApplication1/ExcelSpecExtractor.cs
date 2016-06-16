@@ -14,8 +14,11 @@ namespace ExcelSpecExtractor
     {
         static void Main(string[] args)
         {
-            //
-            
+
+            string category = "Category";
+            Console.WriteLine("Enter a Category:");
+            category = Console.ReadLine();
+
             string inputFile = @"../../input.txt";
             string outputFile = @"../../output.txt";
             //Console.WriteLine(line);
@@ -38,7 +41,7 @@ namespace ExcelSpecExtractor
 
                 if (lineValues.Length == 7 && lineValues[0] != string.Empty)
                 {
-                    LineData ld = new LineData(lineValues);
+                    LineData ld = new LineData(lineValues, category);
                     DataTranslator dt = new DataTranslator(ld);
                     file.WriteLine(dt.translation);
                 }
