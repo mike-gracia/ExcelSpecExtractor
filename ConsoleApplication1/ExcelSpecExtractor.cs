@@ -40,7 +40,7 @@ namespace ExcelSpecExtractor
                 {
                     LineData ld = new LineData(lineValues);
                     DataTranslator dt = new DataTranslator(ld);
-                    File.WriteAllText(dt.translation, outputFile );
+                    file.WriteLine(dt.translation);
                 }
                 else
                 {

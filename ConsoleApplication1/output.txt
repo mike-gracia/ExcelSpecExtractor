@@ -1,0 +1,89 @@
+#region int Whole1 (Line UT TC-40 line 2a)
+internal Calculatable<int, RoundedToTheNearestInteger> _whole1;
+/// <summary> 
+/// Exemptions - Taxpayer  (Calculatable) 
+/// Reference Number UTTC40ExmpTp
+/// </summary> 
+[Number(AllowNegative = false)]
+[Description("Exemptions - Taxpayer"), Category("Category"), ReferenceNumber("UTTC40ExmpTp"), LineNumber("UT TC-40 line 2a")] 
+public int Whole1 { get { return _whole1.Calculate(Whole1_Calculation); } } 
+private int Whole1_Calculation() 
+{ 
+	 //"IF [FD1040PIcalc: PITp20] = NO
+//      RETURN 1; 
+// ELSE RETURN 0"
+	 //TODO: Enter code for Whole1 calculation 
+} 
+#endregion Whole1 
+
+#region int Whole2 (Line UT TC-40 line 2b)
+internal Calculatable<int, RoundedToTheNearestInteger> _whole2;
+/// <summary> 
+/// Exemptions - Spouse  (Calculatable) 
+/// Reference Number UTTC40ExmpSp
+/// </summary> 
+[Number(AllowNegative = false)]
+[Description("Exemptions - Spouse"), Category("Category"), ReferenceNumber("UTTC40ExmpSp"), LineNumber("UT TC-40 line 2b")] 
+public int Whole2 { get { return _whole2.Calculate(Whole2_Calculation); } } 
+private int Whole2_Calculation() 
+{ 
+	 //"IF MFJ AND [FD1040PIcalc: PISp20] = NO
+//       RETURN 1; 
+// ELSE RETURN 0"
+	 //TODO: Enter code for Whole2 calculation 
+} 
+#endregion Whole2 
+
+#region int Whole3 (Line UT TC-40 line 2c)
+internal Calculatable<int, RoundedToTheNearestInteger> _whole3;
+/// <summary> 
+/// Exemptions - Dependents  (Calculatable) 
+/// Reference Number UTTC40ExmpDep
+/// </summary> 
+[Number(AllowNegative = false)]
+[Description("Exemptions - Dependents"), Category("Category"), ReferenceNumber("UTTC40ExmpDep"), LineNumber("UT TC-40 line 2c")] 
+public int Whole3 { get { return _whole3.Calculate(Whole3_Calculation); } } 
+private int Whole3_Calculation() 
+{ 
+	 //"[FD1040calc: F1040LivedWith] plus 
+// [FD1040calc: F1040L6DidNotLiveWith] plus 
+// [FD1040calc: F1040OtherDeps]"
+	 //TODO: Enter code for Whole3 calculation 
+} 
+#endregion Whole3 
+
+#region int Whole4 (Line UT TC-40 line 2d)
+internal Calculatable<int, RoundedToTheNearestInteger> _whole4;
+/// <summary> 
+/// Exemptions - Dependents with a disability  (Calculatable) 
+/// Reference Number UTTC40ExmpDDep
+/// </summary> 
+[Number(AllowNegative = false)]
+[Description("Exemptions - Dependents with a disability"), Category("Category"), ReferenceNumber("UTTC40ExmpDDep"), LineNumber("UT TC-40 line 2d")] 
+public int Whole4 { get { return _whole4.Calculate(Whole4_Calculation); } } 
+private int Whole4_Calculation() 
+{ 
+	 //direct entry in UI
+	 //TODO: Enter code for Whole4 calculation 
+} 
+#endregion Whole4 
+
+#region int Whole5 (Line UT TC-40 line 2e)
+internal Calculatable<int, RoundedToTheNearestInteger> _whole5;
+/// <summary> 
+/// Total Exemptions  (Calculatable) 
+/// Reference Number UTTC40TolExmp
+/// </summary> 
+[Number(AllowNegative = false)]
+[Description("Total Exemptions"), Category("Category"), ReferenceNumber("UTTC40TolExmp"), LineNumber("UT TC-40 line 2e")] 
+public int Whole5 { get { return _whole5.Calculate(Whole5_Calculation); } } 
+private int Whole5_Calculation() 
+{ 
+	 //"[UTTC40ExmpTp] plus
+// [UTTC40ExmpSp] plus
+// [UTTC40ExmpDep] plus 
+// [UTTC40ExmpDDep]"
+	 //TODO: Enter code for Whole5 calculation 
+} 
+#endregion Whole5 
+

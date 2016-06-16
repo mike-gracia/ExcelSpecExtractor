@@ -5,5 +5,8 @@ E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\
 E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 E:\Users\Mike\Documents\GitHub\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ExcelSpecExtractor.csprojResolveAssemblyReference.cache
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

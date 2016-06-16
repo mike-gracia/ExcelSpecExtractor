@@ -34,7 +34,24 @@ namespace ExcelSpecExtractor
             }
         public string WholeNumber(LineData input)
         {
-            return "Whole Number TODO";
+
+            return
+            "#region int " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
+           + "internal Calculatable<int, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
+           + "/// <summary> " + eol
+           + "/// " + input.Description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// </summary> " + eol
+           + "[Number(AllowNegative = " + input.allowNegative + ")]" + eol
+           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
+           + "public int " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
+           + "private int " + input.FieldName + "_Calculation() " + eol
+           + "{ " + eol
+           + "\t " + input.Calculation + "" + eol
+           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "} " + eol
+           + "#endregion " + input.FieldName + " " + eol;
+        
         }
 
         public string Money(LineData input)

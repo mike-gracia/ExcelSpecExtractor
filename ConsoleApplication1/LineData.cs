@@ -31,7 +31,16 @@ namespace ExcelSpecExtractor
 
             switch (stringInput[i++])
             {
-
+                case "Whole number (non-negative)":
+                    DataType = DataType.WholeNumber;
+                    AllowNegative = false;
+                    allowNegative = "false";
+                    break;
+                case "Whole number (allow negative)":
+                    DataType = DataType.WholeNumber;
+                    AllowNegative = true;
+                    allowNegative = "true";
+                    break;
                 case "Ratio/Percentage":
                     DataType = DataType.Ratio;
                     break;
