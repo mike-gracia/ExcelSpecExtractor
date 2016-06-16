@@ -39,20 +39,8 @@ namespace ExcelSpecExtractor
                 if (lineValues.Length == 7 && lineValues[0] != string.Empty)
                 {
                     LineData ld = new LineData(lineValues);
-
-                    switch (ld.DataType)
-                    {
-                        case DataType.Ratio:
-                            file.WriteLine(Ratio(ld));
-                            break;
-                        case DataType.YesNo:
-                            file.WriteLine(YesNo(ld));
-                            break;
-                        case DataType.Money:
-                        default:
-                            file.WriteLine(Money(ld));
-                            break;
-                    }
+                    DataTranslator dt = new DataTranslator(ld);
+                    File.WriteAllText(dt.translation, outputFile );
                 }
                 else
                 {
@@ -67,74 +55,7 @@ namespace ExcelSpecExtractor
 
         }
 
-        public static string Money(LineData input)
-        {
-            string eol = Environment.NewLine;
-
-            return
-           "#region decimal " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<decimal, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
-           + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
-           + "/// </summary> " + eol
-           + "[Money(AllowNegative = " + input.allowNegative + ", Precision = PrecisionType.Zero)] " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private decimal " + input.FieldName + "_Calculation() " + eol
-           + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
-           + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
-
-
-        }
-
-        public static string Ratio(LineData input)
-        {
-            string eol = Environment.NewLine;
-
-            return
-            "#region decimal " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-            + "internal Calculatable<decimal, RoundedToTwoDecimalPlaces> " + input.InternalFieldName + ";" + eol
-            + "/// <summary> " + eol
-            + "/// " + input.Description + "  (Calculatable) " + eol
-            + "/// Reference Number " + input.ReferenceId + "" + eol
-            + "/// </summary> " + eol
-            + "[Ratio(Precision = PrecisionType.Zero)]" + eol
-            + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-            + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-            + "private decimal " + input.FieldName + "_Calculation() " + eol
-            + "{ " + eol
-            + "\t " + input.Calculation + "" + eol
-            + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
-            + "} " + eol
-            + "#endregion " + input.FieldName + " " + eol;
-
-        }
-
-        public static string YesNo(LineData input)
-        {
-            string eol = Environment.NewLine;
-
-            return
-                "#region bool " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<bool> " + input.InternalFieldName + ";" + eol
-           + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
-           + "/// </summary> " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\"Category\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public bool " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private bool " + input.FieldName + "_Calculation() " + eol
-           + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
-           + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
-        
-        }
+   
     }
 
    
