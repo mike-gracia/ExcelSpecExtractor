@@ -1,0 +1,88 @@
+﻿
+
+        #region decimal FieldName (Line LineNumber)
+        internal Calculatable<decimal, RoundedToTheNearestInteger> _InternalFieldName;
+        /// <summary>
+        ///   (Calculatable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+        [Description(" "), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public decimal FieldName { get { return _InternalFieldName.Calculate(FieldName_Calculation); } }
+        private decimal FieldName_Calculation()
+        {
+            //TODO: Enter code for FieldName calculation
+            return default(decimal);
+        }
+        #endregion FieldName
+
+        #region decimal FieldName (Line LineNumber)
+        internal Changeable<decimal> _InternalFieldName;
+        /// <summary>
+        ///   (Changeable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+        [Description(" "), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public decimal FieldName { get { return _InternalFieldName.Value; } set { _InternalFieldName.Value = value; } }
+        #endregion FieldName
+
+
+        //snipcalc
+        #region DataType FieldName (Line LineNumber)
+        internal Calculatable<DataType> _InternalFieldName;
+        /// <summary>
+        ///   (Calculatable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public DataType FieldName { get { return _InternalFieldName.Calculate(FieldName_Calculation); } }
+        private DataType FieldName_Calculation()
+        {
+            //TODO: Enter code for FieldName calculation
+            return default(DataType);
+        }
+        #endregion FieldName
+
+        //snipchange
+        #region DataType FieldName (Line LineNumber)
+        internal Changeable<DataType> _InternalFieldName;
+        /// <summary>
+        ///   (Changeable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public DataType FieldName { get { return _InternalFieldName.Value; } set { _InternalFieldName.Value = value; } }
+        #endregion FieldName
+
+        //SnipBooleanNullableCalc
+        #region bool? FieldName (Line LineNumber)
+        internal Calculatable<bool?> _InternalFieldName;
+        /// <summary>
+        ///   (Calculatable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public bool? FieldName { get { return _InternalFieldName.Calculate(FieldName_Calculation); } }
+        public bool FieldName_Value { get { return FieldName.GetValueOrDefault(); } }
+        private bool? FieldName_Calculation()
+        {
+            //TODO: Enter code for FieldName calculation
+            return default(bool);
+        }
+        #endregion FieldName
+
+        //snipBooleanNullableChange
+        #region bool? FieldName (Line LineNumber)
+        internal Changeable<bool?> _InternalFieldName;
+        /// <summary>
+        ///   (Changeable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public bool? FieldName { get { return _InternalFieldName.Value; } set { _InternalFieldName.Value = value; } }
+        public bool FieldName_Value { get { return FieldName.GetValueOrDefault(); } }
+        #endregion FieldName
+
+    }
+}
