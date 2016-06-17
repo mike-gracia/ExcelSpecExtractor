@@ -9,6 +9,8 @@ namespace ExcelSpecExtractor
 
     class LineData
     {
+        private string changeableIndicator = "*";
+
         public string FieldName = "";
         public string ReferenceId = "";
         public string LineNumber = "";
@@ -21,6 +23,7 @@ namespace ExcelSpecExtractor
         public string allowNegative = "false";
         public string precisionType = ".Zero";
         public string Category = "Category";
+        public bool isChangeable = false;
 
         public LineData(string[] stringInput, string _category)
         {
@@ -31,7 +34,12 @@ namespace ExcelSpecExtractor
             FieldName = stringInput[i++];
             ReferenceId = stringInput[i++];
             LineNumber = stringInput[i++];
-
+            Description = stringInput[i++];
+            TaCalcNotes = stringInput[i++];
+            Calculation = FormatCalculation(stringInput[i++]);
+            InternalFieldName = FormatInternalFieldName(FieldName);
+            //precisionType = precisionType;
+            isChangeable = CheckForChangeable(FieldName);
 
             switch (stringInput[i++])
             {
@@ -69,21 +77,28 @@ namespace ExcelSpecExtractor
 
             }
 
-            Description = stringInput[i++];
-            TaCalcNotes = stringInput[i++];
-            Calculation = FormatCalculation(stringInput[i++]);
-            InternalFieldName = FormatInternalFieldName(FieldName);
-            //precisionType = precisionType;
+
         }
 
-        private string FormatInternalFieldName(string FieldName)
+        private string FormatInternalFieldName(string _FieldName)
         {
-            return "_" + FieldName.Substring(0, 1).ToLower() + FieldName.Substring(1, FieldName.Length - 1);
+            return "_" + _FieldName.Substring(0, 1).ToLower() + FieldName.Substring(1, FieldName.Length - 1);
         }
 
         private string FormatCalculation(string Calculation)
         {
             return "//" + Calculation.Replace("<br />", Environment.NewLine + "// ");
+        }
+
+        private bool CheckForChangeable(string _FieldName)
+        {
+            if (_FieldName.StartsWith(changeableIndicator))
+            {
+                FieldName = FieldName.TrimStart(changeableIndicator.ToCharArray());
+                return true;
+            }
+
+            return false;
         }
     }
 }

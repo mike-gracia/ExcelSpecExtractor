@@ -1,45 +1,31 @@
-#region Date ResidencyStartDate (Line TC-40B, Header)
-internal Calculatable<Date, RoundedToTheNearestInteger> _residencyStartDate;
+#region decimal ResidencyStartDate (Line TC-40B, Header)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _residencyStartDate;
 /// <summary> 
-/// Residency Status: Date From: (mm/dd/yy)  (Calculatable) 
+/// Date  (Calculatable) 
 /// Reference Number TC40BPYDateFrom
 /// </summary> 
-[Description("Residency Status: Date From: (mm/dd/yy)"), Category("Category"), ReferenceNumber("TC40BPYDateFrom"), LineNumber("TC-40B, Header")] 
-public Date ResidencyStartDate { get { return _residencyStartDate.Calculate(ResidencyStartDate_Calculation); } } 
-private Date ResidencyStartDate_Calculation() 
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
+[Description("Date"), Category("Category"), ReferenceNumber("TC40BPYDateFrom"), LineNumber("TC-40B, Header")] 
+public decimal ResidencyStartDate { get { return _residencyStartDate.Calculate(ResidencyStartDate_Calculation); } } 
+private decimal ResidencyStartDate_Calculation() 
 { 
-	 //"IF [FDAWCalc:PYNRAWResTp] = PY
-//      WHERE [FDAWCalc:PYNRAWState] = UT;
-//       RETURN [FDAWCalc:PYNRAWDate01Tp] 
-//                         WHERE [FDAWCalc:PYNRAWState] = UT;
-// ELSE IF [FDAWCalc:PYNRAWResSp] = PY
-//               WHERE [FDAWCalc:PYNRAWState] = UT;
-//       RETURN [FDAWCalc:PYNRAWDate01Sp]
-//                         WHERE [FDAWCalc:PYNRAWState] = UT;
-// ELSE RETURN Blank;"
+	 //IF TP is PY then return the TP's PY Resident Beginning Date; otherwise if SP is PY then return SP's PY Resident Beginning Date; otherwise leave blank
 	 //TODO: Enter code for ResidencyStartDate calculation 
 } 
 #endregion ResidencyStartDate 
 
-#region Date ResidencyEndDate (Line TC-40B, Header)
-internal Calculatable<Date, RoundedToTheNearestInteger> _residencyEndDate;
+#region decimal ResidencyEndDate (Line TC-40B, Header)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _*ResidencyEndDate;
 /// <summary> 
-/// Residency Status: Date To: (mm/dd/yy)  (Calculatable) 
+/// Date  (Calculatable) 
 /// Reference Number TC40BPYDateTo
 /// </summary> 
-[Description("Residency Status: Date To: (mm/dd/yy)"), Category("Category"), ReferenceNumber("TC40BPYDateTo"), LineNumber("TC-40B, Header")] 
-public Date ResidencyEndDate { get { return _residencyEndDate.Calculate(ResidencyEndDate_Calculation); } } 
-private Date ResidencyEndDate_Calculation() 
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
+[Description("Date"), Category("Category"), ReferenceNumber("TC40BPYDateTo"), LineNumber("TC-40B, Header")] 
+public decimal ResidencyEndDate { get { return _*ResidencyEndDate.Calculate(ResidencyEndDate_Calculation); } } 
+private decimal ResidencyEndDate_Calculation() 
 { 
-	 //"IF [FDAWCalc:PYNRAWResTp] = PY
-//      WHERE [FDAWCalc:PYNRAWState] = UT;
-//       RETURN [FDAWCalc:PYNRAWDate02Tp] 
-//                         WHERE [FDAWCalc:PYNRAWState] = UT;
-// ELSE IF [FDAWCalc:PYNRAWResSp] = PY
-//               WHERE [FDAWCalc:PYNRAWState] = UT;
-//       RETURN [FDAWCalc:PYNRAWDate02Sp]
-//                         WHERE [FDAWCalc:PYNRAWState] = UT;
-// ELSE RETURN Blank;"
+	 //IF TP is PY then return the TP's PY Resident Ending Date; otherwise if SP is PY then return SP's PY Resident Ending Date; otherwise leave blank
 	 //TODO: Enter code for ResidencyEndDate calculation 
 } 
 #endregion ResidencyEndDate 

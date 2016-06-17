@@ -10,7 +10,7 @@ namespace ExcelSpecExtractor
     class DataTranslator
     {
         string eol = Environment.NewLine;
-        public string translation;          //think about better protection level
+        public string translation;          //protection level
 
         public DataTranslator(LineData ld)
         { 
