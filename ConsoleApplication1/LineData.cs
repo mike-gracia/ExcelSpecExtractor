@@ -11,20 +11,21 @@ namespace ExcelSpecExtractor
     {
         private string changeableIndicator = "*";
 
-        public string FieldName = "";
-        public string ReferenceId = "";
-        public string LineNumber = "";
-        public DataType DataType;
-        public bool AllowNegative;
-        public string Description = "";
-        public string TaCalcNotes = "";
-        public string Calculation = "";
-        public string InternalFieldName = "";
-        public string allowNegative = "false";
-        public string precisionType = ".Zero";
-        public string Category = "Category";
+        public DataType dataType;
         public bool isChangeable = false;
-        private string dataTypeString;
+        public bool allowNegative = false;
+        public string fieldName = "";
+        public string referenceId = "";
+        public string lineNumber = "";
+        public string dataTypeString = "";
+        public string description = "";
+        public string taCalcNotes = "";
+        public string calculationString = "";
+        public string internalFieldNameString = "";
+        public string allowNegativeString = "false";
+        public string precisionTypeString = ".Zero";
+        public string categoryString = "Category";
+        public string roundingString = "RoundedToTheNearestInteger";
 
         public LineData(string[] stringInput, string _category)
         {
@@ -32,54 +33,57 @@ namespace ExcelSpecExtractor
             
 
             if (_category.Length > 0)
-                Category = _category;
+                categoryString = _category;
 
             int i = 0;
-            FieldName = stringInput[i++];
-            isChangeable = CheckForChangeable(FieldName);
-            ReferenceId = stringInput[i++];
-            LineNumber = stringInput[i++];
+            fieldName = stringInput[i++];
+            isChangeable = CheckForChangeable(fieldName);
+            referenceId = stringInput[i++];
+            lineNumber = stringInput[i++];
             dataTypeString = stringInput[i++];
-            Description = stringInput[i++];
-            TaCalcNotes = stringInput[i++];
-            Calculation = FormatCalculation(stringInput[i++]);
-            InternalFieldName = FormatInternalFieldName(FieldName);
+            description = stringInput[i++];
+            taCalcNotes = stringInput[i++];
+            calculationString = FormatCalculation(stringInput[i++]);
+            internalFieldNameString = FormatInternalFieldName(fieldName);
             //precisionType = precisionType;
 
             switch (dataTypeString)
             {
                 case "Text":
-                    DataType = DataType.Text;
-                    break;
-                case "Date":
-                    DataType = DataType.Date;
+                    dataType = DataType.Text;
                     break;
                 case "Whole number (non-negative)":
-                    DataType = DataType.WholeNumber;
-                    AllowNegative = false;
-                    allowNegative = "false";
+                    dataType = DataType.WholeNumber;
+                    allowNegative = false;
+                    allowNegativeString = "false";
                     break;
                 case "Whole number (allow negative)":
-                    DataType = DataType.WholeNumber;
-                    AllowNegative = true;
-                    allowNegative = "true";
+                    dataType = DataType.WholeNumber;
+                    allowNegative = true;
+                    allowNegativeString = "true";
                     break;
                 case "Ratio/Percentage":
-                    DataType = DataType.Ratio;
+                    dataType = DataType.Ratio;
                     break;
                 case "Yes/No":
-                    DataType = DataType.YesNo;
+                    dataType = DataType.YesNo;
+                    break;
+                case "Yes/No/Blank":
+                    dataType = DataType.YesNoBlank;
                     break;
                 case "Money (allow negative)":
-                    DataType = DataType.Money;
-                    AllowNegative = true;
-                    allowNegative = "true";
+                    dataType = DataType.Money;
+                    allowNegative = true;
+                    allowNegativeString = "true";
                     break;
                 case "Money (non-negative)":
+                     dataType = DataType.Money;
+                    allowNegative = false;
+                    allowNegativeString = "false";
+                    break;
                 default:
-                    DataType = DataType.Money;
-                    AllowNegative = false;
-                    allowNegative = "false";
+                    dataType = DataType.Unknown;
+                    dataTypeString = FormatUnknownDataTypeString(dataTypeString);
                     break;
 
 
@@ -87,22 +91,32 @@ namespace ExcelSpecExtractor
 
 
         }
-
-        private string FormatInternalFieldName(string _FieldName)
+        private string FormatUnknownDataTypeString(string _dataTypeString)
         {
-            return "_" + _FieldName.Substring(0, 1).ToLower() + FieldName.Substring(1, FieldName.Length - 1);
+            //types that have objects
+            if (_dataTypeString == "Date") return _dataTypeString;
+            if (_dataTypeString == "SSN/ITIN") return "SocialSecurityNumber";
+            if (_dataTypeString == "Phone number") return "PhoneNumber";
+
+            //odd balls
+            return string.Format("Object/*{0}*/", _dataTypeString);
         }
 
-        private string FormatCalculation(string Calculation)
+        private string FormatInternalFieldName(string _fieldName)
         {
-            return "//" + Calculation.Replace("<br />", Environment.NewLine + "// ");
+            return _fieldName.Substring(0, 1).ToLower() + fieldName.Substring(1, fieldName.Length - 1);
         }
 
-        private bool CheckForChangeable(string _FieldName)
+        private string FormatCalculation(string _calculation)
         {
-            if (_FieldName.StartsWith(changeableIndicator))
+            return "//" + _calculation.Replace("<br />", Environment.NewLine + "// ");
+        }
+
+        private bool CheckForChangeable(string _fieldName)
+        {
+            if (_fieldName.StartsWith(changeableIndicator))
             {
-                FieldName = FieldName.TrimStart(changeableIndicator.ToCharArray());
+                fieldName = fieldName.TrimStart(changeableIndicator.ToCharArray());
                 return true;
             }
 

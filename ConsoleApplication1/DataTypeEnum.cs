@@ -15,8 +15,8 @@ namespace ExcelSpecExtractor
         YesNo,
         YesNoBlank,
         Ratio,
-        Date,
-        Text
+        Text,
+        Unknown
 
 
     }

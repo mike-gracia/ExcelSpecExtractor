@@ -13,241 +13,201 @@ namespace ExcelSpecExtractor
 {
     class DataTranslator
     {
+        private string snippetDir = "../../Snippets/";
         string eol = Environment.NewLine;
-        public string translation;          //protection level
+        private string codeString;
+
 
         public DataTranslator(LineData ld)
         {
-            XDocument snippet = GetSnippet(ld.DataType, ld.isChangeable);
-            translation = GenerateCode(snippet, ld);
-
-                //switch (ld.DataType)
-                //    {
-                //    case DataType.Text:
-                //        translation = Text(ld);
-                //        break;
-                //    case DataType.Date:
-                //            translation = Date(ld);
-                //            break;
-                //    case DataType.WholeNumber:
-                //            translation = WholeNumber(ld);
-                //            break;
-                //        case DataType.Ratio:
-                //            translation = Ratio(ld);
-                //            break;
-                //        case DataType.YesNo:
-                //            translation = YesNo(ld);
-                //            break;
-                //        case DataType.Money:
-                //        default:
-                //            translation = Money(ld);
-                //            break;
-                //    }
-
-            }
+            XDocument snippet = GetSnippet(ld.dataType, ld.isChangeable);
+            codeString = GenerateCode(snippet, ld);
+        }
 
         private XDocument GetSnippet(DataType _dataType, bool _isChangeable)
         {
             switch (_dataType)
             {
                 case DataType.Text:
-                    if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeableString.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatableString.Snippet");
+                    return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableString.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableString.Snippet");
                 case DataType.Money:
-                    if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeableMoney.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatableMoney.Snippet");
+                    return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableMoney.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableMoney.Snippet");
                 case DataType.WholeNumber:
-                     if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeableNumber.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatableNumber.Snippet");
+                    return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableNumber.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableNumber.Snippet");
                 case DataType.Ratio:
-                    if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeableRatio.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatableRatio.Snippet");
+                    return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableRatio.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableRatio.Snippet");
                 case DataType.YesNo:
-                   if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeableYesNo.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatableYesNo.Snippet");
-                case DataType.Date:
+                   return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableBoolean.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableBoolean.Snippet");
+                case DataType.YesNoBlank:
+                   return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeableNullableBoolean.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatableNullableBoolean.Snippet");
                 default:
-                    if (_isChangeable)
-                        return XDocument.Load("../../Snippets/InsertChangeable.Snippet");
-                    else
-                        return XDocument.Load("../../Snippets/InsertCalculatable.Snippet");
+                    return _isChangeable
+                        ? XDocument.Load(snippetDir + "InsertChangeable.Snippet")
+                        : XDocument.Load(snippetDir + "InsertCalculatable.Snippet");
 
             }
 
         }
         
-        private string GenerateCode(XDocument _snipXml, LineData _excelLineData)
+        private string GenerateCode(XDocument _snipXml, LineData _txtLineData)
         {
-            string codeString;
+            string codeStr;
             XNamespace xns = _snipXml.Root.Name.Namespace;
             XElement codeElement = _snipXml.Root.Element(xns + "CodeSnippet").Element(xns + "Snippet").Element(xns + "Code");
-            codeString = codeElement.Value;
+            codeStr = codeElement.Value;
 
-            //sanitize codeString from snippet
-            codeString = Regex.Replace(codeString, @"\r?\n", "\r\n");
-            codeString = codeString.Replace("\t", "");
-            codeString = Regex.Replace(codeString, @" {2,}", "");
+            //sanitize codeString from .snippet
+            codeStr = Regex.Replace(codeStr, @"\r?\n", "\r\n");
+            codeStr = codeStr.Replace("\t", "");
+            codeStr = Regex.Replace(codeStr, @" {2,}", "");
 
             //insert values into snippet
-            codeString = codeString.Replace("//TODO: Enter code for $FieldName$ calculation", _excelLineData.Calculation);
-            codeString = codeString.Replace("$FieldName$", _excelLineData.FieldName);
-            codeString = codeString.Replace("$LineNumber$", _excelLineData.LineNumber);
-            codeString = codeString.Replace("$InternalFieldName$", _excelLineData.InternalFieldName);
-            codeString = codeString.Replace("$SummarySection$", _excelLineData.Description);
-            codeString = codeString.Replace("$ReferenceId$", _excelLineData.ReferenceId);
-            codeString = codeString.Replace("$AttributeCategory$", _excelLineData.Category);
-            codeString = codeString.Replace("$AttributeDescription$", _excelLineData.Description);
-            codeString = codeString.Replace("$end$", eol);
+            codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationString);
+            codeStr = codeStr.Replace("$FieldName$", _txtLineData.fieldName);
+            codeStr = codeStr.Replace("$Negative$", _txtLineData.allowNegativeString);
+            codeStr = codeStr.Replace("$LineNumber$", _txtLineData.lineNumber);
+            codeStr = codeStr.Replace("$InternalFieldName$", _txtLineData.internalFieldNameString);
+            codeStr = codeStr.Replace("$SummarySection$", _txtLineData.description);
+            codeStr = codeStr.Replace("$ReferenceId$", _txtLineData.referenceId);
+            codeStr = codeStr.Replace("$AttributeCategory$", _txtLineData.categoryString);
+            codeStr = codeStr.Replace("$AttributeDescription$", _txtLineData.description);
+            codeStr = codeStr.Replace("$Precision$", _txtLineData.precisionTypeString);
+            codeStr = codeStr.Replace("$PrecisionType$", _txtLineData.precisionTypeString);
+            codeStr = codeStr.Replace("$Rounding$", _txtLineData.roundingString);
+            codeStr = codeStr.Replace("$RoundingType$", _txtLineData.roundingString);
+            if (_txtLineData.dataType == DataType.Unknown) codeStr = codeStr.Replace("$DataType$", _txtLineData.dataTypeString);
+            codeStr = codeStr.Replace("$end$", eol);
 
-            return codeString;
+            return codeStr;
         }
 
-
-        public string Text(LineData input)
+        public string GetCode
         {
-            string codeString;
-
-            XDocument snip = XDocument.Load("../../Snippets/InsertChangeableString.Snippet");
-            XNamespace xns = snip.Root.Name.Namespace;
-            XElement codeElement = snip.Root.Element(xns + "CodeSnippet").Element(xns + "Snippet").Element(xns + "Code");
-            codeString = codeElement.Value;
-
-            //sanitize codeString from snippet
-            codeString = Regex.Replace(codeString, @"\r?\n", "\r\n");
-            codeString = codeString.Replace("\t", "");
-            codeString = Regex.Replace(codeString, @" {2,}", "");
-
-            //insert values into snippet
-            codeString = codeString.Replace("$FieldName$", input.FieldName);
-            codeString = codeString.Replace("$LineNumber$", input.LineNumber);
-            codeString = codeString.Replace("$InternalFieldName$", input.InternalFieldName);
-            codeString = codeString.Replace("$SummarySection$", input.Description);
-            codeString = codeString.Replace("$ReferenceId$", input.ReferenceId);
-            codeString = codeString.Replace("$AttributeDescription$", input.Description);
-
-                return codeString;
+            get { return this.codeString; }
         }
 
+        //old stuff no longer used
         public string Date(LineData input)
         {
 
             return
-            "#region Date " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<Date, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
+            "#region Date " + input.fieldName + " (Line " + input.lineNumber + ")" + eol
+           + "internal Calculatable<Date, RoundedToTheNearestInteger> " + input.internalFieldNameString + ";" + eol
            + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// " + input.description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.referenceId + "" + eol
            + "/// </summary> " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public Date " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private Date " + input.FieldName + "_Calculation() " + eol
+           + "[Description(\"" + input.description + "\"), Category(\""+input.categoryString+"\"), ReferenceNumber(\"" + input.referenceId + "\"), LineNumber(\"" + input.lineNumber + "\")] " + eol
+           + "public Date " + input.fieldName + " { get { return " + input.internalFieldNameString + ".Calculate(" + input.fieldName + "_Calculation); } } " + eol
+           + "private Date " + input.fieldName + "_Calculation() " + eol
            + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "\t " + input.calculationString + "" + eol
+           + "\t //TODO: Enter code for " + input.fieldName + " calculation " + eol
            + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
+           + "#endregion " + input.fieldName + " " + eol;
 
         }
         public string WholeNumber(LineData input)
         {
 
             return
-            "#region int " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<int, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
+            "#region int " + input.fieldName + " (Line " + input.lineNumber + ")" + eol
+           + "internal Calculatable<int, RoundedToTheNearestInteger> " + input.internalFieldNameString + ";" + eol
            + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// " + input.description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.referenceId + "" + eol
            + "/// </summary> " + eol
-           + "[Number(AllowNegative = " + input.allowNegative + ")]" + eol
-           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public int " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private int " + input.FieldName + "_Calculation() " + eol
+           + "[Number(AllowNegative = " + input.allowNegativeString + ")]" + eol
+           + "[Description(\"" + input.description + "\"), Category(\""+input.categoryString+"\"), ReferenceNumber(\"" + input.referenceId + "\"), LineNumber(\"" + input.lineNumber + "\")] " + eol
+           + "public int " + input.fieldName + " { get { return " + input.internalFieldNameString + ".Calculate(" + input.fieldName + "_Calculation); } } " + eol
+           + "private int " + input.fieldName + "_Calculation() " + eol
            + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "\t " + input.calculationString + "" + eol
+           + "\t //TODO: Enter code for " + input.fieldName + " calculation " + eol
            + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
+           + "#endregion " + input.fieldName + " " + eol;
         
         }
-
         public string Money(LineData input)
         {
             
 
             return
-           "#region decimal " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<decimal, RoundedToTheNearestInteger> " + input.InternalFieldName + ";" + eol
+           "#region decimal " + input.fieldName + " (Line " + input.lineNumber + ")" + eol
+           + "internal Calculatable<decimal, RoundedToTheNearestInteger> " + input.internalFieldNameString + ";" + eol
            + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// " + input.description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.referenceId + "" + eol
            + "/// </summary> " + eol
-           + "[Money(AllowNegative = " + input.allowNegative + ", Precision = PrecisionType.Zero)] " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private decimal " + input.FieldName + "_Calculation() " + eol
+           + "[Money(AllowNegative = " + input.allowNegativeString + ", Precision = PrecisionType.Zero)] " + eol
+           + "[Description(\"" + input.description + "\"), Category(\""+input.categoryString+"\"), ReferenceNumber(\"" + input.referenceId + "\"), LineNumber(\"" + input.lineNumber + "\")] " + eol
+           + "public decimal " + input.fieldName + " { get { return " + input.internalFieldNameString + ".Calculate(" + input.fieldName + "_Calculation); } } " + eol
+           + "private decimal " + input.fieldName + "_Calculation() " + eol
            + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "\t " + input.calculationString + "" + eol
+           + "\t //TODO: Enter code for " + input.fieldName + " calculation " + eol
            + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
+           + "#endregion " + input.fieldName + " " + eol;
 
 
         }
-
         public static string Ratio(LineData input)
         {
             string eol = Environment.NewLine;
 
             return
-            "#region decimal " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-            + "internal Calculatable<decimal, RoundedToTwoDecimalPlaces> " + input.InternalFieldName + ";" + eol
+            "#region decimal " + input.fieldName + " (Line " + input.lineNumber + ")" + eol
+            + "internal Calculatable<decimal, RoundedToTwoDecimalPlaces> " + input.internalFieldNameString + ";" + eol
             + "/// <summary> " + eol
-            + "/// " + input.Description + "  (Calculatable) " + eol
-            + "/// Reference Number " + input.ReferenceId + "" + eol
+            + "/// " + input.description + "  (Calculatable) " + eol
+            + "/// Reference Number " + input.referenceId + "" + eol
             + "/// </summary> " + eol
             + "[Ratio(Precision = PrecisionType.Zero)]" + eol
-            + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-            + "public decimal " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-            + "private decimal " + input.FieldName + "_Calculation() " + eol
+            + "[Description(\"" + input.description + "\"), Category(\""+input.categoryString+"\"), ReferenceNumber(\"" + input.referenceId + "\"), LineNumber(\"" + input.lineNumber + "\")] " + eol
+            + "public decimal " + input.fieldName + " { get { return " + input.internalFieldNameString + ".Calculate(" + input.fieldName + "_Calculation); } } " + eol
+            + "private decimal " + input.fieldName + "_Calculation() " + eol
             + "{ " + eol
-            + "\t " + input.Calculation + "" + eol
-            + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+            + "\t " + input.calculationString + "" + eol
+            + "\t //TODO: Enter code for " + input.fieldName + " calculation " + eol
             + "} " + eol
-            + "#endregion " + input.FieldName + " " + eol;
+            + "#endregion " + input.fieldName + " " + eol;
 
         }
-
         public static string YesNo(LineData input)
         {
             string eol = Environment.NewLine;
 
             return
-                "#region bool " + input.FieldName + " (Line " + input.LineNumber + ")" + eol
-           + "internal Calculatable<bool> " + input.InternalFieldName + ";" + eol
+                "#region bool " + input.fieldName + " (Line " + input.lineNumber + ")" + eol
+           + "internal Calculatable<bool> " + input.internalFieldNameString + ";" + eol
            + "/// <summary> " + eol
-           + "/// " + input.Description + "  (Calculatable) " + eol
-           + "/// Reference Number " + input.ReferenceId + "" + eol
+           + "/// " + input.description + "  (Calculatable) " + eol
+           + "/// Reference Number " + input.referenceId + "" + eol
            + "/// </summary> " + eol
-           + "[Description(\"" + input.Description + "\"), Category(\""+input.Category+"\"), ReferenceNumber(\"" + input.ReferenceId + "\"), LineNumber(\"" + input.LineNumber + "\")] " + eol
-           + "public bool " + input.FieldName + " { get { return " + input.InternalFieldName + ".Calculate(" + input.FieldName + "_Calculation); } } " + eol
-           + "private bool " + input.FieldName + "_Calculation() " + eol
+           + "[Description(\"" + input.description + "\"), Category(\""+input.categoryString+"\"), ReferenceNumber(\"" + input.referenceId + "\"), LineNumber(\"" + input.lineNumber + "\")] " + eol
+           + "public bool " + input.fieldName + " { get { return " + input.internalFieldNameString + ".Calculate(" + input.fieldName + "_Calculation); } } " + eol
+           + "private bool " + input.fieldName + "_Calculation() " + eol
            + "{ " + eol
-           + "\t " + input.Calculation + "" + eol
-           + "\t //TODO: Enter code for " + input.FieldName + " calculation " + eol
+           + "\t " + input.calculationString + "" + eol
+           + "\t //TODO: Enter code for " + input.fieldName + " calculation " + eol
            + "} " + eol
-           + "#endregion " + input.FieldName + " " + eol;
+           + "#endregion " + input.fieldName + " " + eol;
 
         }
+
+
 
     }
 }

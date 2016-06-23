@@ -17,22 +17,15 @@ namespace ExcelSpecExtractor
         static void Main(string[] args)
         {
 
-            string category = "Category";
-            Console.WriteLine("Enter a Category:");
-            //category = Console.ReadLine();            
+            string inputFileStr = @"../../input.txt";
+            string outputFileStr = @"../../output.txt";
 
-            string inputFile = @"../../input.txt";
-            string outputFile = @"../../output.txt";
-            //Console.WriteLine(line);
 
-            //clean input file (remove \n and put everything on one line
-            string text = File.ReadAllText(inputFile);
-            text = Regex.Replace(text, @"(?<!\r)\n", "<br />");
-            File.WriteAllText(inputFile, text);
 
-            string[] rowLines = File.ReadAllLines(inputFile);
+            string category = GetCategoryFromUser();
+            string[] rowLines = GetAndSanitizeInputFromTxt(inputFileStr);
             
-            StreamWriter file = new StreamWriter(outputFile);
+            StreamWriter outFile = new StreamWriter(outputFileStr);
 
             int currentRow = 1;
             foreach (string line in rowLines)
@@ -44,12 +37,12 @@ namespace ExcelSpecExtractor
                 {
                     LineData ld = new LineData(lineValues, category);
                     DataTranslator dt = new DataTranslator(ld);
-                    file.WriteLine(dt.translation);
+                    outFile.WriteLine(dt.GetCode);
                 }
                 else
                 {
-                    file.WriteLine("/* " + line + "*/\r\n");
-                    Debug.WriteLine("Could not process " + inputFile 
+                    outFile.WriteLine("/* " + line + "*/\r\n");
+                    Debug.WriteLine("Could not process " + inputFileStr 
                         + " line number: " + currentRow
                         + " expected cell count: " + excelCellCount
                         + " actual cell count: " + lineValues.Length);
@@ -59,8 +52,24 @@ namespace ExcelSpecExtractor
 
 
             }
-            file.Close();
+            outFile.Close();
 
+        }
+
+        public static string[] GetAndSanitizeInputFromTxt(string _inputFileString)
+        {
+            //clean input file (remove \n and put everything on one line
+            string text = File.ReadAllText(_inputFileString);
+            text = Regex.Replace(text, @"(?<!\r)\n", "<br />");
+            File.WriteAllText(_inputFileString, text);
+
+            return File.ReadAllLines(_inputFileString);
+        }
+
+        public static string GetCategoryFromUser()
+        {
+            Console.WriteLine("Enter a Category:");
+            return Console.ReadLine();
         }
 
    
