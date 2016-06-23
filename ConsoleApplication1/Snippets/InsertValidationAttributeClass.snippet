@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Validation Attribute Class</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Snippet to create a Attribute class for Validations
+	  
+Instructions: 
+	To create validations for class [ClassName]	
+	create a new class called [ClassName]Attribute.cs 
+	and replace the contents with the output from this 
+	snippet. You will also need to create a ValidationType 
+	class using the snippet SnipValidationTypeClass.</Description>
+      <Shortcut>SnipValidationAttributeClass</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>State</ID>
+          <ToolTip>Enter the state jurisdiction the class will be populated in</ToolTip>
+          <Default>State</Default>
+        </Literal>
+		<Literal>
+          <ID>Class</ID>
+          <ToolTip>Enter the name of the class</ToolTip>
+          <Default>Class</Default>
+        </Literal>
+		<Literal>
+          <ID>ValidationName</ID>
+          <ToolTip>Enter a field that requires a validation</ToolTip>
+          <Default>.ValidationName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[using Liberty.Core;
+using System.ComponentModel.DataAnnotations;
+
+namespace Liberty.Individual.$State$.Data
+{
+    public class $Class$Attribute : Validation
+	{
+		 private static ValidationMap<$Class$ValidationType, $Class$> Map = new ValidationMap<$Class$ValidationType, $Class$>
+		(
+			r =>
+			{
+				//Add validations here using the code below or the Snippet SnipValidationNew
+				//r.Register($Class$ValidationType.[Enumerator] , v => {return true;}); //The validation message will appear when the validation returns false
+				
+			}
+			
+		);
+
+		 public $Class$Attribute($Class$ValidationType validationType)
+            : base(validationType)
+        {
+        }
+
+        protected override bool CheckValidity(object value, ValidationContext validationContext)
+        {
+            return Map.CheckValidity(ValidationType, value, validationContext);
+        }
+
+        protected override string GenerateErrorMethod(object value, ValidationContext validationContext)
+        {
+            return Map.GenerateErrorMethod(ValidationType, value, validationContext);
+        }
+		
+	}
+}$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

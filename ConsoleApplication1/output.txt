@@ -1,32 +1,99 @@
-#region decimal ResidencyStartDate (Line TC-40B, Header)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _residencyStartDate;
-/// <summary> 
-/// Date  (Calculatable) 
-/// Reference Number TC40BPYDateFrom
-/// </summary> 
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
-[Description("Date"), Category("Category"), ReferenceNumber("TC40BPYDateFrom"), LineNumber("TC-40B, Header")] 
-public decimal ResidencyStartDate { get { return _residencyStartDate.Calculate(ResidencyStartDate_Calculation); } } 
-private decimal ResidencyStartDate_Calculation() 
-{ 
-	 //IF TP is PY then return the TP's PY Resident Beginning Date; otherwise if SP is PY then return SP's PY Resident Beginning Date; otherwise leave blank
-	 //TODO: Enter code for ResidencyStartDate calculation 
-} 
-#endregion ResidencyStartDate 
+#region decimal PortionA (Line 1)
+internal Calculatable<decimal, $Rounding$> __portionA;
+/// <summary>
+/// The portion of Line 1 that was taxed by another state or country if we did the return or the direct entry if we did not (Calculatable)
+/// Reference Number RIIncOthState2Col 
+/// </summary>
+[Money(AllowNegative = $Negative$, Precision = PrecisionType$Precision$)]
+[Description("The portion of Line 1 that was taxed by another state or country if we did the return or the direct entry if we did not"), Category("Category"), ReferenceNumber("RIIncOthState2Col"), LineNumber("1")]
+public decimal PortionA { get { return __portionA.Calculate(PortionA_Calculation); } }
+private decimal PortionA_Calculation()
+{
+//"IF [FDAWCalc:PYNRAWRes]=R and IF [SJState] = [RIOSTCState] AND [SJInUse]=Yes and the nonresident state is on the valid state list for StateTaxReferenceWorksheet,THEN [SJTotalIncome]) 
+// ELSE, RETURN [RIIncOthSt1]"
+return default(decimal);
+}
+#endregion PortionA
 
-#region decimal ResidencyEndDate (Line TC-40B, Header)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _*ResidencyEndDate;
-/// <summary> 
-/// Date  (Calculatable) 
-/// Reference Number TC40BPYDateTo
-/// </summary> 
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)] 
-[Description("Date"), Category("Category"), ReferenceNumber("TC40BPYDateTo"), LineNumber("TC-40B, Header")] 
-public decimal ResidencyEndDate { get { return _*ResidencyEndDate.Calculate(ResidencyEndDate_Calculation); } } 
-private decimal ResidencyEndDate_Calculation() 
-{ 
-	 //IF TP is PY then return the TP's PY Resident Ending Date; otherwise if SP is PY then return SP's PY Resident Ending Date; otherwise leave blank
-	 //TODO: Enter code for ResidencyEndDate calculation 
-} 
-#endregion ResidencyEndDate 
+
+#region decimal PortionB (Line 2)
+internal Calculatable<decimal, $Rounding$> __portionB;
+/// <summary>
+/// Federal MAGI from RI 1040 page 1 line 3 (Calculatable)
+/// Reference Number RIFedMAGICol 
+/// </summary>
+[Money(AllowNegative = $Negative$, Precision = PrecisionType$Precision$)]
+[Description("Federal MAGI from RI 1040 page 1 line 3"), Category("Category"), ReferenceNumber("RIFedMAGICol"), LineNumber("2")]
+public decimal PortionB { get { return __portionB.Calculate(PortionB_Calculation); } }
+private decimal PortionB_Calculation()
+{
+//Federal MAGI from RI 1040 page 1 line 3
+return default(decimal);
+}
+#endregion PortionB
+
+
+#region decimal PortionC 3
+internal Calculatable<decimal, $RoundingType$> __portionC;
+/// <summary>
+/// divide line 2 by 3 (Calculatable)
+/// Reference Number RIPercOthIncCol 
+/// </summary>
+[Ratio(Precision = PrecisionType$PrecisionType$)]
+[Description("Calculatable - $Description$"), Category("$Category$"), ReferenceNumber("RIPercOthIncCol"), LineNumber("3")]
+public decimal PortionC { get { return __portionC.Calculate(PortionC_Calculation); } }
+private decimal PortionC_Calculation()
+{
+//[RIIncOthState2] Divided by [RIFedMAGI] 
+return default(decimal);
+}
+#endregion PortionC
+
+
+#region decimal PortionD (Line 4)
+internal Calculatable<decimal, $Rounding$> __portionD;
+/// <summary>
+/// Tentative credit (Calculatable)
+/// Reference Number RITentOthCrCol 
+/// </summary>
+[Money(AllowNegative = $Negative$, Precision = PrecisionType$Precision$)]
+[Description("Tentative credit"), Category("Category"), ReferenceNumber("RITentOthCrCol"), LineNumber("4")]
+public decimal PortionD { get { return __portionD.Calculate(PortionD_Calculation); } }
+private decimal PortionD_Calculation()
+{
+//[RITaxLsFDCr] * [RIPercOthInc]
+return default(decimal);
+}
+#endregion PortionD
+
+
+#region decimal PortionE (Line 5)
+internal Changeable<decimal> __portionE;
+/// <summary>
+/// tax paid OS (Changeable)
+/// Reference Number RITaxPdOS1Col 
+/// </summary>
+[Money(AllowNegative = $Negative$, Precision = PrecisionType$Precision$)]
+[Description("tax paid OS"), Category("Category"), ReferenceNumber("RITaxPdOS1Col"), LineNumber("5")]
+public decimal PortionE { get { return __portionE.Value; } set {__portionE.Value = value;}}
+#endregion PortionE
+
+
+#region string PortionF (Line Line 28 state)
+internal Calculatable<string> __portionF;
+/// <summary>
+/// name of other state  (Calculatable)
+/// Reference Number RIOSStName 
+/// </summary>
+[Description("name of other state "), Category("Category"), ReferenceNumber("RIOSStName"), LineNumber("Line 28 state")]
+public string PortionF { get { return __portionF.Calculate(PortionF_Calculation); } }
+private string PortionF_Calculation()
+{
+//"If the count of states = 1 then use the name of the state if the count is greater than 1 then return MU 
+// ELSE
+// Return [RIOSTCStateCol]"
+return default(string);
+}
+#endregion PortionF
+
 

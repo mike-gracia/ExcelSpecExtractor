@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Validation Type Class</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Snippet to insert a ValidationType class
+	  
+Instructions: 
+	To create validations for class [ClassName] create 
+	a new class called [ClassName]ValidationType.cs and 
+	replace the contents with the output from this snippet.
+	You will also need to create an Attribute class using
+	the snippet SnipValidationAttributeClass.
+</Description>
+      <Shortcut>SnipValidationTypeClass</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>State</ID>
+          <ToolTip>Enter the state</ToolTip>
+          <Default>State</Default>
+        </Literal>
+		<Literal>
+          <ID>Class</ID>
+          <ToolTip>Enter the name of the class requiring validations</ToolTip>
+          <Default>Class</Default>
+        </Literal>
+		<Literal>
+          <ID>Enumerators</ID>
+          <ToolTip>Enter enumerators</ToolTip>
+          <Default>//Enter list of enumerators</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[namespace Liberty.Individual.$State$.Data
+{
+    public enum $Class$ValidationType
+    {
+        $Enumerators$
+    }
+}
+$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

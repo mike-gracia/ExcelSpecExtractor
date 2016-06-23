@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Nullable Reference</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a reference to a nullable class into the NextGen project</Description>
+      <Shortcut>SnipNullableClassReference</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ClassType</ID>
+          <ToolTip>Determine the datatype of your class.</ToolTip>
+          <Default>ClassType</Default>
+        </Literal>
+        <Literal>
+          <ID>ClassName</ID>
+          <ToolTip>Determine the class instance name.</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+          <Literal>
+            <ID>InternalClassName</ID>
+            <ToolTip>Determine the internal field name.</ToolTip>
+            <Default>InternalClassName</Default>
+          </Literal>
+        <Literal>
+          <ID>DataType</ID>
+          <ToolTip>Determine the datatype for your property.</ToolTip>
+          <Default>DataType</Default>
+        </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[internal $ClassType$ _$InternalClassName$;
+        /// <summary>
+        /// $SummarySection$
+        /// </summary>
+        [Description("Reference - $AttributeDescription$"), Category("$AttributeCategory$")]
+        public $ClassType$ $ClassName$ { get { return _$InternalClassName$; } set{ _$InternalClassName$ = value;}}
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -24,25 +24,33 @@ namespace ExcelSpecExtractor
         public string precisionType = ".Zero";
         public string Category = "Category";
         public bool isChangeable = false;
+        private string dataTypeString;
 
         public LineData(string[] stringInput, string _category)
         {
+            
+            
+
             if (_category.Length > 0)
                 Category = _category;
 
             int i = 0;
             FieldName = stringInput[i++];
+            isChangeable = CheckForChangeable(FieldName);
             ReferenceId = stringInput[i++];
             LineNumber = stringInput[i++];
+            dataTypeString = stringInput[i++];
             Description = stringInput[i++];
             TaCalcNotes = stringInput[i++];
             Calculation = FormatCalculation(stringInput[i++]);
             InternalFieldName = FormatInternalFieldName(FieldName);
             //precisionType = precisionType;
-            isChangeable = CheckForChangeable(FieldName);
 
-            switch (stringInput[i++])
+            switch (dataTypeString)
             {
+                case "Text":
+                    DataType = DataType.Text;
+                    break;
                 case "Date":
                     DataType = DataType.Date;
                     break;

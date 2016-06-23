@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert IndirectCollection</Title>
+      <Author>Mike Means</Author>
+      <Description>Snippet to insert a new Indirect Collection field into the NextGen project</Description>
+      <Shortcut>SnipIndirectCollection</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ParentType</ID>
+          <ToolTip>Enter the Parent Type</ToolTip>
+          <Default>ParentType</Default>
+        </Literal>
+        <Literal>
+          <ID>RealType</ID>
+          <ToolTip>Enter the Real type of hte item</ToolTip>
+          <Default>RealType</Default>
+        </Literal>     
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>internalFieldName</ID>
+          <ToolTip>Internal field name (LowerCase)</ToolTip>
+          <Default>internalFieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>PathToRealCollection</ID>
+          <ToolTip>Condition to include item in this list.</ToolTip>
+          <Default>PathToRealCollection</Default>
+        </Literal>    
+        <Literal>
+          <ID>Condition</ID>
+          <ToolTip>Condition to include item in this collection.</ToolTip>
+          <Default>Condition</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[ #region IndirectCollection<$ParentType$, $RealType$>>> $FieldName$
+          internal Calculatable<IndirectCollection<$ParentType$, $RealType$>> _$internalFieldName$;
+          [IndirectPointerFunction]
+          public static Func<$ParentType$, Guid, $RealType$> $FieldName$Function { get { return (p, id) => p.$PathToRealCollection$.First(f => f.Id == id); } }
+          /// <summary>
+          /// Filtered collection of $RealType$ (Calculatable)
+          /// </summary>
+          [Description("Indirect $RealType$ Collection"), Category("Indirect Collection")]
+          public IReadOnlyList<$RealType$> $FieldName$ { get { return _$internalFieldName$.Calculate($FieldName$_Calculation); } }
+          private IndirectCollection<$ParentType$, $RealType$> $FieldName$_Calculation()
+          {
+            return IndirectCollection<$ParentType$, $RealType$>.BuildIndirect
+                (
+                  this,
+                  $PathToRealCollection$.Where
+                  (
+                     r => 
+                        r.$Condition$ 
+                  )
+                );
+          }
+          #endregion $FieldName$          
+          $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

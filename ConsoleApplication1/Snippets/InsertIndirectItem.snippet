@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Indirect Item</Title>
+      <Author>Mike Means</Author>
+      <Description>Snippet to insert a new Indirect Item into the NextGen project</Description>
+      <Shortcut>SnipIndirectItem</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ParentType</ID>
+          <ToolTip>Enter the Parent Type</ToolTip>
+          <Default>ParentType</Default>
+        </Literal>
+        <Literal>
+          <ID>RealType</ID>
+          <ToolTip>Enter the Real type of hte item</ToolTip>
+          <Default>RealType</Default>
+        </Literal>
+        <Literal>
+          <ID>ParentType</ID>
+          <ToolTip>Enter the Parent Type</ToolTip>
+          <Default>ParentType</Default>
+        </Literal>        
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>internalFieldName</ID>
+          <ToolTip>Internal field name (LowerCase)</ToolTip>
+          <Default>internalFieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>PathToRealCollection</ID>
+          <ToolTip>Condition to include item in this list.</ToolTip>
+          <Default>PathToRealCollection</Default>
+        </Literal>
+        <Literal>
+          <ID>realTypeVariableName</ID>
+          <ToolTip>Variable name for the real type (LowerCase).</ToolTip>
+          <Default>realTypeVariableName</Default>
+        </Literal>        
+        <Literal>
+          <ID>Condition</ID>
+          <ToolTip>Condition to include item.</ToolTip>
+          <Default>Condition</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[ #region Calculatable<IndirectItem<$ParentType$, $RealType$>> $FieldName$
+          internal Calculatable<IndirectItem<$ParentType$, $RealType$>> _$internalFieldName$;
+          [IndirectPointerFunction]
+          public static Func<$ParentType$, Guid, $RealType$> $FieldName$Function { get { return (p, id) => p.$PathToRealCollection$.First(f => f.Id == id); } }
+          /// <summary>
+          /// Indirect Item of $RealType$ (Calculatable)
+          /// </summary>
+          [Description("Indirect $RealType$"), Category("Indirect Item")]
+          public $RealType$ $FieldName$ { get { return _$internalFieldName$.CalculateIndirect($FieldName$_Calculation); } }
+          private IndirectItem<$ParentType$, $RealType$> $FieldName$_Calculation()
+          {          
+            return IndirectItem<$ParentType$, $RealType$>.BuildIndirect(this, $PathToRealCollection$.FirstOrDefault(i => i.$Condition$));
+          }
+          #endregion $FieldName$          
+          $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

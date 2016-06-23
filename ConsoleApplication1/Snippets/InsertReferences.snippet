@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert References</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a Taxpayer Reference into the NextGen project</Description>
+      <Shortcut>SnipReferences</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+	  </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region References
+
+        #region Taxpayer PrimaryTaxpayer
+        /// <summary>
+        /// Reference to Primary Taxpayer 
+        /// </summary>
+        public Taxpayer PrimaryTaxpayer { get { return ReturnFiling.Jurisdiction.PrimaryTaxpayer; } }
+        #endregion Taxpayer PrimaryTaxpayer
+
+        #region Taxpayer SecondaryTaxpayer
+        /// <summary>
+        /// Reference to Secondary Taxpayer
+        /// </summary>
+        public Taxpayer SecondaryTaxpayer { get { return ReturnFiling.Jurisdiction.SecondaryTaxpayer; } }
+        #endregion Taxpayer SecondaryTaxpayer
+		
+		#endregion References
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

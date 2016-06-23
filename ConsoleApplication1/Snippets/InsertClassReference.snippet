@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Class Reference</Title>
+      <Author>Deborah Gaynor/Dean Evans</Author>
+      <Description>Snippet to insert a new child item reference property for a class object.</Description>
+      <Shortcut>SnipClassReference</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+                <Literal>
+          <ID>Description</ID>
+          <ToolTip>Additional Information for the class referenced.</ToolTip>
+          <Default>ParentClassName</Default>
+        </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+        <Literal>
+          <ID>InternalClassVariable</ID>
+          <ToolTip>Determine the internal variable name of the child form.</ToolTip>
+          <Default>InternalClassVariable</Default>
+        </Literal>
+        <Literal>
+          <ID>ClassInstanceName</ID>
+          <ToolTip>Local name of the child form being used.</ToolTip>
+          <Default>ClassInstanceName</Default>
+        </Literal>
+        <Literal>
+          <ID>ReferenceId</ID>
+          <ToolTip>Reference ID from Calc Specs</ToolTip>
+            <Default>ReferenceId</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>ClassType</ID>
+          <ToolTip>The Type of the child form being used.</ToolTip>
+          <Default>ClassInstanceName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[internal $ClassType$ _$InternalClassVariable$;
+        /// <summary>
+        /// $SummarySection$
+		    /// Reference Number $ReferenceId$ 
+        /// </summary>
+        [Description("Reference - $Description$"), Category("$AttributeCategory$"), ReferenceNumber("$ReferenceId$")]
+        public $ClassType$ $ClassInstanceName$ { get { return _$InternalClassVariable$ ?? (_$InternalClassVariable$ = new $ClassType$ (this)); } }
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

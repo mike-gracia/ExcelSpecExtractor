@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Property Reference</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a Get function to pull values from other areas for local reference</Description>
+      <Shortcut>SnipPropertyReference</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>DataType</ID>
+          <ToolTip>Data variable type to be returned</ToolTip>
+          <Default>DataType</Default>
+        </Literal>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Data variable name to be retrieved</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+          <Literal>
+            <ID>FieldPath</ID>
+            <ToolTip>Source path to the value to return.</ToolTip>
+            <Default>FieldPath</Default>
+          </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+          <Default>Description</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+          <Default>Category</Default>
+        </Literal>		
+        <Literal>
+          <ID>ReferenceId</ID>
+          <ToolTip>Reference ID from Calc Specs</ToolTip>
+            <Default>ReferenceId</Default>
+        </Literal>
+        <Literal>
+          <ID>LineNumber</ID>
+          <ToolTip>Line number from form (if applicable)</ToolTip>
+            <Default>LineNumber("")</Default>
+        </Literal>	
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        /// <summary>
+        /// $SummarySection$
+		    /// Reference Number $ReferenceId$ 
+        /// </summary>
+        [Description("Reference - $AttributeDescription$"), Category("$AttributeCategory$"), ReferenceNumber("$ReferenceId$"), $LineNumber$]
+        public $DataType$ $FieldName$ { get { return $FieldPath$.$FieldName$; } }
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

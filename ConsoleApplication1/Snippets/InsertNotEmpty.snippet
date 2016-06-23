@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Is Form Not Empty Calculatable Boolean</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Snippet to insert a new Form Not Empty calculatable field into the NextGen project</Description>
+      <Shortcut>SnipNotEmpty</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>InternalFieldName</ID>
+          <ToolTip>Determine the internal field name.</ToolTip>
+          <Default>InternalFieldName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region bool Is$FieldName$NotEmpty
+        internal Calculatable<bool> _is$FieldName$NotEmpty;
+        /// <summary>
+        /// Used to determine if $FieldName$ is not empty (Calculatable)
+        /// </summary>
+        [Description("Used to determine if $FieldName$ is not empty"), Category("Form Not Empty")]
+        public bool Is$FieldName$NotEmpty { get { return _is$FieldName$NotEmpty.Calculate(Is$FieldName$NotEmpty_Calculation); } }
+        private bool Is$FieldName$NotEmpty_Calculation()
+        {
+        //return $FieldName$Collection != null && $FieldName$Collection.Count > 0;
+        return _$InternalFieldName$ != null;
+        }
+        #endregion Is$FieldName$NotEmpty$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -12,12 +12,14 @@ namespace ExcelSpecExtractor
 {
     class ExcelSpecExtractor
     {
+        const int excelCellCount = 7;
+
         static void Main(string[] args)
         {
 
             string category = "Category";
             Console.WriteLine("Enter a Category:");
-            category = Console.ReadLine();
+            //category = Console.ReadLine();            
 
             string inputFile = @"../../input.txt";
             string outputFile = @"../../output.txt";
@@ -25,7 +27,6 @@ namespace ExcelSpecExtractor
 
             //clean input file (remove \n and put everything on one line
             string text = File.ReadAllText(inputFile);
-            //text = Regex.Replace(text, @"[^\r]\n", "<br />");
             text = Regex.Replace(text, @"(?<!\r)\n", "<br />");
             File.WriteAllText(inputFile, text);
 
@@ -39,7 +40,7 @@ namespace ExcelSpecExtractor
                 string sanitizedLine = Regex.Replace(line, @"\t{2,}", "\t");  //remove excess tabs
                 string[] lineValues = sanitizedLine.Split('\t');    //split on tabs
 
-                if (lineValues.Length == 7 && lineValues[0] != string.Empty)
+                if (lineValues.Length == excelCellCount && lineValues[0] != string.Empty)
                 {
                     LineData ld = new LineData(lineValues, category);
                     DataTranslator dt = new DataTranslator(ld);
@@ -47,7 +48,11 @@ namespace ExcelSpecExtractor
                 }
                 else
                 {
-                    file.WriteLine("//***********" + line + "***********\r\n", currentRow);
+                    file.WriteLine("/* " + line + "*/\r\n");
+                    Debug.WriteLine("Could not process " + inputFile 
+                        + " line number: " + currentRow
+                        + " expected cell count: " + excelCellCount
+                        + " actual cell count: " + lineValues.Length);
                 }
 
                 currentRow++;

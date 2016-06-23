@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Is Form Not Empty Calculatable Boolean</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Snippet to insert a new Form In Use calculatable field into the NextGen project</Description>
+      <Shortcut>SnipInUse</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>InternalFieldName</ID>
+          <ToolTip>Determine the internal field name.</ToolTip>
+          <Default>InternalFieldName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region bool Is$FieldName$InUse
+        internal Calculatable<bool> _is$FieldName$InUse;
+        /// <summary>
+        /// Flag to determine if $FieldName$ is needed in the return (Calculatable)
+        /// </summary>
+        [Description("Flag to determine if $FieldName$ is needed in the return"), Category("Form In Use")]
+        public bool Is$FieldName$InUse { get { return _is$FieldName$InUse.Calculate(Is$FieldName$InUse_Calculation); } }
+        private bool Is$FieldName$InUse_Calculation()
+        {
+		//TODO: Enter condition for form to be used		
+        //return $FieldName$Collection != null && $FieldName$Collection.Any(f => true);
+        return _$InternalFieldName$ != null;
+        }
+        #endregion Is$FieldName$InUse
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

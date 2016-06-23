@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Region</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Inserts a Region</Description>
+      <Shortcut>SnipRegion</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>RegionName</ID>
+          <ToolTip>Enter the name of the Region</ToolTip>
+          <Default>RegionName</Default>
+        </Literal>
+		<Literal>
+          <ID>TODO</ID>
+          <ToolTip>EnterCode</ToolTip>
+          <Default>//TODO: Enter Code Here</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region $RegionName$
+		
+		$TODO$
+		
+        #endregion //$RegionName$
+		$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert New Validation</Title>
+      <Author>Richard Strosahl</Author>
+      <Description>Snippet to insert a new validation into the Attribute Class
+	  	  
+Instructions: 
+	Inset snippet in the Map function of the class [ClassName]Attribute
+	</Description>
+      <Shortcut>SnipValidationNew</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>State</ID>
+          <ToolTip>Enter the state jurisdiction the class will be populated in</ToolTip>
+          <Default>State</Default>
+        </Literal>
+		<Literal>
+          <ID>Class</ID>
+          <ToolTip>Enter the name of the class</ToolTip>
+          <Default>Class</Default>
+        </Literal>
+		<Literal>
+          <ID>ValidationName</ID>
+          <ToolTip>Enter a field that requires a validation</ToolTip>
+          <Default>.ValidationName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[r.Register
+				(
+					$Class$ValidationType$ValidationName$,
+					v =>
+					{
+						//TODO: Add Validation Logic for $Class$ValidationType$ValidationName$
+						return true; //The validation message will appear when the validation returns false
+					}
+				);
+				$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

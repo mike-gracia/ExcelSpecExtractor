@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Calculatable</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a new synched Changeable Collection into the NextGen project</Description>
+      <Shortcut>SnipChangeableSyncCollection</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>InternalFieldName</ID>
+          <ToolTip>Determine the internal field name.</ToolTip>
+          <Default>InternalFieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>DataType</ID>
+          <ToolTip>Determine the datatype for your property.</ToolTip>
+          <Default>DataType</Default>
+        </Literal>
+		 <Literal>
+          <ID>Description</ID>
+          <ToolTip>Data field description for Property Explorer</ToolTip>
+            <Default>Description</Default>
+        </Literal>
+		<Literal>
+          <ID>Category</ID>
+          <ToolTip>Data field category for Property Explorer</ToolTip>
+            <Default>Category</Default>
+        </Literal>
+        <Literal>
+          <ID>ReferenceId</ID>
+          <ToolTip>Reference ID from Calc Specs</ToolTip>
+            <Default>ReferenceId</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+          <Default>Description</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+          <Default>Category</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region $DataType$ $FieldName$
+        internal Changeable<$DataType$> _$InternalFieldName$;
+        /// <summary>
+        ///   (Changeable)
+        /// Reference Number $ReferenceId$ 
+        /// </summary>
+        [Description("$Description$"), Category("$Category$"), ReferenceNumber("$ReferenceId$")]
+        public DataType FieldName
+        {
+            get
+            {
+                if (_$InternalFieldName$.Value == null)
+                {
+                    _$InternalFieldName$.Value = new $DataType$(this);
+                    _$InternalFieldName$.Value.Synchronize();
+                }
+                return _$InternalFieldName$.Value;
+            }
+        }
+        #endregion $FieldName$
+
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Validation</Title>
+      <Author>Scott Seto</Author>
+      <Description>Snippet to add a validation attribute to a data element 
+
+Instructions:
+	Insert the snippet after the summary section 
+	of the data element requiring validation.</Description>
+      <Shortcut>SnipValidationAttribute</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ClassName</ID>
+          <ToolTip>Enter the name of the class. If a part of a pre-existing class, name must match.</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+        <Literal>
+          <ID>PropertyName</ID>
+          <ToolTip>Enter the name of the validation enumerator</ToolTip>
+          <Default>.PropertyName</Default>
+        </Literal>
+        <Literal>
+          <ID>Message</ID>
+          <ToolTip>Enter the validation message</ToolTip>
+          <Default>Message</Default>
+        </Literal>
+		<Literal>
+          <ID>ErrorClass</ID>
+          <ToolTip>Enter the ErrorClass</ToolTip>
+          <Default>.Required</Default>
+        </Literal>
+		<Literal>
+          <ID>ErrorType</ID>
+          <ToolTip>Enter the Error Type</ToolTip>
+          <Default>.Error</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[[$ClassName$($ClassName$ValidationType$PropertyName$, ErrorClass = ErrorClass$ErrorClass$, ErrorType = ErrorType$ErrorType$, ErrorMessage = "$Message$")]$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

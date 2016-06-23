@@ -1,0 +1,78 @@
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <!--Title of the snippet. This is what shows up in the Code Snippet Manager-->
+      <Title>Insert Changeable Ratio</Title>
+      <!--Author of the snippet. Designates who created the snippet-->
+      <Author>Richard Strosahl and Dean Evans</Author>
+      <!--Description of the snippet. Describes what the snippet accomplishes-->
+      <Description>Inserts a positive decimal type data property</Description>
+      <!--Shortcut for the snippet. This is what the user will type to access the snippet via Intellisense-->
+      <Shortcut>SnipRatioChange</Shortcut>
+    </Header>
+    <Snippet>
+      <!--Declarations section holds all of the sections that are dynamically filled out by the user-->
+      <Declarations>
+        <!--Literal designates the start of a dynamically filled out section-->
+        <Literal>
+          <!--The unique ID for a dynamic item. This will be used in the Code Section of this snippet-->
+          <ID>FieldName</ID>
+          <!--Tooltip for a dynamic item. This is what will appear when a user hovers over the dynamic item to provide additional information-->
+          <ToolTip>The public name for the data property</ToolTip>
+          <!--Default text for a dynamic item. This is to help the user determine what is to be entered in the dynamic item-->
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>LineNumber</ID>
+          <ToolTip>Determine the line number this data property references. Remove if not needed</ToolTip>
+          <Default>(Line Number)</Default>
+        </Literal>
+        <Literal>
+          <ID>InternalFieldName</ID>
+          <ToolTip>Determine the internal name for the data property.</ToolTip>
+          <Default>InternalFieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>Additional useful information for the developer.</ToolTip>
+          <Default>Summary</Default>
+        </Literal>
+        <Literal>
+          <ID>ReferenceId</ID>
+          <ToolTip>Determine the Reference ID for the data property.</ToolTip>
+          <Default>ReferenceId</Default>
+        </Literal>
+        <Literal>
+          <ID>PrecisionType</ID>
+          <ToolTip>Determine the decimal precision for the data property.</ToolTip>
+          <Default>.Zero</Default>
+        </Literal>
+        <Literal>
+          <ID>Description</ID>
+          <ToolTip>Description that will be used for this data property in Property Explorer.</ToolTip>
+          <Default>Description</Default>
+        </Literal>
+        <Literal>
+          <ID>Category</ID>
+          <ToolTip>Category that the data property will be organized under in Property Explorer.</ToolTip>
+          <Default>Category</Default>
+        </Literal>
+      </Declarations>
+      <!--Code section describes exactly what code/text is inserted into the file when the snippet is called.-->
+      <Code Language="CSharp">
+        <![CDATA[#region decimal $FieldName$ $LineNumber$
+        internal Changeable<decimal> _$InternalFieldName$;
+        /// <summary>
+        /// $SummarySection$ (Changeable)
+		    /// Reference Number $ReferenceId$ 
+        /// </summary>
+        [Ratio(Precision = PrecisionType$PrecisionType$)]
+        [Description("Changeable - $Description$"), Category("$Category$"), ReferenceNumber("$ReferenceId$"), LineNumber("$LineNumber$")]
+        public decimal $FieldName$ { get { return _$InternalFieldName$.Value; } set {_$InternalFieldName$.Value = value;}}
+        #endregion $FieldName$
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

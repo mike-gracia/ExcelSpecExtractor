@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert GUID</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a GUID into a class</Description>
+      <Shortcut>SnipGuid</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        internal Guid _id;
+        /// <summary>
+        /// $SummarySection$
+        /// </summary>
+        public Guid Id { get { return _id; } set{ _id = value;}}
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

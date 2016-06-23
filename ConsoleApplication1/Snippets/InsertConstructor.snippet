@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Constructor</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a new constructor method for a class object, which takes the parent item as a parameter.</Description>
+      <Shortcut>SnipConstructor</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>InternalParentVariable</ID>
+          <ToolTip>Determine the internal variable name of the parent form.</ToolTip>
+          <Default>InternalParentVariable</Default>
+        </Literal>
+		<Literal>
+          <ID>InternalCurrentFormVariable</ID>
+          <ToolTip>Determine the internal variable name of the parent form.</ToolTip>
+          <Default>InternalCurrentFormVariable</Default>
+        </Literal>
+        <Literal>
+          <ID>ParentForm</ID>
+          <ToolTip>The Type of the parent form being used.</ToolTip>
+          <Default>ParentForm</Default>
+        </Literal>
+        <Literal>
+          <ID>CurrentForm</ID>
+          <ToolTip>The type of the child form.</ToolTip>
+          <Default>CurrentForm</Default>
+        </Literal>
+        <Literal>
+          <ID>TestValue</ID>
+          <ToolTip>The default test value for your Field.</ToolTip>
+          <Default>TestValue</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[public $CurrentForm$($ParentForm$ $InternalParentVariable$)
+		{
+			_$InternalParentVariable$ = $InternalParentVariable$;
+		}
+        
+		#region Parent $ParentForm$
+		internal $ParentForm$ _$InternalParentVariable$;
+		/// <summary>
+		/// Parent $ParentForm$
+		/// </summary>
+		[Description("Parent $ParentForm$"), Category("$CurrentForm$")]
+		public $ParentForm$ $ParentForm$ { get { return _$InternalParentVariable$; } }
+		#endregion Parent $ParentForm$
+          $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

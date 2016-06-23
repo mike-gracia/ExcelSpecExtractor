@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Linked Class Reference</Title>
+      <Author>Dean Evans</Author>
+      <Description>Snippet to insert a Linked Class Reference into a class</Description>
+      <Shortcut>SnipLinkedClassReference</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>ClassType</ID>
+          <ToolTip>The class type this link will be used to access</ToolTip>
+          <Default>ClassType</Default>
+        </Literal>
+        <Literal>
+          <ID>PropertyName</ID>
+          <ToolTip>The publicly accessed instance of ClassType, linked via Guid</ToolTip>
+          <Default>PropertyName</Default>
+        </Literal>
+        <Literal>
+          <ID>PredicateName</ID>
+          <ToolTip>Name for the predicate variable. Does not affect functionality, name for readability</ToolTip>
+          <Default>PredicateName</Default>
+        </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        internal Guid _id;
+        /// <summary>
+        /// $SummarySection$
+        /// </summary>
+        [Description("$AttributeDescription$"), Category("$AttributeCategory$"), Editor(typeof(CollectionEditor), typeof(UITypeEditor)), IsNullable()]
+        public $ClassType$ $PropertyName$ { get { return $CollectionPath$.Where($PredicateName$=>$PredicateName$.Id ==_id).FirstOrDefault(); } set{ _id = value.Id;}}
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

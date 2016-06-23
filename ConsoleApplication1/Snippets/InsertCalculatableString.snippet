@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Calculatable String</Title>
+      <Author>Deborah Gaynor</Author>
+      <Description>Snippet to insert a new string calculatable field into the NextGen project</Description>
+      <Shortcut>SnipStringCalc</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>InternalFieldName</ID>
+          <ToolTip>Determine the internal field name.</ToolTip>
+          <Default>InternalFieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>SummarySection</ID>
+          <ToolTip>
+            Describe the field:
+            - What does this field represent?
+            - How is it calculated?
+            - What line, if any, does this represent on a form?
+            - Other special notes
+          </ToolTip>
+        </Literal>
+        <Literal>
+          <ID>ReferenceId</ID>
+          <ToolTip>Reference ID from Calc Specs</ToolTip>
+            <Default>ReferenceId</Default>
+        </Literal>
+        <Literal>
+          <ID>LineNumber</ID>
+          <ToolTip>Line number from form (if applicable)</ToolTip>
+            <Default>LineNumber</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+          <Default>Description</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+          <Default>Category</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region string $FieldName$ (Line $LineNumber$)
+        internal Calculatable<string> _$InternalFieldName$;
+        /// <summary>
+        /// $SummarySection$ (Calculatable)
+		/// Reference Number $ReferenceId$ 
+        /// </summary>
+        [Description("$AttributeDescription$"), Category("$AttributeCategory$"), ReferenceNumber("$ReferenceId$"), LineNumber("$LineNumber$")]
+        public string $FieldName$ { get { return _$InternalFieldName$.Calculate($FieldName$_Calculation); } }
+        private string $FieldName$_Calculation()
+        {
+        //TODO: Enter code for $FieldName$ calculation
+        return default(string);
+        }
+        #endregion $FieldName$
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
