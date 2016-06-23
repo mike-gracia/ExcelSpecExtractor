@@ -84,5 +84,32 @@
         public bool FieldName_Value { get { return FieldName.GetValueOrDefault(); } }
         #endregion FieldName
 
+		//snipcalcchange
+		#region string FieldName (Line LineNumber)
+        internal Calculatable<string> _InternalFieldName;
+        /// <summary>
+        ///   (Calculatable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public string FieldName { get { return _InternalFieldName.Calculate(FieldName_Calculation); } }
+        private string FieldName_Calculation()
+        {
+            //TODO: Enter code for FieldName calculation
+            return default(string);
+        }
+        #endregion FieldName
+
+		//snipstringchange
+        #region string FieldName (Line LineNumber)
+        internal Changeable<string> _InternalFieldName;
+        /// <summary>
+        ///   (Changeable)
+        /// Reference Number ReferenceId 
+        /// </summary>
+        [Description("Description"), Category("Category"), ReferenceNumber("ReferenceId"), LineNumber("LineNumber")]
+        public string FieldName { get { return _InternalFieldName.Value; } set { _InternalFieldName.Value = value; } }
+        #endregion FieldName
+
     }
 }
