@@ -88,7 +88,7 @@ namespace ExcelSpecExtractor
             codeStr = codeStr.Replace("$Rounding$", _txtLineData.roundingString);
             codeStr = codeStr.Replace("$RoundingType$", _txtLineData.roundingString);
             if (_txtLineData.dataType == DataType.Unknown) codeStr = codeStr.Replace("$DataType$", _txtLineData.dataTypeString);
-            codeStr = codeStr.Replace("$end$", eol);
+            codeStr = codeStr.Replace("$end$", "");
 
             return codeStr;
         }

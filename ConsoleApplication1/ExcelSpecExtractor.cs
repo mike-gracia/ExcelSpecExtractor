@@ -61,6 +61,8 @@ namespace ExcelSpecExtractor
             //clean input file (remove \n and put everything on one line
             string text = File.ReadAllText(_inputFileString);
             text = Regex.Replace(text, @"(?<!\r)\n", "<br />");
+            //replace " with '
+            text = Regex.Replace(text, "\"", "'");
             File.WriteAllText(_inputFileString, text);
 
             return File.ReadAllLines(_inputFileString);

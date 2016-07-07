@@ -1,1634 +1,184 @@
-#region string Name1 (Line PIT-1, Line 1a)
-internal Calculatable<string> _name1;
+#region bool? IsEligibleToParticipate (Line N/A)
+internal Changeable<bool?> _isEligibleToParticipate;
 /// <summary>
-/// Taxpayer Name (First, middle) (Calculatable)
-/// Reference Number NMTPFNMI 
+/// Are you <or your spouse, IF MFJ> eligible to participate in a health benefit plan in which a current or former employer pays any portion of the health plan premiums, even if you elect not to participate in the plan? (Changeable)
+/// Reference Number UTTC40AHBPWrkt1 
 /// </summary>
-[Description("Taxpayer Name (First, middle)"), Category("Category"), ReferenceNumber("NMTPFNMI"), LineNumber("PIT-1, Line 1a")]
-public string Name1 { get { return _name1.Calculate(Name1_Calculation); } }
-private string Name1_Calculation()
-{
-//[FD1040PIcalc: PITp01] + [FD1040PIcalc: PITp02]
-return default(string);
-}
-#endregion Name1
+[Description("Are you <or your spouse, IF MFJ> eligible to participate in a health benefit plan in which a current or former employer pays any portion of the health plan premiums, even if you elect not to participate in the plan?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt1"), LineNumber("N/A")]
+public bool? IsEligibleToParticipate { get { return _isEligibleToParticipate.Value; } set {_isEligibleToParticipate.Value = value;}}
+public bool IsEligibleToParticipate_Value { get { return IsEligibleToParticipate.GetValueOrDefault();}}
+#endregion IsEligibleToParticipate
 
-
-#region string Name2 (Line PIT-1, Line 1a)
-internal Calculatable<string> _name2;
+#region bool? DoesEmployerPlanCoverBoth (Line N/A)
+internal Changeable<bool?> _doesEmployerPlanCoverBoth;
 /// <summary>
-/// Taxpayer Name (Last , Suffix) (Calculatable)
-/// Reference Number NMTPLNSuffix 
+/// Does your employer's plan cover both you and your family? (Changeable)
+/// Reference Number UTTC40AHBPWrkt2 
 /// </summary>
-[Description("Taxpayer Name (Last , Suffix)"), Category("Category"), ReferenceNumber("NMTPLNSuffix"), LineNumber("PIT-1, Line 1a")]
-public string Name2 { get { return _name2.Calculate(Name2_Calculation); } }
-private string Name2_Calculation()
-{
-//[FD1040PIcalc: PITp03] + [FD1040PIcalc: PITp04]
-return default(string);
-}
-#endregion Name2
+[Description("Does your employer's plan cover both you and your family?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt2"), LineNumber("N/A")]
+public bool? DoesEmployerPlanCoverBoth { get { return _doesEmployerPlanCoverBoth.Value; } set {_doesEmployerPlanCoverBoth.Value = value;}}
+public bool DoesEmployerPlanCoverBoth_Value { get { return DoesEmployerPlanCoverBoth.GetValueOrDefault();}}
+#endregion DoesEmployerPlanCoverBoth
 
-
-#region SocialSecurityNumber Name3 (Line PIT-1, Line 1b)
-internal Calculatable<SocialSecurityNumber> _name3;
+#region bool? DoYouHaveAPlan (Line N/A)
+internal Changeable<bool?> _doYouHaveAPlan;
 /// <summary>
-/// Taxpayer SSN (Calculatable)
-/// Reference Number NMTPSSN 
+/// Do you have a health benefit plan that covers you and/or your family? (Changeable)
+/// Reference Number UTTC40AHBPWrkt3 
 /// </summary>
-[Description("Taxpayer SSN"), Category("Category"), ReferenceNumber("NMTPSSN"), LineNumber("PIT-1, Line 1b")]
-public SocialSecurityNumber Name3 { get { return _name3.Calculate(Name3_Calculation); } }
-private SocialSecurityNumber Name3_Calculation()
-{
-//[FD1040PIcalc: PITp05]
-return default(SocialSecurityNumber);
-}
-#endregion Name3
+[Description("Do you have a health benefit plan that covers you and/or your family?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt3"), LineNumber("N/A")]
+public bool? DoYouHaveAPlan { get { return _doYouHaveAPlan.Value; } set {_doYouHaveAPlan.Value = value;}}
+public bool DoYouHaveAPlan_Value { get { return DoYouHaveAPlan.GetValueOrDefault();}}
+#endregion DoYouHaveAPlan
 
-
-#region bool? Name4 (Line PIT-1, Line 1c)
-internal Calculatable<bool?> _name4;
+#region decimal AmountPaidForHealthBenefitPlan (Line Health Benefit Plan Credit Wkst, Line 1)
+internal Changeable<decimal> _amountPaidForHealthBenefitPlan;
 /// <summary>
-/// Taxpayer Blind (Calculatable)
-/// Reference Number NMTPBlind 
-/// </summary>
-[Description("Taxpayer Blind"), Category("Category"), ReferenceNumber("NMTPBlind"), LineNumber("PIT-1, Line 1c")]
-public bool? Name4 { get { return _name4.Calculate(Name4_Calculation); } }
-public bool Name4_Value { get { return Name4.GetValueOrDefault();}}
-private bool? Name4_Calculation()
-{
-//"IF [FD1040PIcalc: PITp17] = TRUE, THEN Check,
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name4
-
-
-#region bool? Name5 (Line PIT-1, Line 1d)
-internal Calculatable<bool?> _name5;
-/// <summary>
-/// Taxpayer Age 65 or over (Calculatable)
-/// Reference Number NMTPAge65 
-/// </summary>
-[Description("Taxpayer Age 65 or over"), Category("Category"), ReferenceNumber("NMTPAge65"), LineNumber("PIT-1, Line 1d")]
-public bool? Name5 { get { return _name5.Calculate(Name5_Calculation); } }
-public bool Name5_Value { get { return Name5.GetValueOrDefault();}}
-private bool? Name5_Calculation()
-{
-//"IF [FD1040PIcalc: PITp07] = > 65, THEN Check,
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name5
-
-
-#region Object/*Enum: NMResidency*/ Name6 (Line PIT 1, line 1e)
-internal Calculatable<Object/*Enum: NMResidency*/> _name6;
-/// <summary>
-/// Taxpayer Residency Status (Calculatable)
-/// Reference Number NMResTP 
-/// </summary>
-[Description("Taxpayer Residency Status"), Category("Category"), ReferenceNumber("NMResTP"), LineNumber("PIT 1, line 1e")]
-public Object/*Enum: NMResidency*/ Name6 { get { return _name6.Calculate(Name6_Calculation); } }
-private Object/*Enum: NMResidency*/ Name6_Calculation()
-{
-//"When [PYNRAWState] = 'NM'
-// IF [PYNRAWResTp] = 'P' AND [PYNRAWDate02Tp] = 12/31/<taxyear>, THEN 'F'
-// ELSE IF [PYNRAWResTp] = 'P' AND ([PYNRAWDate02Tp] - [PYNRAWDate01Tp] + 1) < [NMResDays], THEN 'P'
-// ELSE IF [PYNRAWResTp] = 'N', THEN 'N'
-// ELSE, 'R'"
-return default(Object/*Enum: NMResidency*/);
-}
-#endregion Name6
-
-
-#region Object/*Enum: NMResidency*/ Name7 (Line PIT 1, line 2e)
-internal Calculatable<Object/*Enum: NMResidency*/> _name7;
-/// <summary>
-/// Spouse Residency Status (Calculatable)
-/// Reference Number NMResSP 
-/// </summary>
-[Description("Spouse Residency Status"), Category("Category"), ReferenceNumber("NMResSP"), LineNumber("PIT 1, line 2e")]
-public Object/*Enum: NMResidency*/ Name7 { get { return _name7.Calculate(Name7_Calculation); } }
-private Object/*Enum: NMResidency*/ Name7_Calculation()
-{
-//"IF MFJ, THEN
-// {When [PYNRAWState] = 'NM'
-// IF [PYNRAWResSp] = 'P' AND [PYNRAWDate02Sp] = 12/31/taxyear, THEN 'F'
-// ELSE IF [PYNRAWResSp] = 'P' AND ([PYNRAWDate02Sp] - [PYNRAWDate01Sp] + 1) < [NMResDays], THEN 'P'
-// ELSE IF [PYNRAWResSp] = 'N', THEN 'N'
-// ELSE, 'R'}
-// ELSE, blank"
-return default(Object/*Enum: NMResidency*/);
-}
-#endregion Name7
-
-
-#region Date Name8 (Line PIT-1, Line 1f)
-internal Calculatable<Date> _name8;
-/// <summary>
-/// Taxpayer Date of Birth (Calculatable)
-/// Reference Number NMTPDOB 
-/// </summary>
-[Description("Taxpayer Date of Birth"), Category("Category"), ReferenceNumber("NMTPDOB"), LineNumber("PIT-1, Line 1f")]
-public Date Name8 { get { return _name8.Calculate(Name8_Calculation); } }
-private Date Name8_Calculation()
-{
-//[FD1040PIcalc: PITp06]
-return default(Date);
-}
-#endregion Name8
-
-
-#region string Name9 (Line PIT-1, Line 2a)
-internal Calculatable<string> _name9;
-/// <summary>
-/// Spouse Name (First, middle). If married filing separately, include spouse (Calculatable)
-/// Reference Number NMSPFNMI 
-/// </summary>
-[Description("Spouse Name (First, middle). If married filing separately, include spouse"), Category("Category"), ReferenceNumber("NMSPFNMI"), LineNumber("PIT-1, Line 2a")]
-public string Name9 { get { return _name9.Calculate(Name9_Calculation); } }
-private string Name9_Calculation()
-{
-//IF [FD1040calc: F1040FS] = MFJ OR MFS, THEN [FD1040PIcalc: PISp01] + [FD1040PIcalc: PISp02]
-return default(string);
-}
-#endregion Name9
-
-
-#region string Name10 (Line PIT-1, Line 2a)
-internal Calculatable<string> _name10;
-/// <summary>
-/// Spouse Name (Last, Suffix). If married filing separately, include spouse (Calculatable)
-/// Reference Number NMSPLNSuffix 
-/// </summary>
-[Description("Spouse Name (Last, Suffix). If married filing separately, include spouse"), Category("Category"), ReferenceNumber("NMSPLNSuffix"), LineNumber("PIT-1, Line 2a")]
-public string Name10 { get { return _name10.Calculate(Name10_Calculation); } }
-private string Name10_Calculation()
-{
-//IF [FD1040calc: F1040FS] = MFJ OR MFS, THEN [FD1040PIcalc: PISp03] + [FD1040PIcalc: PISp04]
-return default(string);
-}
-#endregion Name10
-
-
-#region SocialSecurityNumber Name11 (Line PIT-1, Line 2b)
-internal Calculatable<SocialSecurityNumber> _name11;
-/// <summary>
-/// Spouse SSN (Calculatable)
-/// Reference Number NMSPSSN 
-/// </summary>
-[Description("Spouse SSN"), Category("Category"), ReferenceNumber("NMSPSSN"), LineNumber("PIT-1, Line 2b")]
-public SocialSecurityNumber Name11 { get { return _name11.Calculate(Name11_Calculation); } }
-private SocialSecurityNumber Name11_Calculation()
-{
-//IF [FD1040calc: F1040FS] = MFJ OR MFS, THEN [FD1040PIcalc: PISp05] 
-return default(SocialSecurityNumber);
-}
-#endregion Name11
-
-
-#region bool? Name12 (Line PIT-1, Line 2c)
-internal Calculatable<bool?> _name12;
-/// <summary>
-/// Spouse Blind (Calculatable)
-/// Reference Number NMSPBlind 
-/// </summary>
-[Description("Spouse Blind"), Category("Category"), ReferenceNumber("NMSPBlind"), LineNumber("PIT-1, Line 2c")]
-public bool? Name12 { get { return _name12.Calculate(Name12_Calculation); } }
-public bool Name12_Value { get { return Name12.GetValueOrDefault();}}
-private bool? Name12_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = MFJ, AND [FD1040PIcalc: PISp17] = TRUE, THEN Check,
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name12
-
-
-#region bool? Name13 (Line PIT-1, Line 2d)
-internal Calculatable<bool?> _name13;
-/// <summary>
-/// Spouse Age 65 or over (Calculatable)
-/// Reference Number NMSPAge65 
-/// </summary>
-[Description("Spouse Age 65 or over"), Category("Category"), ReferenceNumber("NMSPAge65"), LineNumber("PIT-1, Line 2d")]
-public bool? Name13 { get { return _name13.Calculate(Name13_Calculation); } }
-public bool Name13_Value { get { return Name13.GetValueOrDefault();}}
-private bool? Name13_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = MFJ AND [FD1040PIcalc: PISp07] = > 65, THEN Check,
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name13
-
-
-#region Object/*Residency Status*/ Name14 (Line PIT-1, Line 2e)
-internal Calculatable<Object/*Residency Status*/> _name14;
-/// <summary>
-/// Spouse Residency Status (Calculatable)
-/// Reference Number NMSPResidency 
-/// </summary>
-[Description("Spouse Residency Status"), Category("Category"), ReferenceNumber("NMSPResidency"), LineNumber("PIT-1, Line 2e")]
-public Object/*Residency Status*/ Name14 { get { return _name14.Calculate(Name14_Calculation); } }
-private Object/*Residency Status*/ Name14_Calculation()
-{
-//"IF [FD1040Calc: F1040FS] = MFJ AND [NMMFJResident] = YES, THEN 'R'
-// 
-// ELSE Blank (Disqualified to use our program. Not supporting PY-NR)"
-return default(Object/*Residency Status*/);
-}
-#endregion Name14
-
-
-#region Date Name15 (Line PIT-1, Line 2f)
-internal Calculatable<Date> _name15;
-/// <summary>
-/// Spouse Date of Birth (Calculatable)
-/// Reference Number NMSPDOB 
-/// </summary>
-[Description("Spouse Date of Birth"), Category("Category"), ReferenceNumber("NMSPDOB"), LineNumber("PIT-1, Line 2f")]
-public Date Name15 { get { return _name15.Calculate(Name15_Calculation); } }
-private Date Name15_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = MFJ, THEN [FD1040PIcalc: PISp06]
-// 
-// ELSE Blank"
-return default(Date);
-}
-#endregion Name15
-
-
-#region bool? Name16 (Line PIT-1, Line 3a)
-internal Changeable<bool?> _name16;
-/// <summary>
-/// If the address is new or changed, mark this box (Changeable)
-/// Reference Number NMAddressChange 
-/// </summary>
-[Description("If the address is new or changed, mark this box"), Category("Category"), ReferenceNumber("NMAddressChange"), LineNumber("PIT-1, Line 3a")]
-public bool? Name16 { get { return _name16.Value; } set {_name16.Value = value;}}
-public bool Name16_Value { get { return Name16.GetValueOrDefault();}}
-#endregion Name16
-
-
-#region Object/*Address*/ Name17 (Line PIT-1, Line 3b)
-internal Calculatable<Object/*Address*/> _name17;
-/// <summary>
-/// Mailing Address (Calculatable)
-/// Reference Number NMAddress  
-/// </summary>
-[Description("Mailing Address"), Category("Category"), ReferenceNumber("NMAddress "), LineNumber("PIT-1, Line 3b")]
-public Object/*Address*/ Name17 { get { return _name17.Calculate(Name17_Calculation); } }
-private Object/*Address*/ Name17_Calculation()
-{
-//[FD1040PIcalc: PIAddress02] + [FD1040PIcalc: PIAddress04]
-return default(Object/*Address*/);
-}
-#endregion Name17
-
-
-#region Object/*City*/ Name18 (Line PIT-1, Line 3c-1)
-internal Calculatable<Object/*City*/> _name18;
-/// <summary>
-/// Mailing Address, City (Calculatable)
-/// Reference Number NMCity 
-/// </summary>
-[Description("Mailing Address, City"), Category("Category"), ReferenceNumber("NMCity"), LineNumber("PIT-1, Line 3c-1")]
-public Object/*City*/ Name18 { get { return _name18.Calculate(Name18_Calculation); } }
-private Object/*City*/ Name18_Calculation()
-{
-//[FD1040PIcalc: PIAddress06]
-return default(Object/*City*/);
-}
-#endregion Name18
-
-
-#region Object/*State*/ Name19 (Line PIT-1, Line 3c-2)
-internal Calculatable<Object/*State*/> _name19;
-/// <summary>
-/// Mailing Address, State (Calculatable)
-/// Reference Number NMState 
-/// </summary>
-[Description("Mailing Address, State"), Category("Category"), ReferenceNumber("NMState"), LineNumber("PIT-1, Line 3c-2")]
-public Object/*State*/ Name19 { get { return _name19.Calculate(Name19_Calculation); } }
-private Object/*State*/ Name19_Calculation()
-{
-//[FD1040PIcalc: PIAddress07]
-return default(Object/*State*/);
-}
-#endregion Name19
-
-
-#region Object/*Zip code*/ Name20 (Line PIT-1, Line 3c-3)
-internal Calculatable<Object/*Zip code*/> _name20;
-/// <summary>
-/// Mailing Address, Zip (Calculatable)
-/// Reference Number NMZipCode 
-/// </summary>
-[Description("Mailing Address, Zip"), Category("Category"), ReferenceNumber("NMZipCode"), LineNumber("PIT-1, Line 3c-3")]
-public Object/*Zip code*/ Name20 { get { return _name20.Calculate(Name20_Calculation); } }
-private Object/*Zip code*/ Name20_Calculation()
-{
-//[FD1040PIcalc: PIAddress05]
-return default(Object/*Zip code*/);
-}
-#endregion Name20
-
-
-#region Object/*Country*/ Name21 (Line PIT-1, Line 3d-1)
-internal Calculatable<Object/*Country*/> _name21;
-/// <summary>
-/// If foreign address, enter country (Calculatable)
-/// Reference Number NMForeignCountry 
-/// </summary>
-[Description("If foreign address, enter country"), Category("Category"), ReferenceNumber("NMForeignCountry"), LineNumber("PIT-1, Line 3d-1")]
-public Object/*Country*/ Name21 { get { return _name21.Calculate(Name21_Calculation); } }
-private Object/*Country*/ Name21_Calculation()
-{
-//manual entry
-return default(Object/*Country*/);
-}
-#endregion Name21
-
-
-#region Object/*Foreign Providence or State*/ Name22 (Line PIT-1, Line 3d-2)
-internal Calculatable<Object/*Foreign Providence or State*/> _name22;
-/// <summary>
-/// If foreign address, enter the foreign providence or State (Calculatable)
-/// Reference Number NMForeignProvidence 
-/// </summary>
-[Description("If foreign address, enter the foreign providence or State"), Category("Category"), ReferenceNumber("NMForeignProvidence"), LineNumber("PIT-1, Line 3d-2")]
-public Object/*Foreign Providence or State*/ Name22 { get { return _name22.Calculate(Name22_Calculation); } }
-private Object/*Foreign Providence or State*/ Name22_Calculation()
-{
-//manual entry
-return default(Object/*Foreign Providence or State*/);
-}
-#endregion Name22
-
-
-#region string Name23 (Line PIT-1, Line 4a)
-internal Calculatable<string> _name23;
-/// <summary>
-/// If a deceased taxpayer's refund must be made payable to a person other than the taxpayer or spouse named on this return, enter the  name and social security number of that person. You must also attach Form RPD-41083 - Name (Calculatable)
-/// Reference Number NMTPDeceasedRepName 
-/// </summary>
-[Description("If a deceased taxpayer's refund must be made payable to a person other than the taxpayer or spouse named on this return, enter the  name and social security number of that person. You must also attach Form RPD-41083 - Name"), Category("Category"), ReferenceNumber("NMTPDeceasedRepName"), LineNumber("PIT-1, Line 4a")]
-public string Name23 { get { return _name23.Calculate(Name23_Calculation); } }
-private string Name23_Calculation()
-{
-//
-return default(string);
-}
-#endregion Name23
-
-
-#region SocialSecurityNumber Name24 (Line PIT-1, Line 4b)
-internal Calculatable<SocialSecurityNumber> _name24;
-/// <summary>
-/// If a deceased taxpayer's refund must be made payable to a person other than the taxpayer or spouse named on this return, enter the  name and social security number of that person. You must also attach Form RPD-41083 - SSN (Calculatable)
-/// Reference Number NMTPDeceasedRepSSN 
-/// </summary>
-[Description("If a deceased taxpayer's refund must be made payable to a person other than the taxpayer or spouse named on this return, enter the  name and social security number of that person. You must also attach Form RPD-41083 - SSN"), Category("Category"), ReferenceNumber("NMTPDeceasedRepSSN"), LineNumber("PIT-1, Line 4b")]
-public SocialSecurityNumber Name24 { get { return _name24.Calculate(Name24_Calculation); } }
-private SocialSecurityNumber Name24_Calculation()
-{
-//
-return default(SocialSecurityNumber);
-}
-#endregion Name24
-
-
-#region Date Name25 (Line PIT-1, Line 4c)
-internal Calculatable<Date> _name25;
-/// <summary>
-/// Taxpayers' Date of Death (Calculatable)
-/// Reference Number NMTPDOD 
-/// </summary>
-[Description("Taxpayers' Date of Death"), Category("Category"), ReferenceNumber("NMTPDOD"), LineNumber("PIT-1, Line 4c")]
-public Date Name25 { get { return _name25.Calculate(Name25_Calculation); } }
-private Date Name25_Calculation()
-{
-//"IF [FD1040PIcalc: PITp15] = True, THEN [FD1040PIcalc: PITp16]
-// 
-// ELSE Blank"
-return default(Date);
-}
-#endregion Name25
-
-
-#region Date Name26 (Line PIT-1, Line 4d)
-internal Calculatable<Date> _name26;
-/// <summary>
-/// Spouse's Date of Death (Calculatable)
-/// Reference Number NMSPDOD 
-/// </summary>
-[Description("Spouse's Date of Death"), Category("Category"), ReferenceNumber("NMSPDOD"), LineNumber("PIT-1, Line 4d")]
-public Date Name26 { get { return _name26.Calculate(Name26_Calculation); } }
-private Date Name26_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = MFJ AND [FD1040PIcalc: PISp15] = True, THEN [FD1040PIcalc: PISp16]
-// 
-// ELSE Blank"
-return default(Date);
-}
-#endregion Name26
-
-
-#region int Name27 (Line PIT-1, Line 5)
-internal Calculatable<int> _name27;
-/// <summary>
-/// Exemptions. Number of Qualified Exemptions. If you are a dependent on another taxpayer, enter 00. (Calculatable)
-/// Reference Number NMExemptions 
-/// </summary>
-[Number(AllowNegative = false)]
-[Description("Exemptions. Number of Qualified Exemptions. If you are a dependent on another taxpayer, enter 00."), Category("Category"), ReferenceNumber("NMExemptions"), LineNumber("PIT-1, Line 5")]
-public int Name27 { get { return _name27.Calculate(Name27_Calculation); } }
-private int Name27_Calculation()
-{
-//"IF [FD1040PIcalc: PITp20] = True, THEN '00'
-// 
-// IF [FD1040PIcalc: PITp20] = False, THEN [FD1040calc: F1040L6d]"
-return default(int);
-}
-#endregion Name27
-
-
-#region bool? Name28 (Line PIT-1, Line 6a)
-internal Changeable<bool?> _name28;
-/// <summary>
-/// Extension of time to file (Changeable)
-/// Reference Number NMExtensionYN 
-/// </summary>
-[Description("Extension of time to file"), Category("Category"), ReferenceNumber("NMExtensionYN"), LineNumber("PIT-1, Line 6a")]
-public bool? Name28 { get { return _name28.Value; } set {_name28.Value = value;}}
-public bool Name28_Value { get { return Name28.GetValueOrDefault();}}
-#endregion Name28
-
-
-#region Date Name29 (Line PIT-1, Line 6b)
-internal Changeable<Date> _name29;
-/// <summary>
-/// Enter the extension date (Changeable)
-/// Reference Number NMExtensionDate 
-/// </summary>
-[Description("Enter the extension date"), Category("Category"), ReferenceNumber("NMExtensionDate"), LineNumber("PIT-1, Line 6b")]
-public Date Name29 { get { return _name29.Value; } set {_name29.Value = value;}}
-#endregion Name29
-
-
-#region bool? Name30 (Line PIT-1, Line 7 (1))
-internal Calculatable<bool?> _name30;
-/// <summary>
-/// Filing Status - Single (Calculatable)
-/// Reference Number NMFSSingle 
-/// </summary>
-[Description("Filing Status - Single"), Category("Category"), ReferenceNumber("NMFSSingle"), LineNumber("PIT-1, Line 7 (1)")]
-public bool? Name30 { get { return _name30.Calculate(Name30_Calculation); } }
-public bool Name30_Value { get { return Name30.GetValueOrDefault();}}
-private bool? Name30_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = Single, THEN Check
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name30
-
-
-#region bool? Name31 (Line PIT-1, Line 7 (2))
-internal Calculatable<bool?> _name31;
-/// <summary>
-/// Filing Status - Married Filing Jointly (Calculatable)
-/// Reference Number NMFSMFJ 
-/// </summary>
-[Description("Filing Status - Married Filing Jointly"), Category("Category"), ReferenceNumber("NMFSMFJ"), LineNumber("PIT-1, Line 7 (2)")]
-public bool? Name31 { get { return _name31.Calculate(Name31_Calculation); } }
-public bool Name31_Value { get { return Name31.GetValueOrDefault();}}
-private bool? Name31_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = Married Filing Jointly, THEN Check
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name31
-
-
-#region bool? Name32 (Line PIT-1, Line 7 (3))
-internal Calculatable<bool?> _name32;
-/// <summary>
-/// Filing Status - Married Filing Separately (Calculatable)
-/// Reference Number NMFSMFS 
-/// </summary>
-[Description("Filing Status - Married Filing Separately"), Category("Category"), ReferenceNumber("NMFSMFS"), LineNumber("PIT-1, Line 7 (3)")]
-public bool? Name32 { get { return _name32.Calculate(Name32_Calculation); } }
-public bool Name32_Value { get { return Name32.GetValueOrDefault();}}
-private bool? Name32_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = Married Filing Separately, THEN Check
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name32
-
-
-#region bool? Name33 (Line PIT-1, Line 7 (4))
-internal Calculatable<bool?> _name33;
-/// <summary>
-/// Filing Status - Head of Household (Calculatable)
-/// Reference Number NMFSHH 
-/// </summary>
-[Description("Filing Status - Head of Household"), Category("Category"), ReferenceNumber("NMFSHH"), LineNumber("PIT-1, Line 7 (4)")]
-public bool? Name33 { get { return _name33.Calculate(Name33_Calculation); } }
-public bool Name33_Value { get { return Name33.GetValueOrDefault();}}
-private bool? Name33_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = Head of Household, THEN Check
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name33
-
-
-#region string Name34 (Line PIT-1, Line 7 (4)a)
-internal Calculatable<string> _name34;
-/// <summary>
-/// Enter name of person qualifying you as head of household if that person is not counted as a qualified exemption on your federal return.  (Calculatable)
-/// Reference Number NMFSHHDepName 
-/// </summary>
-[Description("Enter name of person qualifying you as head of household if that person is not counted as a qualified exemption on your federal return. "), Category("Category"), ReferenceNumber("NMFSHHDepName"), LineNumber("PIT-1, Line 7 (4)a")]
-public string Name34 { get { return _name34.Calculate(Name34_Calculation); } }
-private string Name34_Calculation()
-{
-//
-return default(string);
-}
-#endregion Name34
-
-
-#region bool? Name35 (Line PIT-1, Line 7 (5))
-internal Calculatable<bool?> _name35;
-/// <summary>
-/// Filing Status - Qualifying Widow(er) with dependent child (Calculatable)
-/// Reference Number NMFSQW 
-/// </summary>
-[Description("Filing Status - Qualifying Widow(er) with dependent child"), Category("Category"), ReferenceNumber("NMFSQW"), LineNumber("PIT-1, Line 7 (5)")]
-public bool? Name35 { get { return _name35.Calculate(Name35_Calculation); } }
-public bool Name35_Value { get { return Name35.GetValueOrDefault();}}
-private bool? Name35_Calculation()
-{
-//"IF [FD1040calc: F1040FS] = Qualified Widow(er), THEN Check
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name35
-
-
-/* Name36	NMPITDepGroup		Collection Start	Dependents 	Report the first 5 dependents in this table and additional dependents on NM Schedule PIT-S	*/
-
-#region string Name37 (Line PIT-1, Line 8 (Col 1))
-internal Calculatable<string> _name37;
-/// <summary>
-/// Dependents - Full Name (Calculatable)
-/// Reference Number NMDepFullName 
-/// </summary>
-[Description("Dependents - Full Name"), Category("Category"), ReferenceNumber("NMDepFullName"), LineNumber("PIT-1, Line 8 (Col 1)")]
-public string Name37 { get { return _name37.Calculate(Name37_Calculation); } }
-private string Name37_Calculation()
-{
-//[FDDepInfoCalc: DepFullName]
-return default(string);
-}
-#endregion Name37
-
-
-#region SocialSecurityNumber Name38 (Line PIT-1, Line 8 (Col 2))
-internal Calculatable<SocialSecurityNumber> _name38;
-/// <summary>
-/// Dependents - SSN (Calculatable)
-/// Reference Number NMDepSSN 
-/// </summary>
-[Description("Dependents - SSN"), Category("Category"), ReferenceNumber("NMDepSSN"), LineNumber("PIT-1, Line 8 (Col 2)")]
-public SocialSecurityNumber Name38 { get { return _name38.Calculate(Name38_Calculation); } }
-private SocialSecurityNumber Name38_Calculation()
-{
-//[FDDepInfoCalc: UI029]
-return default(SocialSecurityNumber);
-}
-#endregion Name38
-
-
-#region Date Name39 (Line PIT-1, Line 8 (Col 3))
-internal Calculatable<Date> _name39;
-/// <summary>
-/// Dependents - Date of Birth (Calculatable)
-/// Reference Number NMDepDOB 
-/// </summary>
-[Description("Dependents - Date of Birth"), Category("Category"), ReferenceNumber("NMDepDOB"), LineNumber("PIT-1, Line 8 (Col 3)")]
-public Date Name39 { get { return _name39.Calculate(Name39_Calculation); } }
-private Date Name39_Calculation()
-{
-//[FDDepInfoCalc: UI006a]
-return default(Date);
-}
-#endregion Name39
-
-
-/* Name40	NMPITDepGroup		Collection End			*/
-
-#region decimal Name41 (Line PIT-1, Line 9)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name41;
-/// <summary>
-/// Federal Adjusted Gross Income  (Calculatable)
-/// Reference Number NMFAGI 
-/// </summary>
-[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
-[Description("Federal Adjusted Gross Income "), Category("Category"), ReferenceNumber("NMFAGI"), LineNumber("PIT-1, Line 9")]
-public decimal Name41 { get { return _name41.Calculate(Name41_Calculation); } }
-private decimal Name41_Calculation()
-{
-//"IF [NMFSMFJ] = True, THEN [FDAWCalc: AW175] + [FDAWCalc: AW176] 
-// 
-// ELSE [FDAWCalc: AW175] "
-return default(decimal);
-}
-#endregion Name41
-
-
-#region decimal Name42 (Line PIT-1, Line 9a)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name42;
-/// <summary>
-/// If line 9 is a negative, enter any federal net operating loss incurred (Calculatable)
-/// Reference Number NMFedNOL 
+/// Amount paid for health benefit plan in [GCCalc: Taxyear] (Changeable)
+/// Reference Number UTTC40AHBPWrkt4 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("If line 9 is a negative, enter any federal net operating loss incurred"), Category("Category"), ReferenceNumber("NMFedNOL"), LineNumber("PIT-1, Line 9a")]
-public decimal Name42 { get { return _name42.Calculate(Name42_Calculation); } }
-private decimal Name42_Calculation()
-{
-//"IF [NMFAGI] < 0 AND [NMFSMFJ] = True, THEN [FDMiscIncCalc: MiscInc019A] + [FDMiscIncCalc: MiscInc019B]
-// 
-// IF [NMFAGI] < 0 AND [NMFSMFJ] <> True, THEN [FDMiscIncCalc: MiscInc019A]
-// 
-// ELSE Blank"
-return default(decimal);
-}
-#endregion Name42
+[Description("Amount paid for health benefit plan in [GCCalc: Taxyear]"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt4"), LineNumber("Health Benefit Plan Credit Wkst, Line 1")]
+public decimal AmountPaidForHealthBenefitPlan { get { return _amountPaidForHealthBenefitPlan.Value; } set {_amountPaidForHealthBenefitPlan.Value = value;}}
+#endregion AmountPaidForHealthBenefitPlan
 
-
-#region decimal Name43 (Line PIT-1, Line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name43;
+#region decimal ExcessAdvancePremiumPreviousYear (Line Health Benefit Plan Credit Wkst, Line 2)
+internal Changeable<decimal> _excessAdvancePremiumPreviousYear;
 /// <summary>
-/// If you itemized your federal deduction amount, enter the amount of state and local tax deduction claimed on federal Form 1040, Schedule A, Line 5 (Calculatable)
-/// Reference Number NMSchAStateDeduction 
+/// 'Enter your excess advance premium tax repayment from your <PriorTaxYear> federal form:<br />1040, Line 46; 1040NR, Line 44; or 1040A, Line 29' (Changeable)
+/// Reference Number Sub23HBPCExcess 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("If you itemized your federal deduction amount, enter the amount of state and local tax deduction claimed on federal Form 1040, Schedule A, Line 5"), Category("Category"), ReferenceNumber("NMSchAStateDeduction"), LineNumber("PIT-1, Line 10")]
-public decimal Name43 { get { return _name43.Calculate(Name43_Calculation); } }
-private decimal Name43_Calculation()
-{
-//"IF [FD1040calc: FDDedType] = 'Itemized', THEN [NML10WSStateTaxDed] (from line 10 Wkst Tab)
-// 
-// IF [FD1040calc: FDDedType] = 'Standard', THEN Blank"
-return default(decimal);
-}
-#endregion Name43
+[Description("'Enter your excess advance premium tax repayment from your <PriorTaxYear> federal form:<br />1040, Line 46; 1040NR, Line 44; or 1040A, Line 29'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCExcess"), LineNumber("Health Benefit Plan Credit Wkst, Line 2")]
+public decimal ExcessAdvancePremiumPreviousYear { get { return _excessAdvancePremiumPreviousYear.Value; } set {_excessAdvancePremiumPreviousYear.Value = value;}}
+#endregion ExcessAdvancePremiumPreviousYear
 
-
-#region decimal Name44 (Line PIT-1, Line 11)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name44;
+#region decimal AddLine1And2 (Line Health Benefit Plan Credit Wkst, Line 3)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _addLine1And2;
 /// <summary>
-/// Total Additions for federal income (PIT-ADJ, Line 5) (Calculatable)
-/// Reference Number NMAdditionsTotal 
+/// Add Line 1 and Line 2 (Calculatable)
+/// Reference Number Sub23HBPCTotPaidExc 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Total Additions for federal income (PIT-ADJ, Line 5)"), Category("Category"), ReferenceNumber("NMAdditionsTotal"), LineNumber("PIT-1, Line 11")]
-public decimal Name44 { get { return _name44.Calculate(Name44_Calculation); } }
-private decimal Name44_Calculation()
+[Description("Add Line 1 and Line 2"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCTotPaidExc"), LineNumber("Health Benefit Plan Credit Wkst, Line 3")]
+public decimal AddLine1And2 { get { return _addLine1And2.Calculate(AddLine1And2_Calculation); } }
+private decimal AddLine1And2_Calculation()
 {
-//[NMPITADJCalc: NMADJTotalAdd]
+//'[UTTC40AHBPWrkt4] plus
+// [Sub23HBPCExcess]'
 return default(decimal);
 }
-#endregion Name44
+#endregion AddLine1And2
 
-
-#region decimal Name45 (Line PIT-1, Line 12)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name45;
+#region decimal NetPremiumTaxCreditPreviousYear (Line Health Benefit Plan Credit Wkst, Line 4)
+internal Changeable<decimal> _netPremiumTaxCreditPreviousYear;
 /// <summary>
-/// Federal standard or itemized deduction amount (Calculatable)
-/// Reference Number NMDeductionAmt 
+/// 'Enter your net premium tax credit from your <PriorTaxYear> federal form:<br />1040, Line 69; 1040NR, Line 65; or 1040A, Line 45' (Changeable)
+/// Reference Number Sub23HBPCPTCCred 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Federal standard or itemized deduction amount"), Category("Category"), ReferenceNumber("NMDeductionAmt"), LineNumber("PIT-1, Line 12")]
-public decimal Name45 { get { return _name45.Calculate(Name45_Calculation); } }
-private decimal Name45_Calculation()
-{
-//"IF [FD1040calc: FDDedType] = 'Itemized', THEN [NML10WSItemizeAmt] (from line 10 Wkst Tab)
-// 
-// ELSE IF [FD1040calc: FDDedType] = 'Standard', AND [NMFSSingle] = True, THEN [FD1040calc: SingleSD] 
-// 
-// ELSE IF [FD1040calc: FDDedType] = 'Standard', AND [NMFSMFS] = True, THEN [FD1040calc: MFSSD] 
-// 
-// ELSE IF [FD1040calc: FDDedType] = 'Standard', AND [NMFSMFJ] = True, THEN [FD1040calc: MFJSD] 
-// 
-// ELSE IF [FD1040calc: FDDedType] = 'Standard', AND [NMFSQW] = True, THEN [FD1040calc: QWSD] 
-// 
-// ELSE IF [FD1040calc: FDDedType] = 'Standard', AND [NMFSHH] = True, THEN [FD1040calc: HOHSD] "
-return default(decimal);
-}
-#endregion Name45
+[Description("'Enter your net premium tax credit from your <PriorTaxYear> federal form:<br />1040, Line 69; 1040NR, Line 65; or 1040A, Line 45'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCPTCCred"), LineNumber("Health Benefit Plan Credit Wkst, Line 4")]
+public decimal NetPremiumTaxCreditPreviousYear { get { return _netPremiumTaxCreditPreviousYear.Value; } set {_netPremiumTaxCreditPreviousYear.Value = value;}}
+#endregion NetPremiumTaxCreditPreviousYear
 
-
-#region bool? Name46 (Line PIT-1, Line 12a)
-internal Calculatable<bool?> _name46;
+#region decimal SubtractLine4From3 (Line Health Benefit Plan Credit Wkst, Line 5)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _subtractLine4From3;
 /// <summary>
-/// If you itemized, mark the box (Calculatable)
-/// Reference Number NMItemizeYN 
-/// </summary>
-[Description("If you itemized, mark the box"), Category("Category"), ReferenceNumber("NMItemizeYN"), LineNumber("PIT-1, Line 12a")]
-public bool? Name46 { get { return _name46.Calculate(Name46_Calculation); } }
-public bool Name46_Value { get { return Name46.GetValueOrDefault();}}
-private bool? Name46_Calculation()
-{
-//"IF [FD1040calc: FDDedType] = 'Itemized', THEN Check Box
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name46
-
-
-#region decimal Name47 (Line PIT-1, Line 13)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name47;
-/// <summary>
-/// Federal exemption amount (From federal Form 1040, line 42) (Calculatable)
-/// Reference Number NMFedExemptionAmt 
+/// Subtract Line 4 from Line 3 (Calculatable)
+/// Reference Number Sub23HBPCSub 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Federal exemption amount (From federal Form 1040, line 42)"), Category("Category"), ReferenceNumber("NMFedExemptionAmt"), LineNumber("PIT-1, Line 13")]
-public decimal Name47 { get { return _name47.Calculate(Name47_Calculation); } }
-private decimal Name47_Calculation()
+[Description("Subtract Line 4 from Line 3"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCSub"), LineNumber("Health Benefit Plan Credit Wkst, Line 5")]
+public decimal SubtractLine4From3 { get { return _subtractLine4From3.Calculate(SubtractLine4From3_Calculation); } }
+private decimal SubtractLine4From3_Calculation()
 {
-//[FD1040calc: F1040L42] 
+//'[Sub23HBPCTotPaidExc] minus
+// [Sub23HBPCPTCCred]'
 return default(decimal);
 }
-#endregion Name47
+#endregion SubtractLine4From3
 
-
-#region decimal Name48 (Line PIT-1, Line 14)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name48;
+#region decimal ExcludedAmount (Line Health Benefit Plan Credit Wkst, Line 6)
+internal Changeable<decimal> _excludedAmount;
 /// <summary>
-/// New Mexico low and middle income tax exemption (Calculatable)
-/// Reference Number NMLowIncomeAmt 
+/// Excluded Amount (see instructions, above) (Changeable)
+/// Reference Number UTTC40AHBPWrkt5 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico low and middle income tax exemption"), Category("Category"), ReferenceNumber("NMLowIncomeAmt"), LineNumber("PIT-1, Line 14")]
-public decimal Name48 { get { return _name48.Calculate(Name48_Calculation); } }
-private decimal Name48_Calculation()
-{
-//[LowIncomeExemption] (from Low Income Wkst tab)
-return default(decimal);
-}
-#endregion Name48
+[Description("Excluded Amount (see instructions, above)"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt5"), LineNumber("Health Benefit Plan Credit Wkst, Line 6")]
+public decimal ExcludedAmount { get { return _excludedAmount.Value; } set {_excludedAmount.Value = value;}}
+#endregion ExcludedAmount
 
-
-#region decimal Name49 (Line PIT-1, Line 15)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name49;
+#region decimal SubtractLine6From5 (Line Health Benefit Plan Credit Wkst, Line 7)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _subtractLine6From5;
 /// <summary>
-/// Total Deductions and Exemptions from federal income (PIT-ADJ, Line 22) (Calculatable)
-/// Reference Number NMSubtractions 
+/// Subtract Line 6 from Line 5 (if less than zero, enter '0') (Calculatable)
+/// Reference Number UTTC40AHBPWrkt6 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Total Deductions and Exemptions from federal income (PIT-ADJ, Line 22)"), Category("Category"), ReferenceNumber("NMSubtractions"), LineNumber("PIT-1, Line 15")]
-public decimal Name49 { get { return _name49.Calculate(Name49_Calculation); } }
-private decimal Name49_Calculation()
+[Description("Subtract Line 6 from Line 5 (if less than zero, enter '0')"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt6"), LineNumber("Health Benefit Plan Credit Wkst, Line 7")]
+public decimal SubtractLine6From5 { get { return _subtractLine6From5.Calculate(SubtractLine6From5_Calculation); } }
+private decimal SubtractLine6From5_Calculation()
 {
-//[NMPITADJCalc: NMADJDedExemptTotal]
+//'[Sub23HBPCSub] minus
+// [UTTC40AHBPWrkt5]'
 return default(decimal);
 }
-#endregion Name49
+#endregion SubtractLine6From5
 
-
-#region decimal Name50 (Line PIT-1, Line 16)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name50;
+#region decimal MultiplyLine7ByPercentage (Line Health Benefit Plan Credit Wkst, Line 8)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _multiplyLine7ByPercentage;
 /// <summary>
-/// Medical care expense deduction (Calculatable)
-/// Reference Number NMMedicalCareExpense 
+/// Multiply Line 7 by 5% (.05) (Calculatable)
+/// Reference Number UTTC40AHBPWrkt8 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Medical care expense deduction"), Category("Category"), ReferenceNumber("NMMedicalCareExpense"), LineNumber("PIT-1, Line 16")]
-public decimal Name50 { get { return _name50.Calculate(Name50_Calculation); } }
-private decimal Name50_Calculation()
+[Description("Multiply Line 7 by 5% (.05)"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt8"), LineNumber("Health Benefit Plan Credit Wkst, Line 8")]
+public decimal MultiplyLine7ByPercentage { get { return _multiplyLine7ByPercentage.Calculate(MultiplyLine7ByPercentage_Calculation); } }
+private decimal MultiplyLine7ByPercentage_Calculation()
 {
-//[NMMedicalDeduct] (from Medical Wkst tab)
+//'[UTTC40AHBPWrkt6]*
+// [UTTC40AHBPCRate]'
 return default(decimal);
 }
-#endregion Name50
+#endregion MultiplyLine7ByPercentage
 
-
-#region decimal Name51 (Line PIT-1, Line 16a)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name51;
+#region decimal MaximumCreditAllowed (Line Health Benefit Plan Credit Wkst, Line 9)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _maximumCreditAllowed;
 /// <summary>
-/// Unreimbursed and uncompensated medical care expenses (Calculatable)
-/// Reference Number NMUnreimbursedMedical 
+/// 'Enter maximum credit allowed per return:<br />-$300 for single taxpayer with no dependents<br />-$600 for mfj with no dependents<br />-$900 for all taxpayers with dependents' (Calculatable)
+/// Reference Number UTTC40AHBPWrkt9 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Unreimbursed and uncompensated medical care expenses"), Category("Category"), ReferenceNumber("NMUnreimbursedMedical"), LineNumber("PIT-1, Line 16a")]
-public decimal Name51 { get { return _name51.Calculate(Name51_Calculation); } }
-private decimal Name51_Calculation()
+[Description("'Enter maximum credit allowed per return:<br />-$300 for single taxpayer with no dependents<br />-$600 for mfj with no dependents<br />-$900 for all taxpayers with dependents'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt9"), LineNumber("Health Benefit Plan Credit Wkst, Line 9")]
+public decimal MaximumCreditAllowed { get { return _maximumCreditAllowed.Calculate(MaximumCreditAllowed_Calculation); } }
+private decimal MaximumCreditAllowed_Calculation()
 {
-//[NMMedicalExpense] (from Medical Wkst tab)
+//'IF [FD1040calc: F1040LivedWith] plus
+//      [FD1040calc: F1040L6DidNotLiveWith] plus
+//      [FD1040calc: F1040OtherDeps] > 0
+//       RETURN [UTTC40AHBPMax3];
+// ELSE IF [UTTC40Calc: UTFilStat] = '2'
+//       RETURN [UTTC40AHBPMax2];
+// ELSE RETURN [UTTC40AHBPMax1]'
 return default(decimal);
 }
-#endregion Name51
+#endregion MaximumCreditAllowed
 
-
-#region decimal Name52 (Line PIT-1, Line 17)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name52;
+#region decimal HealthBenefitPlanCredit (Line Health Benefit Plan Credit Wkst, Line 10)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _healthBenefitPlanCredit;
 /// <summary>
-/// New Mexico Taxable Income. Add lines 9, 10 and 11, then subtract lines 12, 13, 14, 15 and 16. Cannot be less than zero.  (Calculatable)
-/// Reference Number NMTaxableIncome 
+/// Enter the lesser of line 8 or line 9. This is your credit. (Calculatable)
+/// Reference Number UTTC40AHBPWrkt10 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico Taxable Income. Add lines 9, 10 and 11, then subtract lines 12, 13, 14, 15 and 16. Cannot be less than zero. "), Category("Category"), ReferenceNumber("NMTaxableIncome"), LineNumber("PIT-1, Line 17")]
-public decimal Name52 { get { return _name52.Calculate(Name52_Calculation); } }
-private decimal Name52_Calculation()
+[Description("Enter the lesser of line 8 or line 9. This is your credit."), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt10"), LineNumber("Health Benefit Plan Credit Wkst, Line 10")]
+public decimal HealthBenefitPlanCredit { get { return _healthBenefitPlanCredit.Calculate(HealthBenefitPlanCredit_Calculation); } }
+private decimal HealthBenefitPlanCredit_Calculation()
 {
-//[NMFAGI] + [NMSchAStateDeduction] + [NMAdditionsTotal] minus [NMDeductionAmt] minus [NMFedExemptionAmt] minus [NMLowIncomeAmt] minus [NMSubtractions] minus [NMMedicalCareExpense] 
+//'MIN([UTTC40AHBPWrkt8], 
+//           [UTTC40AHBPWrkt9])'
 return default(decimal);
 }
-#endregion Name52
-
-
-#region decimal Name53 (Line PIT-1, Line 18)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name53;
-/// <summary>
-/// New Mexico tax on amount on line 17 or from PIT-B, line 14 (Calculatable)
-/// Reference Number NMTaxLiability 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico tax on amount on line 17 or from PIT-B, line 14"), Category("Category"), ReferenceNumber("NMTaxLiability"), LineNumber("PIT-1, Line 18")]
-public decimal Name53 { get { return _name53.Calculate(Name53_Calculation); } }
-private decimal Name53_Calculation()
-{
-//"IF PIT-B line 11 column 1 [NMPITBCalc: NMPITBTolInc1] does not equal column 2 [NMPITBCalc: NMPITBTolInc2], THEN RETURN [NMPITBCalc: NMPITBTax];
-// ELSE, Calculate tax based on filing status and [NMTaxableIncome] using the Tax Table in the appendix"
-return default(decimal);
-}
-#endregion Name53
-
-
-#region string Name54 (Line PIT-1, Line 18a)
-internal Calculatable<string> _name54;
-/// <summary>
-/// From Rate Table = R. From PIT-B, line 14 = B (Calculatable)
-/// Reference Number NMRateTable 
-/// </summary>
-[Description("From Rate Table = R. From PIT-B, line 14 = B"), Category("Category"), ReferenceNumber("NMRateTable"), LineNumber("PIT-1, Line 18a")]
-public string Name54 { get { return _name54.Calculate(Name54_Calculation); } }
-private string Name54_Calculation()
-{
-//"IF PIT-B line 11 column 1 [NMPITBCalc: NMPITBTolInc1] does not equal column 2 [NMPITBCalc: NMPITBTolInc2], THEN RETURN 'B'
-// ELSE 'R'"
-return default(string);
-}
-#endregion Name54
-
-
-#region decimal Name55 (Line PIT-1, Line 19)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name55;
-/// <summary>
-/// Additional amount for tax on lump-sum distributions.  (Calculatable)
-/// Reference Number NMLumpSumTax 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Additional amount for tax on lump-sum distributions. "), Category("Category"), ReferenceNumber("NMLumpSumTax"), LineNumber("PIT-1, Line 19")]
-public decimal Name55 { get { return _name55.Calculate(Name55_Calculation); } }
-private decimal Name55_Calculation()
-{
-//N/S
-return default(decimal);
-}
-#endregion Name55
-
-
-#region decimal Name56 (Line PIT-1, Line 20)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name56;
-/// <summary>
-/// Credit for taxes paid to another state. You must have been a New Mexico resident during all or part of the year. Include a copy of other state's return (Calculatable)
-/// Reference Number NMOSCredit 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Credit for taxes paid to another state. You must have been a New Mexico resident during all or part of the year. Include a copy of other state's return"), Category("Category"), ReferenceNumber("NMOSCredit"), LineNumber("PIT-1, Line 20")]
-public decimal Name56 { get { return _name56.Calculate(Name56_Calculation); } }
-private decimal Name56_Calculation()
-{
-//Sum of [NMOSTCCalc: NMOSTaxCredit]
-return default(decimal);
-}
-#endregion Name56
-
-
-#region decimal Name57 (Line PIT-1, Line 21)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name57;
-/// <summary>
-/// Business-related income tax credits applied, from Schedule PIT-CR, line A (Calculatable)
-/// Reference Number NMBusinessCredit 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Business-related income tax credits applied, from Schedule PIT-CR, line A"), Category("Category"), ReferenceNumber("NMBusinessCredit"), LineNumber("PIT-1, Line 21")]
-public decimal Name57 { get { return _name57.Calculate(Name57_Calculation); } }
-private decimal Name57_Calculation()
-{
-//[NMPITCRCalc:PITCR005]
-return default(decimal);
-}
-#endregion Name57
-
-
-#region decimal Name58 (Line PIT-1, Line 22)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name58;
-/// <summary>
-/// Net New Mexico Income Tax. Add lines 18 and 19, then subtract lines 20 and 21. Cannot be less than zero.  (Calculatable)
-/// Reference Number NMNetTax 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Net New Mexico Income Tax. Add lines 18 and 19, then subtract lines 20 and 21. Cannot be less than zero. "), Category("Category"), ReferenceNumber("NMNetTax"), LineNumber("PIT-1, Line 22")]
-public decimal Name58 { get { return _name58.Calculate(Name58_Calculation); } }
-private decimal Name58_Calculation()
-{
-//Max ([NMTaxLiability] + [NMLumpSumTax] minus [NMOSCredit] minus [NMBusinessCredit]), 0]
-return default(decimal);
-}
-#endregion Name58
-
-
-#region decimal Name59 (Line PIT-1, Line 23)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name59;
-/// <summary>
-/// The amount on line 22 from page 1 (Calculatable)
-/// Reference Number NMNetTaxAmt 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("The amount on line 22 from page 1"), Category("Category"), ReferenceNumber("NMNetTaxAmt"), LineNumber("PIT-1, Line 23")]
-public decimal Name59 { get { return _name59.Calculate(Name59_Calculation); } }
-private decimal Name59_Calculation()
-{
-//[NMNetTax]
-return default(decimal);
-}
-#endregion Name59
-
-
-#region decimal Name60 (Line PIT-1, Line 24)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name60;
-/// <summary>
-/// Total claimed on rebate and credit schedule (PIT-RC, line 25). Attach PIT-RC (Calculatable)
-/// Reference Number NMPITRCTotal 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Total claimed on rebate and credit schedule (PIT-RC, line 25). Attach PIT-RC"), Category("Category"), ReferenceNumber("NMPITRCTotal"), LineNumber("PIT-1, Line 24")]
-public decimal Name60 { get { return _name60.Calculate(Name60_Calculation); } }
-private decimal Name60_Calculation()
-{
-//[NMPITRCCalc: NMRCTotalCredits]
-return default(decimal);
-}
-#endregion Name60
-
-
-#region decimal Name61 (Line PIT-1, Line 25)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name61;
-/// <summary>
-/// Working families tax credit. (You must complete both lines 25 and 25a or the deduction will be denied.) (Calculatable)
-/// Reference Number NMWorkingFamCredit 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Working families tax credit. (You must complete both lines 25 and 25a or the deduction will be denied.)"), Category("Category"), ReferenceNumber("NMWorkingFamCredit"), LineNumber("PIT-1, Line 25")]
-public decimal Name61 { get { return _name61.Calculate(Name61_Calculation); } }
-private decimal Name61_Calculation()
-{
-//[FD1040calc: F1040L64b] * [NMEICRate]
-return default(decimal);
-}
-#endregion Name61
-
-
-#region decimal Name62 (Line PIT-1, Line 25a)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name62;
-/// <summary>
-/// The amount of federal earned income credit (EIC) reported on your 2014 federal income tax return.  (Calculatable)
-/// Reference Number NMFedEICAmt 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("The amount of federal earned income credit (EIC) reported on your 2014 federal income tax return. "), Category("Category"), ReferenceNumber("NMFedEICAmt"), LineNumber("PIT-1, Line 25a")]
-public decimal Name62 { get { return _name62.Calculate(Name62_Calculation); } }
-private decimal Name62_Calculation()
-{
-//[FD1040calc: F1040L64b]
-return default(decimal);
-}
-#endregion Name62
-
-
-#region decimal Name63 (Line PIT-1, Line 26)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name63;
-/// <summary>
-/// Refundable business related income tax credits from schedule PIT-CR, Line B. Attach PIT-CR (Calculatable)
-/// Reference Number NMPITCRTotal 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Refundable business related income tax credits from schedule PIT-CR, Line B. Attach PIT-CR"), Category("Category"), ReferenceNumber("NMPITCRTotal"), LineNumber("PIT-1, Line 26")]
-public decimal Name63 { get { return _name63.Calculate(Name63_Calculation); } }
-private decimal Name63_Calculation()
-{
-//[NMPITCRCalc:PITCR006]
-return default(decimal);
-}
-#endregion Name63
-
-
-#region decimal Name64 (Line PIT-1, Line 27)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name64;
-/// <summary>
-/// New Mexico income tax withheld. Attach annual statements of income and withholding (Calculatable)
-/// Reference Number NMTaxWithheld 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico income tax withheld. Attach annual statements of income and withholding"), Category("Category"), ReferenceNumber("NMTaxWithheld"), LineNumber("PIT-1, Line 27")]
-public decimal Name64 { get { return _name64.Calculate(Name64_Calculation); } }
-private decimal Name64_Calculation()
-{
-//"IF [NMFSMFJ] = True, THEN [AW243] +  [AW244] + [ AW245] + [AW246] + [ AW247] + [AW248] Where [AWState] = NM
-// 
-// ELSE [AW243] + [AW245] + [AW247] Where [AWState] = NM"
-return default(decimal);
-}
-#endregion Name64
-
-
-#region decimal Name65 (Line PIT-1, Line 28)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name65;
-/// <summary>
-/// New Mexico income tax withheld from oil and gas proceeds. Attach 1099-Misc or RDP-41285 (Calculatable)
-/// Reference Number NMTaxWithheldOil 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico income tax withheld from oil and gas proceeds. Attach 1099-Misc or RDP-41285"), Category("Category"), ReferenceNumber("NMTaxWithheldOil"), LineNumber("PIT-1, Line 28")]
-public decimal Name65 { get { return _name65.Calculate(Name65_Calculation); } }
-private decimal Name65_Calculation()
-{
-//Direct Entry
-return default(decimal);
-}
-#endregion Name65
-
-
-#region decimal Name66 (Line PIT-1, Line 29)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name66;
-/// <summary>
-/// New Mexico income tax withheld from pass-through entity. Attach 1099-Misc or RDP-41359 (Calculatable)
-/// Reference Number NMTaxWithheldEntity 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("New Mexico income tax withheld from pass-through entity. Attach 1099-Misc or RDP-41359"), Category("Category"), ReferenceNumber("NMTaxWithheldEntity"), LineNumber("PIT-1, Line 29")]
-public decimal Name66 { get { return _name66.Calculate(Name66_Calculation); } }
-private decimal Name66_Calculation()
-{
-//Direct Entry
-return default(decimal);
-}
-#endregion Name66
-
-
-#region decimal Name67 (Line PIT-1, Line 30)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name67;
-/// <summary>
-/// <Tax Year> estimated income tax payments (Calculatable)
-/// Reference Number NMEstimatedPmts 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("<Tax Year> estimated income tax payments"), Category("Category"), ReferenceNumber("NMEstimatedPmts"), LineNumber("PIT-1, Line 30")]
-public decimal Name67 { get { return _name67.Calculate(Name67_Calculation); } }
-private decimal Name67_Calculation()
-{
-//"IF [NMFSMFJ] = True, THEN [FDAWCalc: AW255] + [FDAWCalc: AW256] Where [FDAWCalc: AWState] = NM
-// 
-// ELSE [FDAWCalc: AW255] Where [FDAWCalc: AWState] = NM"
-return default(decimal);
-}
-#endregion Name67
-
-
-#region decimal Name68 (Line N/A)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name68;
-/// <summary>
-/// Amount paid to New Mexico with extension (Calculatable)
-/// Reference Number NMExtensionPmt 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Amount paid to New Mexico with extension"), Category("Category"), ReferenceNumber("NMExtensionPmt"), LineNumber("N/A")]
-public decimal Name68 { get { return _name68.Calculate(Name68_Calculation); } }
-private decimal Name68_Calculation()
-{
-//Direct Entry
-return default(decimal);
-}
-#endregion Name68
-
-
-#region decimal Name69 (Line PIT-1, Line 31)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name69;
-/// <summary>
-/// Other payments - Amount paid with extension (Calculatable)
-/// Reference Number NMOtherPmts 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Other payments - Amount paid with extension"), Category("Category"), ReferenceNumber("NMOtherPmts"), LineNumber("PIT-1, Line 31")]
-public decimal Name69 { get { return _name69.Calculate(Name69_Calculation); } }
-private decimal Name69_Calculation()
-{
-//[NMExtensionPmt]
-return default(decimal);
-}
-#endregion Name69
-
-
-#region decimal Name70 (Line PIT-1, Line 32)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name70;
-/// <summary>
-/// Total payments and credits. Add lines 24 through 31 (Calculatable)
-/// Reference Number NMTotalPmtsCredits 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Total payments and credits. Add lines 24 through 31"), Category("Category"), ReferenceNumber("NMTotalPmtsCredits"), LineNumber("PIT-1, Line 32")]
-public decimal Name70 { get { return _name70.Calculate(Name70_Calculation); } }
-private decimal Name70_Calculation()
-{
-//[NMPITRCTotal] + [NMWorkingFamCredit] + {NMPITCRTotal] + [NMTaxWithheld] + [NMTaxWithheldOil] + [NMTaxWithheldEntity] + [NMEstimatedPmts] + [NMOtherPmts]
-return default(decimal);
-}
-#endregion Name70
-
-
-#region decimal Name71 (Line PIT-1, Line 33)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name71;
-/// <summary>
-/// Tax Due. If line 23 is greater than line 32, enter the difference here. (Calculatable)
-/// Reference Number NMTaxDue 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Tax Due. If line 23 is greater than line 32, enter the difference here."), Category("Category"), ReferenceNumber("NMTaxDue"), LineNumber("PIT-1, Line 33")]
-public decimal Name71 { get { return _name71.Calculate(Name71_Calculation); } }
-private decimal Name71_Calculation()
-{
-//IF [NMNetTaxAmt] > [NMTotalPmtsCredits] THEN [NMNetTaxAmt] minus [NMTotalPmtsCredits]
-return default(decimal);
-}
-#endregion Name71
-
-
-#region decimal Name72 (Line PIT-1, Line 34)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name72;
-/// <summary>
-/// Penalty on underpayment of estimated tax. If you want penalty computed for you, leave blank. (Calculatable)
-/// Reference Number NMEstPenalty 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Penalty on underpayment of estimated tax. If you want penalty computed for you, leave blank."), Category("Category"), ReferenceNumber("NMEstPenalty"), LineNumber("PIT-1, Line 34")]
-public decimal Name72 { get { return _name72.Calculate(Name72_Calculation); } }
-private decimal Name72_Calculation()
-{
-//
-return default(decimal);
-}
-#endregion Name72
-
-
-#region int Name73 (Line PIT-1, Line 35)
-internal Calculatable<int> _name73;
-/// <summary>
-/// Special method allowed for calculation of underpayment of estimated tax penalty. If you owe penalty on underpayment of estimated tax and you qualify, enter 1, 2, 3, 4, or 5 in the box. Attach RPD-41272 (Calculatable)
-/// Reference Number NMSpecialMethod 
-/// </summary>
-[Number(AllowNegative = false)]
-[Description("Special method allowed for calculation of underpayment of estimated tax penalty. If you owe penalty on underpayment of estimated tax and you qualify, enter 1, 2, 3, 4, or 5 in the box. Attach RPD-41272"), Category("Category"), ReferenceNumber("NMSpecialMethod"), LineNumber("PIT-1, Line 35")]
-public int Name73 { get { return _name73.Calculate(Name73_Calculation); } }
-private int Name73_Calculation()
-{
-//
-return default(int);
-}
-#endregion Name73
-
-
-#region decimal Name74 (Line PIT-1, Line 36)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name74;
-/// <summary>
-/// Penalty. If you want penalty computed for you, leave blank (Calculatable)
-/// Reference Number NMLatePenalty 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Penalty. If you want penalty computed for you, leave blank"), Category("Category"), ReferenceNumber("NMLatePenalty"), LineNumber("PIT-1, Line 36")]
-public decimal Name74 { get { return _name74.Calculate(Name74_Calculation); } }
-private decimal Name74_Calculation()
-{
-//
-return default(decimal);
-}
-#endregion Name74
-
-
-#region decimal Name75 (Line PIT-1, Line 37)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name75;
-/// <summary>
-/// Interest. If you want interest computed for you, leave blank (Calculatable)
-/// Reference Number NMInterestDue 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Interest. If you want interest computed for you, leave blank"), Category("Category"), ReferenceNumber("NMInterestDue"), LineNumber("PIT-1, Line 37")]
-public decimal Name75 { get { return _name75.Calculate(Name75_Calculation); } }
-private decimal Name75_Calculation()
-{
-//
-return default(decimal);
-}
-#endregion Name75
-
-
-#region decimal Name76 (Line PIT-1, Line 38)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name76;
-/// <summary>
-/// Tax, Penalty, And Interest Due. Add lines 33, 34, 36 and 37 (Calculatable)
-/// Reference Number NMPenaltyTotals 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Tax, Penalty, And Interest Due. Add lines 33, 34, 36 and 37"), Category("Category"), ReferenceNumber("NMPenaltyTotals"), LineNumber("PIT-1, Line 38")]
-public decimal Name76 { get { return _name76.Calculate(Name76_Calculation); } }
-private decimal Name76_Calculation()
-{
-//[NMTaxDue] + [NMEstPenalty] + [NMLatePenalty] + [NMInterestDue]
-return default(decimal);
-}
-#endregion Name76
-
-
-#region decimal Name77 (Line PIT-1, Line 39)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name77;
-/// <summary>
-/// Overpayment. If line 23 is less than line 32, enter the difference here. (Calculatable)
-/// Reference Number NMOverpayment 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Overpayment. If line 23 is less than line 32, enter the difference here."), Category("Category"), ReferenceNumber("NMOverpayment"), LineNumber("PIT-1, Line 39")]
-public decimal Name77 { get { return _name77.Calculate(Name77_Calculation); } }
-private decimal Name77_Calculation()
-{
-//IF [NMNetTaxAmt] < [NMTotalPmtsCredits], THEN [NMTotalPmtsCredits] minus [NMNetTaxAmt] 
-return default(decimal);
-}
-#endregion Name77
-
-
-#region decimal Name78 (Line PIT-1, Line 40)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name78;
-/// <summary>
-/// Refund voluntary contributions (PIT-D, line 14) Attach PIT-D (Calculatable)
-/// Reference Number NMContribute 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Refund voluntary contributions (PIT-D, line 14) Attach PIT-D"), Category("Category"), ReferenceNumber("NMContribute"), LineNumber("PIT-1, Line 40")]
-public decimal Name78 { get { return _name78.Calculate(Name78_Calculation); } }
-private decimal Name78_Calculation()
-{
-//
-return default(decimal);
-}
-#endregion Name78
-
-
-#region decimal Name79 (Line PIT-1, Line 41)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name79;
-/// <summary>
-/// Amount from line 39 you want applied to your <tax year + 1> Estimated Tax (Calculatable)
-/// Reference Number NMApplyRefund 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Amount from line 39 you want applied to your <tax year + 1> Estimated Tax"), Category("Category"), ReferenceNumber("NMApplyRefund"), LineNumber("PIT-1, Line 41")]
-public decimal Name79 { get { return _name79.Calculate(Name79_Calculation); } }
-private decimal Name79_Calculation()
-{
-//Direct Entry
-return default(decimal);
-}
-#endregion Name79
-
-
-#region decimal Name80 (Line PIT-1, Line 42)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _name80;
-/// <summary>
-/// Amount to be refunded to you. Line 39 minus lines 40 and 41 (Calculatable)
-/// Reference Number NMRefund 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Amount to be refunded to you. Line 39 minus lines 40 and 41"), Category("Category"), ReferenceNumber("NMRefund"), LineNumber("PIT-1, Line 42")]
-public decimal Name80 { get { return _name80.Calculate(Name80_Calculation); } }
-private decimal Name80_Calculation()
-{
-//[NMOverpayment] minus ([NMContribute] + [NMApplyRefund])
-return default(decimal);
-}
-#endregion Name80
-
-
-#region Object/*Bank routing number*/ Name81 (Line PIT-1, Line RE1)
-internal Calculatable<Object/*Bank routing number*/> _name81;
-/// <summary>
-/// Routing Number (Calculatable)
-/// Reference Number NMRouting 
-/// </summary>
-[Description("Routing Number"), Category("Category"), ReferenceNumber("NMRouting"), LineNumber("PIT-1, Line RE1")]
-public Object/*Bank routing number*/ Name81 { get { return _name81.Calculate(Name81_Calculation); } }
-private Object/*Bank routing number*/ Name81_Calculation()
-{
-//Checkout
-return default(Object/*Bank routing number*/);
-}
-#endregion Name81
-
-
-#region int Name82 (Line PIT-1, Line RE2)
-internal Calculatable<int> _name82;
-/// <summary>
-/// Account Number (Calculatable)
-/// Reference Number NMAccount 
-/// </summary>
-[Number(AllowNegative = false)]
-[Description("Account Number"), Category("Category"), ReferenceNumber("NMAccount"), LineNumber("PIT-1, Line RE2")]
-public int Name82 { get { return _name82.Calculate(Name82_Calculation); } }
-private int Name82_Calculation()
-{
-//Checkout
-return default(int);
-}
-#endregion Name82
-
-
-#region bool? Name83 (Line PIT-1, Line RE3)
-internal Calculatable<bool?> _name83;
-/// <summary>
-/// Account Type - Checking (Calculatable)
-/// Reference Number NMChecking 
-/// </summary>
-[Description("Account Type - Checking"), Category("Category"), ReferenceNumber("NMChecking"), LineNumber("PIT-1, Line RE3")]
-public bool? Name83 { get { return _name83.Calculate(Name83_Calculation); } }
-public bool Name83_Value { get { return Name83.GetValueOrDefault();}}
-private bool? Name83_Calculation()
-{
-//Checkout
-return default(bool);
-}
-#endregion Name83
-
-
-#region bool? Name84 (Line PIT-1, Line RE3)
-internal Calculatable<bool?> _name84;
-/// <summary>
-/// Account Type - Savings (Calculatable)
-/// Reference Number NMSavings 
-/// </summary>
-[Description("Account Type - Savings"), Category("Category"), ReferenceNumber("NMSavings"), LineNumber("PIT-1, Line RE3")]
-public bool? Name84 { get { return _name84.Calculate(Name84_Calculation); } }
-public bool Name84_Value { get { return Name84.GetValueOrDefault();}}
-private bool? Name84_Calculation()
-{
-//Checkout
-return default(bool);
-}
-#endregion Name84
-
-
-#region bool Name85 (Line PIT-1, Line RE4)
-internal Calculatable<bool> _name85;
-/// <summary>
-/// Will this refund go to or through an account located outside the United States? If yes, you may not use this refund delivery option. Yes/No (Calculatable)
-/// Reference Number NMOutsideUS 
-/// </summary>
-[Description("Will this refund go to or through an account located outside the United States? If yes, you may not use this refund delivery option. Yes/No"), Category("Category"), ReferenceNumber("NMOutsideUS"), LineNumber("PIT-1, Line RE4")]
-public bool Name85 { get { return _name85.Calculate(Name85_Calculation); } }
-private bool Name85_Calculation()
-{
-//Always NO (Unable to enter account/routing  outside of U.S.)
-return default(bool);
-}
-#endregion Name85
-
-
-/* Name86	NMTPSign	PIT-1, Line Footer		Your signature	Always Blank	Always Blank*/
-
-#region Date Name87 (Line PIT-1, Line Footer)
-internal Calculatable<Date> _name87;
-/// <summary>
-/// TP Date (Calculatable)
-/// Reference Number NMTPDate 
-/// </summary>
-[Description("TP Date"), Category("Category"), ReferenceNumber("NMTPDate"), LineNumber("PIT-1, Line Footer")]
-public Date Name87 { get { return _name87.Calculate(Name87_Calculation); } }
-private Date Name87_Calculation()
-{
-//Today's date
-return default(Date);
-}
-#endregion Name87
-
-
-#region Object/*Identification number/code*/ Name88 (Line PIT-1, Line Footer)
-internal Calculatable<Object/*Identification number/code*/> _name88;
-/// <summary>
-/// TP; Driver's License or State issued ID number (Calculatable)
-/// Reference Number NMIdentityInfoTP 
-/// </summary>
-[Description("TP; Driver's License or State issued ID number"), Category("Category"), ReferenceNumber("NMIdentityInfoTP"), LineNumber("PIT-1, Line Footer")]
-public Object/*Identification number/code*/ Name88 { get { return _name88.Calculate(Name88_Calculation); } }
-private Object/*Identification number/code*/ Name88_Calculation()
-{
-//[FD1040PICalc:PITp36]
-return default(Object/*Identification number/code*/);
-}
-#endregion Name88
-
-
-/* Name89	NMSPSign	PIT-1, Line Footer		Spouse's signature	Always Blank	Always Blank*/
-
-#region Date Name90 (Line PIT-1, Line Footer)
-internal Calculatable<Date> _name90;
-/// <summary>
-/// SP Date (Calculatable)
-/// Reference Number NMSPDate 
-/// </summary>
-[Description("SP Date"), Category("Category"), ReferenceNumber("NMSPDate"), LineNumber("PIT-1, Line Footer")]
-public Date Name90 { get { return _name90.Calculate(Name90_Calculation); } }
-private Date Name90_Calculation()
-{
-//"IF [FD1040Calc: F1040FS] = MFJ, THEN Today's Date
-// 
-// ELSE Blank"
-return default(Date);
-}
-#endregion Name90
-
-
-#region Object/*Identification number/code*/ Name91 (Line PIT-1, Line Footer)
-internal Calculatable<Object/*Identification number/code*/> _name91;
-/// <summary>
-/// SP; Driver's License or State issued ID number (Calculatable)
-/// Reference Number NMIdentityInfoSP 
-/// </summary>
-[Description("SP; Driver's License or State issued ID number"), Category("Category"), ReferenceNumber("NMIdentityInfoSP"), LineNumber("PIT-1, Line Footer")]
-public Object/*Identification number/code*/ Name91 { get { return _name91.Calculate(Name91_Calculation); } }
-private Object/*Identification number/code*/ Name91_Calculation()
-{
-//[FD1040PICalc:PISp36]
-return default(Object/*Identification number/code*/);
-}
-#endregion Name91
-
-
-/* Name92	NMTPPhone	PIT-1, Line Footer	Phone number	Taxpayer's phone number		[FD1040PICalc: PITp10]*/
-
-/* Name93	NMTPEmail	PIT-1, Line Footer	Email address	Taxpayer's email address		[FD1040PICalc: PITp09]*/
-
-/* Name94	NMPrepareSign	PIT-1, Line Footer		Paid Preparer: Signature of preparer	Always Blank	Always Blank*/
-
-#region Date Name95 (Line PIT-1, Line Footer)
-internal Calculatable<Date> _name95;
-/// <summary>
-/// Paid Preparer: Date (Calculatable)
-/// Reference Number NMPrepareDate 
-/// </summary>
-[Description("Paid Preparer: Date"), Category("Category"), ReferenceNumber("NMPrepareDate"), LineNumber("PIT-1, Line Footer")]
-public Date Name95 { get { return _name95.Calculate(Name95_Calculation); } }
-private Date Name95_Calculation()
-{
-//"IF 'OFFICE' THEN Today's Date
-// ELSE Blank"
-return default(Date);
-}
-#endregion Name95
-
-
-#region string Name96 (Line PIT-1, Line P1)
-internal Calculatable<string> _name96;
-/// <summary>
-/// Firm's name (or yours, if self-employed) (Calculatable)
-/// Reference Number NMPrepareName 
-/// </summary>
-[Description("Firm's name (or yours, if self-employed)"), Category("Category"), ReferenceNumber("NMPrepareName"), LineNumber("PIT-1, Line P1")]
-public string Name96 { get { return _name96.Calculate(Name96_Calculation); } }
-private string Name96_Calculation()
-{
-//"IF 'OFFICE' THEN Checkout
-// ELSE Blank"
-return default(string);
-}
-#endregion Name96
-
-
-#region Object/*Identification number/code*/ Name97 (Line PIT-1, Line P2)
-internal Calculatable<Object/*Identification number/code*/> _name97;
-/// <summary>
-/// NM CRS identification number (Calculatable)
-/// Reference Number NMPrepareCRSID 
-/// </summary>
-[Description("NM CRS identification number"), Category("Category"), ReferenceNumber("NMPrepareCRSID"), LineNumber("PIT-1, Line P2")]
-public Object/*Identification number/code*/ Name97 { get { return _name97.Calculate(Name97_Calculation); } }
-private Object/*Identification number/code*/ Name97_Calculation()
-{
-//"IF 'OFFICE' THEN Checkout
-// ELSE Blank"
-return default(Object/*Identification number/code*/);
-}
-#endregion Name97
-
-
-#region Object/*Identification number/code*/ Name98 (Line PIT-1, Line P3)
-internal Calculatable<Object/*Identification number/code*/> _name98;
-/// <summary>
-/// Preparer's PTIN (Calculatable)
-/// Reference Number NMPreparePTIN 
-/// </summary>
-[Description("Preparer's PTIN"), Category("Category"), ReferenceNumber("NMPreparePTIN"), LineNumber("PIT-1, Line P3")]
-public Object/*Identification number/code*/ Name98 { get { return _name98.Calculate(Name98_Calculation); } }
-private Object/*Identification number/code*/ Name98_Calculation()
-{
-//"IF 'OFFICE' THEN Checkout
-// ELSE Blank"
-return default(Object/*Identification number/code*/);
-}
-#endregion Name98
-
-
-#region Object/*Identification number/code*/ Name99 (Line PIT-1, Line P4)
-internal Calculatable<Object/*Identification number/code*/> _name99;
-/// <summary>
-/// FEIN (Calculatable)
-/// Reference Number NMPrepareFEIN 
-/// </summary>
-[Description("FEIN"), Category("Category"), ReferenceNumber("NMPrepareFEIN"), LineNumber("PIT-1, Line P4")]
-public Object/*Identification number/code*/ Name99 { get { return _name99.Calculate(Name99_Calculation); } }
-private Object/*Identification number/code*/ Name99_Calculation()
-{
-//"IF 'OFFICE' THEN Checkout
-// ELSE Blank"
-return default(Object/*Identification number/code*/);
-}
-#endregion Name99
-
-
-#region PhoneNumber Name100 (Line PIT-1, Line P5)
-internal Calculatable<PhoneNumber> _name100;
-/// <summary>
-/// Preparer's phone number (Calculatable)
-/// Reference Number NMPreparePhone 
-/// </summary>
-[Description("Preparer's phone number"), Category("Category"), ReferenceNumber("NMPreparePhone"), LineNumber("PIT-1, Line P5")]
-public PhoneNumber Name100 { get { return _name100.Calculate(Name100_Calculation); } }
-private PhoneNumber Name100_Calculation()
-{
-//"IF 'OFFICE' THEN Checkout
-// ELSE Blank"
-return default(PhoneNumber);
-}
-#endregion Name100
-
-
-#region bool? Name101 (Line PIT-1, Line P6)
-internal Calculatable<bool?> _name101;
-/// <summary>
-/// Mark this box if Form RPF-41338 is on file for this taxpayer (Calculatable)
-/// Reference Number NMRPF41338YN 
-/// </summary>
-[Description("Mark this box if Form RPF-41338 is on file for this taxpayer"), Category("Category"), ReferenceNumber("NMRPF41338YN"), LineNumber("PIT-1, Line P6")]
-public bool? Name101 { get { return _name101.Calculate(Name101_Calculation); } }
-public bool Name101_Value { get { return Name101.GetValueOrDefault();}}
-private bool? Name101_Calculation()
-{
-//"IF 'Paper filing' is checked in Checkout, THEN Check.
-// 
-// ELSE Blank"
-return default(bool);
-}
-#endregion Name101
-
-
-/* */
+#endregion HealthBenefitPlanCredit
 
