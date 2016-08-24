@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Validation Class</Title>
+      <Author>Scott Seto</Author>
+      <Description>Snippet to insert a validation class</Description>
+      <Shortcut>SnipValidationRegion</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>State</ID>
+          <ToolTip>Determine the state jurisdiction the class will be populated in</ToolTip>
+          <Default>State</Default>
+        </Literal>
+        <Literal>
+          <ID>ProjectName</ID>
+          <ToolTip>Determine the project the class will be populated in</ToolTip>
+          <Default>ProjectName</Default>
+        </Literal>
+          <Literal>
+            <ID>PartialPlaceholder</ID>
+            <ToolTip>Determine if this is a part of a pre-existing class. If it is, type 'partial'. Else leave blank.</ToolTip>
+            <Default> </Default>
+          </Literal>
+        <Literal>
+          <ID>ClassName</ID>
+          <ToolTip>Determine the name of the class. If a part of a pre-existing class, name must match.</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+        <Literal>
+          <ID>PropertyName</ID>
+          <ToolTip>Determine the model list name.</ToolTip>
+          <Default>PropertyName</Default>
+        </Literal>
+        <Literal>
+          <ID>Message</ID>
+          <ToolTip>Determine the internal name of the class</ToolTip>
+          <Default>Message</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        #region Validations
+
+        public enum $ClassName$ValidationType
+        {
+
+        }
+
+        public class $ClassName$Attribute : Validation
+        {
+            private $ClassName$ValidationType _validationType { get; set; }
+			private static Func<$ClassName$, bool>[] Validations;
+			
+			public $ClassName$Attribute($ClassName$ValidationType validationType)
+			{
+				_validationType = validationType;
+			}
+
+            static $ClassName$Attribute()
+            {
+				Initialize();
+				
+            }
+			
+            private static void Add($ClassName$ValidationType validationType, Func<$ClassName$, bool> func)
+            {
+                Validations[(int)validationType] = func;
+            }
+			
+			#region Initialize
+            private static void Initialize()
+            {
+                int length = (int)Enum.GetValues(typeof($ClassName$ValidationType)).Cast<int>().Max() + 1;
+                Validations = new Func<$ClassName$, bool>[length];
+            }
+			#endregion Initialize
+			
+			#region Check Validity
+            protected override bool CheckValidity(object value, ValidationContext validationContext)
+            {
+                $ClassName$ $ClassName$ = validationContext.ObjectInstance as $ClassName$;
+				bool isValid = _validations[(int)_validationType]($ClassName$);
+				if (!isValid)
+				{
+					_errorMethod = PreGenerateErrorMethod($ClassName$);
+				}
+				else
+				{
+					_errorMethod = ErrorMethodExtension.None();
+				}
+				return isValid;
+            }
+			#endregion Check Validity
+			
+			#region Error Method
+			
+			private string PreGenerateErrorMethod(FormW2 formW2)
+			{
+				switch (_validationType)
+				{
+
+					default:
+						return ErrorMethodExtension.None();
+				}
+			}
+
+			protected override string GenerateErrorMethod()
+			{
+				return _errorMethod;
+			}
+			
+			#endregion Error Method
+			
+        }
+
+        #endregion Validations
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

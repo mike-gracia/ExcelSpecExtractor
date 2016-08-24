@@ -1,184 +1,86 @@
-#region bool? IsEligibleToParticipate (Line N/A)
-internal Changeable<bool?> _isEligibleToParticipate;
+#region decimal MyThing1 (Line line 10)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing1;
 /// <summary>
-/// Are you <or your spouse, IF MFJ> eligible to participate in a health benefit plan in which a current or former employer pays any portion of the health plan premiums, even if you elect not to participate in the plan? (Changeable)
-/// Reference Number UTTC40AHBPWrkt1 
+/// ' ratio of Colorado wages<br />and/or self-employment income to total wages and/or<br />self-employment income.' (Calculatable)
+/// Reference Number COAppAdj1Perc 
 /// </summary>
-[Description("Are you <or your spouse, IF MFJ> eligible to participate in a health benefit plan in which a current or former employer pays any portion of the health plan premiums, even if you elect not to participate in the plan?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt1"), LineNumber("N/A")]
-public bool? IsEligibleToParticipate { get { return _isEligibleToParticipate.Value; } set {_isEligibleToParticipate.Value = value;}}
-public bool IsEligibleToParticipate_Value { get { return IsEligibleToParticipate.GetValueOrDefault();}}
-#endregion IsEligibleToParticipate
-
-#region bool? DoesEmployerPlanCoverBoth (Line N/A)
-internal Changeable<bool?> _doesEmployerPlanCoverBoth;
-/// <summary>
-/// Does your employer's plan cover both you and your family? (Changeable)
-/// Reference Number UTTC40AHBPWrkt2 
-/// </summary>
-[Description("Does your employer's plan cover both you and your family?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt2"), LineNumber("N/A")]
-public bool? DoesEmployerPlanCoverBoth { get { return _doesEmployerPlanCoverBoth.Value; } set {_doesEmployerPlanCoverBoth.Value = value;}}
-public bool DoesEmployerPlanCoverBoth_Value { get { return DoesEmployerPlanCoverBoth.GetValueOrDefault();}}
-#endregion DoesEmployerPlanCoverBoth
-
-#region bool? DoYouHaveAPlan (Line N/A)
-internal Changeable<bool?> _doYouHaveAPlan;
-/// <summary>
-/// Do you have a health benefit plan that covers you and/or your family? (Changeable)
-/// Reference Number UTTC40AHBPWrkt3 
-/// </summary>
-[Description("Do you have a health benefit plan that covers you and/or your family?"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt3"), LineNumber("N/A")]
-public bool? DoYouHaveAPlan { get { return _doYouHaveAPlan.Value; } set {_doYouHaveAPlan.Value = value;}}
-public bool DoYouHaveAPlan_Value { get { return DoYouHaveAPlan.GetValueOrDefault();}}
-#endregion DoYouHaveAPlan
-
-#region decimal AmountPaidForHealthBenefitPlan (Line Health Benefit Plan Credit Wkst, Line 1)
-internal Changeable<decimal> _amountPaidForHealthBenefitPlan;
-/// <summary>
-/// Amount paid for health benefit plan in [GCCalc: Taxyear] (Changeable)
-/// Reference Number UTTC40AHBPWrkt4 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Amount paid for health benefit plan in [GCCalc: Taxyear]"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt4"), LineNumber("Health Benefit Plan Credit Wkst, Line 1")]
-public decimal AmountPaidForHealthBenefitPlan { get { return _amountPaidForHealthBenefitPlan.Value; } set {_amountPaidForHealthBenefitPlan.Value = value;}}
-#endregion AmountPaidForHealthBenefitPlan
-
-#region decimal ExcessAdvancePremiumPreviousYear (Line Health Benefit Plan Credit Wkst, Line 2)
-internal Changeable<decimal> _excessAdvancePremiumPreviousYear;
-/// <summary>
-/// 'Enter your excess advance premium tax repayment from your <PriorTaxYear> federal form:<br />1040, Line 46; 1040NR, Line 44; or 1040A, Line 29' (Changeable)
-/// Reference Number Sub23HBPCExcess 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("'Enter your excess advance premium tax repayment from your <PriorTaxYear> federal form:<br />1040, Line 46; 1040NR, Line 44; or 1040A, Line 29'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCExcess"), LineNumber("Health Benefit Plan Credit Wkst, Line 2")]
-public decimal ExcessAdvancePremiumPreviousYear { get { return _excessAdvancePremiumPreviousYear.Value; } set {_excessAdvancePremiumPreviousYear.Value = value;}}
-#endregion ExcessAdvancePremiumPreviousYear
-
-#region decimal AddLine1And2 (Line Health Benefit Plan Credit Wkst, Line 3)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _addLine1And2;
-/// <summary>
-/// Add Line 1 and Line 2 (Calculatable)
-/// Reference Number Sub23HBPCTotPaidExc 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Add Line 1 and Line 2"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCTotPaidExc"), LineNumber("Health Benefit Plan Credit Wkst, Line 3")]
-public decimal AddLine1And2 { get { return _addLine1And2.Calculate(AddLine1And2_Calculation); } }
-private decimal AddLine1And2_Calculation()
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category("$Category$"), ReferenceNumber("COAppAdj1Perc"), LineNumber("line 10")]
+public decimal MyThing1 { get { return _myThing1.Calculate(MyThing1_Calculation); } }
+private decimal MyThing1_Calculation()
 {
-//'[UTTC40AHBPWrkt4] plus
-// [Sub23HBPCExcess]'
+//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'' THEN
+// RETURN ([COPYNRcoWages] plus [COPYNRCOCF]) divided by 
+// ([COPYNRFEDWages] plus [COPYNRFedCF])'
 return default(decimal);
 }
-#endregion AddLine1And2
+#endregion MyThing1
 
-#region decimal NetPremiumTaxCreditPreviousYear (Line Health Benefit Plan Credit Wkst, Line 4)
-internal Changeable<decimal> _netPremiumTaxCreditPreviousYear;
+#region decimal MyThing2 (Line line 10)
+internal Changeable<decimal> _myThing2;
 /// <summary>
-/// 'Enter your net premium tax credit from your <PriorTaxYear> federal form:<br />1040, Line 69; 1040NR, Line 65; or 1040A, Line 45' (Changeable)
-/// Reference Number Sub23HBPCPTCCred 
+/// 'CO  apportioned amount of IRA deduction, educator expenses, self-employment<br />tax, self-employed health insurance deduction, SEP<br />and SIMPLE deductions, HSA deduction, MSA<br />deduction, QPA expenses, 501(c)(18)(D) pension plan<br />contributions, 403(b) contributions, business<br />expenses of reservists, performing artists and feebasis<br />government officials.' (Changeable)
+/// Reference Number COAppAdj1 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("'Enter your net premium tax credit from your <PriorTaxYear> federal form:<br />1040, Line 69; 1040NR, Line 65; or 1040A, Line 45'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCPTCCred"), LineNumber("Health Benefit Plan Credit Wkst, Line 4")]
-public decimal NetPremiumTaxCreditPreviousYear { get { return _netPremiumTaxCreditPreviousYear.Value; } set {_netPremiumTaxCreditPreviousYear.Value = value;}}
-#endregion NetPremiumTaxCreditPreviousYear
+[Description("'CO  apportioned amount of IRA deduction, educator expenses, self-employment<br />tax, self-employed health insurance deduction, SEP<br />and SIMPLE deductions, HSA deduction, MSA<br />deduction, QPA expenses, 501(c)(18)(D) pension plan<br />contributions, 403(b) contributions, business<br />expenses of reservists, performing artists and feebasis<br />government officials.'"), Category("Category"), ReferenceNumber("COAppAdj1"), LineNumber("line 10")]
+public decimal MyThing2 { get { return _myThing2.Value; } set {_myThing2.Value = value;}}
+#endregion MyThing2
 
-#region decimal SubtractLine4From3 (Line Health Benefit Plan Credit Wkst, Line 5)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _subtractLine4From3;
+#region decimal MyThing3 (Line line 10)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing3;
 /// <summary>
-/// Subtract Line 4 from Line 3 (Calculatable)
-/// Reference Number Sub23HBPCSub 
+/// Adjustments multiplied by apportioned percentage (Calculatable)
+/// Reference Number COAppAdj1Tot 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Subtract Line 4 from Line 3"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("Sub23HBPCSub"), LineNumber("Health Benefit Plan Credit Wkst, Line 5")]
-public decimal SubtractLine4From3 { get { return _subtractLine4From3.Calculate(SubtractLine4From3_Calculation); } }
-private decimal SubtractLine4From3_Calculation()
+[Description("Adjustments multiplied by apportioned percentage"), Category("Category"), ReferenceNumber("COAppAdj1Tot"), LineNumber("line 10")]
+public decimal MyThing3 { get { return _myThing3.Calculate(MyThing3_Calculation); } }
+private decimal MyThing3_Calculation()
 {
-//'[Sub23HBPCTotPaidExc] minus
-// [Sub23HBPCPTCCred]'
+//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
+// RETURN [COAppAdj1] multipled by [COAppAdjPerc]
+// ELSE
+// RETURN Blank'
 return default(decimal);
 }
-#endregion SubtractLine4From3
+#endregion MyThing3
 
-#region decimal ExcludedAmount (Line Health Benefit Plan Credit Wkst, Line 6)
-internal Changeable<decimal> _excludedAmount;
+#region decimal MyThing4 (Line line 10)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing4;
 /// <summary>
-/// Excluded Amount (see instructions, above) (Changeable)
-/// Reference Number UTTC40AHBPWrkt5 
+/// 'Deductions allowed in the Colorado to federal total<br />income ratio (line 21 / line 20).' (Calculatable)
+/// Reference Number COAppAdj2Perc 
 /// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Excluded Amount (see instructions, above)"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt5"), LineNumber("Health Benefit Plan Credit Wkst, Line 6")]
-public decimal ExcludedAmount { get { return _excludedAmount.Value; } set {_excludedAmount.Value = value;}}
-#endregion ExcludedAmount
-
-#region decimal SubtractLine6From5 (Line Health Benefit Plan Credit Wkst, Line 7)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _subtractLine6From5;
-/// <summary>
-/// Subtract Line 6 from Line 5 (if less than zero, enter '0') (Calculatable)
-/// Reference Number UTTC40AHBPWrkt6 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Subtract Line 6 from Line 5 (if less than zero, enter '0')"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt6"), LineNumber("Health Benefit Plan Credit Wkst, Line 7")]
-public decimal SubtractLine6From5 { get { return _subtractLine6From5.Calculate(SubtractLine6From5_Calculation); } }
-private decimal SubtractLine6From5_Calculation()
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category("$Category$"), ReferenceNumber("COAppAdj2Perc"), LineNumber("line 10")]
+public decimal MyThing4 { get { return _myThing4.Calculate(MyThing4_Calculation); } }
+private decimal MyThing4_Calculation()
 {
-//'[Sub23HBPCSub] minus
-// [UTTC40AHBPWrkt5]'
+//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
+// RETURN [COPYNRCOTotInc] divided by [COPYNRFedTotInc] 
+// ELSE
+// RETURN Blank'
 return default(decimal);
 }
-#endregion SubtractLine6From5
+#endregion MyThing4
 
-#region decimal MultiplyLine7ByPercentage (Line Health Benefit Plan Credit Wkst, Line 8)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _multiplyLine7ByPercentage;
+#region decimal MyThing5 (Line line 10)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing5;
 /// <summary>
-/// Multiply Line 7 by 5% (.05) (Calculatable)
-/// Reference Number UTTC40AHBPWrkt8 
+/// 'Student loan interest deduction, alimony, tuition and<br />fees deduction, clean-fuel vehicle deduction,<br />reforestation amortization, repayment of supplemental<br />unemployment benefits.' (Calculatable)
+/// Reference Number COAppAdj2 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Multiply Line 7 by 5% (.05)"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt8"), LineNumber("Health Benefit Plan Credit Wkst, Line 8")]
-public decimal MultiplyLine7ByPercentage { get { return _multiplyLine7ByPercentage.Calculate(MultiplyLine7ByPercentage_Calculation); } }
-private decimal MultiplyLine7ByPercentage_Calculation()
+[Description("'Student loan interest deduction, alimony, tuition and<br />fees deduction, clean-fuel vehicle deduction,<br />reforestation amortization, repayment of supplemental<br />unemployment benefits.'"), Category("Category"), ReferenceNumber("COAppAdj2"), LineNumber("line 10")]
+public decimal MyThing5 { get { return _myThing5.Calculate(MyThing5_Calculation); } }
+private decimal MyThing5_Calculation()
 {
-//'[UTTC40AHBPWrkt6]*
-// [UTTC40AHBPCRate]'
+//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
+// RETURN [AW1143] + [AW1159] + [AW1145] 
+// ELSE
+// RETURN Blank'
 return default(decimal);
 }
-#endregion MultiplyLine7ByPercentage
-
-#region decimal MaximumCreditAllowed (Line Health Benefit Plan Credit Wkst, Line 9)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _maximumCreditAllowed;
-/// <summary>
-/// 'Enter maximum credit allowed per return:<br />-$300 for single taxpayer with no dependents<br />-$600 for mfj with no dependents<br />-$900 for all taxpayers with dependents' (Calculatable)
-/// Reference Number UTTC40AHBPWrkt9 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("'Enter maximum credit allowed per return:<br />-$300 for single taxpayer with no dependents<br />-$600 for mfj with no dependents<br />-$900 for all taxpayers with dependents'"), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt9"), LineNumber("Health Benefit Plan Credit Wkst, Line 9")]
-public decimal MaximumCreditAllowed { get { return _maximumCreditAllowed.Calculate(MaximumCreditAllowed_Calculation); } }
-private decimal MaximumCreditAllowed_Calculation()
-{
-//'IF [FD1040calc: F1040LivedWith] plus
-//      [FD1040calc: F1040L6DidNotLiveWith] plus
-//      [FD1040calc: F1040OtherDeps] > 0
-//       RETURN [UTTC40AHBPMax3];
-// ELSE IF [UTTC40Calc: UTFilStat] = '2'
-//       RETURN [UTTC40AHBPMax2];
-// ELSE RETURN [UTTC40AHBPMax1]'
-return default(decimal);
-}
-#endregion MaximumCreditAllowed
-
-#region decimal HealthBenefitPlanCredit (Line Health Benefit Plan Credit Wkst, Line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _healthBenefitPlanCredit;
-/// <summary>
-/// Enter the lesser of line 8 or line 9. This is your credit. (Calculatable)
-/// Reference Number UTTC40AHBPWrkt10 
-/// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Enter the lesser of line 8 or line 9. This is your credit."), Category("Health Benefit Plan Credit Worksheet"), ReferenceNumber("UTTC40AHBPWrkt10"), LineNumber("Health Benefit Plan Credit Wkst, Line 10")]
-public decimal HealthBenefitPlanCredit { get { return _healthBenefitPlanCredit.Calculate(HealthBenefitPlanCredit_Calculation); } }
-private decimal HealthBenefitPlanCredit_Calculation()
-{
-//'MIN([UTTC40AHBPWrkt8], 
-//           [UTTC40AHBPWrkt9])'
-return default(decimal);
-}
-#endregion HealthBenefitPlanCredit
+#endregion MyThing5
 

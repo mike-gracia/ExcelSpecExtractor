@@ -53,18 +53,20 @@
         <Literal>
           <ID>LineNumber</ID>
           <ToolTip>Line number from form (if applicable)</ToolTip>
-            <Default>LineNumber("")</Default>
+            <Default>LineNumber</Default>
         </Literal>	
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
+		#region $DataType$ $FieldName$ (Line $LineNumber$)
         /// <summary>
         /// $SummarySection$
-		    /// Reference Number $ReferenceId$ 
+		/// Reference Number $ReferenceId$ 
         /// </summary>
-        [Description("Reference - $AttributeDescription$"), Category("$AttributeCategory$"), ReferenceNumber("$ReferenceId$"), $LineNumber$]
+        [Description("Reference - $AttributeDescription$"), Category("$AttributeCategory$"), ReferenceNumber("$ReferenceId$"), ReferenceNumber("$LineNumber$")]
         public $DataType$ $FieldName$ { get { return $FieldPath$.$FieldName$; } }
-        $end$]]>
+        #endregion $DataType$ $FieldName$
+		$end$]]>
       </Code>
     </Snippet>
   </CodeSnippet>

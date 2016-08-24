@@ -26,7 +26,7 @@
         <Literal>
           <ID>LineNumber</ID>
           <ToolTip>Determine the line number this data property references. Remove if not needed</ToolTip>
-          <Default>(Line Number)</Default>
+          <Default>LineNumber</Default>
         </Literal>
         <Literal>
           <ID>InternalFieldName</ID>
@@ -46,7 +46,7 @@
         <Literal>
           <ID>PrecisionType</ID>
           <ToolTip>Determine the decimal precision for the data property.</ToolTip>
-          <Default>.Zero</Default>
+          <Default>.Two</Default>
         </Literal>
         <Literal>
           <ID>Description</ID>
@@ -61,14 +61,14 @@
       </Declarations>
       <!--Code section describes exactly what code/text is inserted into the file when the snippet is called.-->
       <Code Language="CSharp">
-        <![CDATA[#region decimal $FieldName$ $LineNumber$
+        <![CDATA[#region decimal $FieldName$ (Line $LineNumber$)
         internal Changeable<decimal> _$InternalFieldName$;
         /// <summary>
         /// $SummarySection$ (Changeable)
-		    /// Reference Number $ReferenceId$ 
+		/// Reference Number $ReferenceId$ 
         /// </summary>
         [Ratio(Precision = PrecisionType$PrecisionType$)]
-        [Description("Changeable - $Description$"), Category("$Category$"), ReferenceNumber("$ReferenceId$"), LineNumber("$LineNumber$")]
+        [Description("$Description$"), Category("$Category$"), ReferenceNumber("$ReferenceId$"), LineNumber("$LineNumber$")]
         public decimal $FieldName$ { get { return _$InternalFieldName$.Value; } set {_$InternalFieldName$.Value = value;}}
         #endregion $FieldName$
         $end$]]>

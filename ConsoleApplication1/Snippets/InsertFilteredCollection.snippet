@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Filtered Collection</Title>
+      <Author>Mike Means</Author>
+      <Description>Snippet to insert a new Filtered Collection field into the NextGen project</Description>
+      <Shortcut>SnipFilteredCollection</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>FieldName</ID>
+          <ToolTip>Determine the field name.</ToolTip>
+          <Default>FieldName</Default>
+        </Literal>
+        <Literal>
+          <ID>Condition</ID>
+          <ToolTip>Condition to include item in this list.</ToolTip>
+          <Default>Condition</Default>
+        </Literal>
+        <Literal>
+          <ID>DataType</ID>
+          <ToolTip>Determine the datatype for the items in the list.</ToolTip>
+          <Default>DataType</Default>
+        </Literal>        
+        <Literal>
+          <ID>CollectionPath</ID>
+          <ToolTip>Path to the collection to be filtered</ToolTip>
+          <Default>CollectionPath</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeDescription</ID>
+          <ToolTip>Short description of the field (NO LINE NUMBERS)</ToolTip>
+          <Default>(Filtered List)</Default>
+        </Literal>
+        <Literal>
+          <ID>AttributeCategory</ID>
+          <ToolTip>Category of information field is classified under</ToolTip>
+          <Default>Filtered List</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region List<$DataType$> $FieldName$
+        [NonCompliance(NonComplianceType.FilteredListNeedsToBeIndirectCollection)]
+        /// <summary>
+        /// $FieldName$ (Filtered List) 
+        /// </summary>
+        [Description("$FieldName$ $AttributeDescription$"), Category("$AttributeCategory$")]
+        public List<$DataType$> $FieldName$ { get { return $CollectionPath$.Where(item => item.$Condition$ ).ToList(); } }
+        #endregion $FieldName$
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

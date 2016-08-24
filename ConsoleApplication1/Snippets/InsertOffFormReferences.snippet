@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Insert Off Form References</Title>
+      <Author>Scott Seto</Author>
+      <Description>Snippet to insert a UI string</Description>
+      <Shortcut>SnipOffFormReferences</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+	  <Literal>
+          <ID>Question</ID>
+          <ToolTip>Determine the question.</ToolTip>
+          <Default>Question</Default>
+        </Literal>
+		<Literal>
+          <ID>Binding</ID>
+          <ToolTip>Determine the binding.</ToolTip>
+          <Default>Binding</Default>
+        </Literal>
+		<Literal>
+          <ID>DataType</ID>
+          <ToolTip>Determine the data type.</ToolTip>
+          <Default>DataType</Default>
+        </Literal>
+        <Literal>
+          <ID>Next</ID>
+          <ToolTip>Determine the next interview form</ToolTip>
+          <Default>Next</Default>
+        </Literal>
+          <Literal>
+            <ID>Previous</ID>
+            <ToolTip>Determine the previous interview form</ToolTip>
+            <Default>Previous</Default>
+          </Literal>
+        <Literal>
+          <ID>ClassName</ID>
+          <ToolTip>Determine the name of the class</ToolTip>
+          <Default>ClassName</Default>
+        </Literal>
+		<Literal>
+          <ID>BaseClass</ID>
+          <ToolTip>Determine the name of the base class</ToolTip>
+          <Default>ReturnFiling</Default>
+        </Literal>
+		<Literal>
+          <ID>String</ID>
+          <ToolTip>Determine the string</ToolTip>
+          <Default>String</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        #region Off Form References
+
+        public Jurisdiction Jurisdiction { get { return ReturnFiling.Jurisdiction; } }
+        public TaxReturn TaxReturn { get { return Jurisdiction.TaxReturn; } }
+        public Taxpayer PrimaryTaxpayer { get { return TaxReturn.PrimaryTaxpayer; } }
+        public PrimaryAddress PrimaryAddress { get { return TaxReturn.PrimaryAddress; } }
+        public Taxpayer SecondaryTaxpayer { get { return TaxReturn.SecondaryTaxpayer; } }
+        public Liberty.Individual.Federal.Data.Jurisdiction FederalJurisdiction { get { return TaxReturn.FederalJurisdiction; } }
+        public Liberty.Individual.Federal.Data.ReturnFiling FederalReturnFiling { get { return FederalJurisdiction.ReturnFiling; } }
+        public FilingStatusType FederalFilingStatusType { get { return ReturnFiling.FederalFilingStatusType; } }
+        public Liberty.Individual.Federal.Data.Form1040 Form1040 { get { return FederalReturnFiling.Form1040; } }
+        public Form1099IntCollection Form1099IntCollection { get { return FederalReturnFiling.Form1099IntCollection; } }
+
+        #endregion Off Form References
+        $end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -78,7 +78,7 @@ namespace ExcelSpecExtractor
             codeStr = codeStr.Replace("$FieldName$", _txtLineData.fieldName);
             codeStr = codeStr.Replace("$Negative$", _txtLineData.allowNegativeString);
             codeStr = codeStr.Replace("$LineNumber$", _txtLineData.lineNumber);
-            codeStr = codeStr.Replace("$InternalFieldName$", _txtLineData.internalFieldNameString);
+            codeStr = codeStr.Replace("$InternalFieldName$", _txtLineData.InternalFieldName);
             codeStr = codeStr.Replace("$SummarySection$", _txtLineData.description);
             codeStr = codeStr.Replace("$ReferenceId$", _txtLineData.referenceId);
             codeStr = codeStr.Replace("$AttributeCategory$", _txtLineData.categoryString);
@@ -99,6 +99,7 @@ namespace ExcelSpecExtractor
         }
 
         //old stuff no longer used
+        /*
         public string Date(LineData input)
         {
 
@@ -208,6 +209,6 @@ namespace ExcelSpecExtractor
         }
 
 
-
+        */
     }
 }

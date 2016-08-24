@@ -11,17 +11,16 @@ namespace ExcelSpecExtractor
     {
         private string changeableIndicator = "*";
 
-        public DataType dataType;
-        public bool isChangeable = false;
-        public bool allowNegative = false;
         public string fieldName = "";
         public string referenceId = "";
         public string lineNumber = "";
+        public DataType dataType;
+        public bool isChangeable = false;
+        public bool allowNegative = false;
         public string dataTypeString = "";
         public string description = "";
         public string taCalcNotes = "";
         public string calculationString = "";
-        public string internalFieldNameString = "";
         public string allowNegativeString = "false";
         public string precisionTypeString = ".Zero";
         public string categoryString = "Category";
@@ -44,7 +43,7 @@ namespace ExcelSpecExtractor
             description = stringInput[i++];
             taCalcNotes = stringInput[i++];
             calculationString = FormatCalculation(stringInput[i++]);
-            internalFieldNameString = FormatInternalFieldName(fieldName);
+            //internalFieldNameString = FormatInternalFieldName(fieldName);
             //precisionType = precisionType;
 
             switch (dataTypeString)
@@ -102,9 +101,9 @@ namespace ExcelSpecExtractor
             return string.Format("Object/*{0}*/", _dataTypeString);
         }
 
-        private string FormatInternalFieldName(string _fieldName)
+        public string InternalFieldName
         {
-            return _fieldName.Substring(0, 1).ToLower() + fieldName.Substring(1, fieldName.Length - 1);
+            get { return fieldName.Substring(0, 1).ToLower() + fieldName.Substring(1, fieldName.Length - 1); }
         }
 
         private string FormatCalculation(string _calculation)

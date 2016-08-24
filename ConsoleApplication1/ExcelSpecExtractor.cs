@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExcelSpecExtractor;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace ExcelSpecExtractor
 {
@@ -19,6 +20,7 @@ namespace ExcelSpecExtractor
 
             string inputFileStr = @"../../input.txt";
             string outputFileStr = @"../../output.txt";
+            string jsonFileLocation = @"../../fields.json";
 
 
 
@@ -26,6 +28,7 @@ namespace ExcelSpecExtractor
             string[] rowLines = GetAndSanitizeInputFromTxt(inputFileStr);
             
             StreamWriter outFile = new StreamWriter(outputFileStr);
+            StreamWriter jsonFile = new StreamWriter(jsonFileLocation);
 
             int currentRow = 1;
             foreach (string line in rowLines)
@@ -38,6 +41,7 @@ namespace ExcelSpecExtractor
                     LineData ld = new LineData(lineValues, category);
                     DataTranslator dt = new DataTranslator(ld);
                     outFile.WriteLine(dt.GetCode);
+                    jsonFile.WriteLine(JsonConvert.SerializeObject(ld));
                 }
                 else
                 {
@@ -53,7 +57,7 @@ namespace ExcelSpecExtractor
 
             }
             outFile.Close();
-
+            jsonFile.Close();
         }
 
         public static string[] GetAndSanitizeInputFromTxt(string _inputFileString)
