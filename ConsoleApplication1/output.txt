@@ -1,86 +1,77 @@
-#region decimal MyThing1 (Line line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing1;
+#region bool? HasCompletedStateQuestion (Line Ui Question)
+internal Changeable<bool?> _hasCompletedStateQuestion;
 /// <summary>
-/// ' ratio of Colorado wages<br />and/or self-employment income to total wages and/or<br />self-employment income.' (Calculatable)
-/// Reference Number COAppAdj1Perc 
+/// Select an option for whether the other state return has been completed (Changeable)
+/// Reference Number UTCompletedState 
 /// </summary>
-[Ratio(Precision = PrecisionType.Zero)]
-[Description("$Description$"), Category("$Category$"), ReferenceNumber("COAppAdj1Perc"), LineNumber("line 10")]
-public decimal MyThing1 { get { return _myThing1.Calculate(MyThing1_Calculation); } }
-private decimal MyThing1_Calculation()
-{
-//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'' THEN
-// RETURN ([COPYNRcoWages] plus [COPYNRCOCF]) divided by 
-// ([COPYNRFEDWages] plus [COPYNRFedCF])'
-return default(decimal);
-}
-#endregion MyThing1
+[Description("Select an option for whether the other state return has been completed"), Category("1 - Income"), ReferenceNumber("UTCompletedState"), LineNumber("Ui Question")]
+public bool? HasCompletedStateQuestion { get { return _hasCompletedStateQuestion.Value; } set {_hasCompletedStateQuestion.Value = value;}}
+public bool HasCompletedStateQuestion_Value { get { return HasCompletedStateQuestion.GetValueOrDefault();}}
+#endregion HasCompletedStateQuestion
 
-#region decimal MyThing2 (Line line 10)
-internal Changeable<decimal> _myThing2;
+#region decimal PortionOfFederalAgiTaxedByBothUi (Line UI Question)
+internal Changeable<decimal> _portionOfFederalAgiTaxedByBothUi;
 /// <summary>
-/// 'CO  apportioned amount of IRA deduction, educator expenses, self-employment<br />tax, self-employed health insurance deduction, SEP<br />and SIMPLE deductions, HSA deduction, MSA<br />deduction, QPA expenses, 501(c)(18)(D) pension plan<br />contributions, 403(b) contributions, business<br />expenses of reservists, performing artists and feebasis<br />government officials.' (Changeable)
-/// Reference Number COAppAdj1 
+/// Federal AGI taxed by both states (Changeable)
+/// Reference Number TC40SFedAGITaxedBothUI 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("'CO  apportioned amount of IRA deduction, educator expenses, self-employment<br />tax, self-employed health insurance deduction, SEP<br />and SIMPLE deductions, HSA deduction, MSA<br />deduction, QPA expenses, 501(c)(18)(D) pension plan<br />contributions, 403(b) contributions, business<br />expenses of reservists, performing artists and feebasis<br />government officials.'"), Category("Category"), ReferenceNumber("COAppAdj1"), LineNumber("line 10")]
-public decimal MyThing2 { get { return _myThing2.Value; } set {_myThing2.Value = value;}}
-#endregion MyThing2
+[Description("Federal AGI taxed by both states"), Category("1 - Income"), ReferenceNumber("TC40SFedAGITaxedBothUI"), LineNumber("UI Question")]
+public decimal PortionOfFederalAgiTaxedByBothUi { get { return _portionOfFederalAgiTaxedByBothUi.Value; } set {_portionOfFederalAgiTaxedByBothUi.Value = value;}}
+#endregion PortionOfFederalAgiTaxedByBothUi
 
-#region decimal MyThing3 (Line line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing3;
+#region decimal IncomeTaxLessCreditsPaidToOtherStateUi (Line UI Question)
+internal Changeable<decimal> _incomeTaxLessCreditsPaidToOtherStateUi;
 /// <summary>
-/// Adjustments multiplied by apportioned percentage (Calculatable)
-/// Reference Number COAppAdj1Tot 
+/// 'Actual income tax paid to state shown on Line 1.<br />Part-year residents must prorate tax paid to other state. Credit only applies to the portion of actual taxes paid to the other state on income shown on Line 1.' (Changeable)
+/// Reference Number TC40SActualTaxPaidUI 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Adjustments multiplied by apportioned percentage"), Category("Category"), ReferenceNumber("COAppAdj1Tot"), LineNumber("line 10")]
-public decimal MyThing3 { get { return _myThing3.Calculate(MyThing3_Calculation); } }
-private decimal MyThing3_Calculation()
-{
-//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
-// RETURN [COAppAdj1] multipled by [COAppAdjPerc]
-// ELSE
-// RETURN Blank'
-return default(decimal);
-}
-#endregion MyThing3
+[Description("'Actual income tax paid to state shown on Line 1.<br />Part-year residents must prorate tax paid to other state. Credit only applies to the portion of actual taxes paid to the other state on income shown on Line 1.'"), Category("1 - Income"), ReferenceNumber("TC40SActualTaxPaidUI"), LineNumber("UI Question")]
+public decimal IncomeTaxLessCreditsPaidToOtherStateUi { get { return _incomeTaxLessCreditsPaidToOtherStateUi.Value; } set {_incomeTaxLessCreditsPaidToOtherStateUi.Value = value;}}
+#endregion IncomeTaxLessCreditsPaidToOtherStateUi
 
-#region decimal MyThing4 (Line line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing4;
+#region decimal PortionOfFederalAgiTaxedByBoth (Line TC-40S, Line 1)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _portionOfFederalAgiTaxedByBoth;
 /// <summary>
-/// 'Deductions allowed in the Colorado to federal total<br />income ratio (line 21 / line 20).' (Calculatable)
-/// Reference Number COAppAdj2Perc 
-/// </summary>
-[Ratio(Precision = PrecisionType.Zero)]
-[Description("$Description$"), Category("$Category$"), ReferenceNumber("COAppAdj2Perc"), LineNumber("line 10")]
-public decimal MyThing4 { get { return _myThing4.Calculate(MyThing4_Calculation); } }
-private decimal MyThing4_Calculation()
-{
-//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
-// RETURN [COPYNRCOTotInc] divided by [COPYNRFedTotInc] 
-// ELSE
-// RETURN Blank'
-return default(decimal);
-}
-#endregion MyThing4
-
-#region decimal MyThing5 (Line line 10)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _myThing5;
-/// <summary>
-/// 'Student loan interest deduction, alimony, tuition and<br />fees deduction, clean-fuel vehicle deduction,<br />reforestation amortization, repayment of supplemental<br />unemployment benefits.' (Calculatable)
-/// Reference Number COAppAdj2 
+/// Federal AGI taxed by both states (Calculatable)
+/// Reference Number TC40SFedAGITaxedBoth 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("'Student loan interest deduction, alimony, tuition and<br />fees deduction, clean-fuel vehicle deduction,<br />reforestation amortization, repayment of supplemental<br />unemployment benefits.'"), Category("Category"), ReferenceNumber("COAppAdj2"), LineNumber("line 10")]
-public decimal MyThing5 { get { return _myThing5.Calculate(MyThing5_Calculation); } }
-private decimal MyThing5_Calculation()
+[Description("Federal AGI taxed by both states"), Category("1 - Income"), ReferenceNumber("TC40SFedAGITaxedBoth"), LineNumber("TC-40S, Line 1")]
+public decimal PortionOfFederalAgiTaxedByBoth { get { return _portionOfFederalAgiTaxedByBoth.Calculate(PortionOfFederalAgiTaxedByBoth_Calculation); } }
+private decimal PortionOfFederalAgiTaxedByBoth_Calculation()
 {
-//'IF [PYNRAWState] = ''CO'' and [PYNRAWRes] = ''P'' or ''N'', THEN
-// RETURN [AW1143] + [AW1159] + [AW1145] 
-// ELSE
-// RETURN Blank'
+//'IF [FDAWCalc:PYNRAWRes]=R AND
+//      [SJState] = [TC40SOthState] AND 
+//      [SJInUse] = YES AND NR State is on valid state list for
+//       StateTaxReferenceWorksheet
+//        RETURN [SJFedAGI];
+// ELSE RETURN [TC40SFedAGITaxedBothUI]'
 return default(decimal);
 }
-#endregion MyThing5
+#endregion PortionOfFederalAgiTaxedByBoth
+
+#region decimal IncomeTaxLessCreditsPaidToOtherState (Line TC-40S, Line 6)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _incomeTaxLessCreditsPaidToOtherState;
+/// <summary>
+/// 'Actual income tax paid to state shown on Line 1.<br />Part-year residents must prorate tax paid to other state. Credit only applies to the portion of actual taxes paid to the other state on income shown on Line 1.' (Calculatable)
+/// Reference Number TC40SActualTaxPaid 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("'Actual income tax paid to state shown on Line 1.<br />Part-year residents must prorate tax paid to other state. Credit only applies to the portion of actual taxes paid to the other state on income shown on Line 1.'"), Category("1 - Income"), ReferenceNumber("TC40SActualTaxPaid"), LineNumber("TC-40S, Line 6")]
+public decimal IncomeTaxLessCreditsPaidToOtherState { get { return _incomeTaxLessCreditsPaidToOtherState.Calculate(IncomeTaxLessCreditsPaidToOtherState_Calculation); } }
+private decimal IncomeTaxLessCreditsPaidToOtherState_Calculation()
+{
+//'IF [FDAWCalc:PYNRAWRes]=R AND
+//      [SJState] = [TC40SOthState] AND 
+//      [SJInUse] = YES AND NR State is on valid state list for
+//       StateTaxReferenceWorksheet
+//        RETURN [SJTaxDueAfterCred];
+// ELSE RETURN [TC40SActualTaxPaidUI]'
+return default(decimal);
+}
+#endregion IncomeTaxLessCreditsPaidToOtherState
+
+/* */
 

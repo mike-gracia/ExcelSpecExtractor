@@ -7,8 +7,8 @@
     <ProjectGuid>{B8158CF0-F54F-42F3-B67B-D17B54139480}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
-    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <RootNamespace>ExcelSpecExtractor</RootNamespace>
+    <AssemblyName>ExcelSpecExtractor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -55,6 +58,44 @@
     <None Include="App.config" />
     <None Include="fields.json" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Snippets\InsertCalculatable.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableBoolean.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableCollection.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableIndirectItem.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableMoney.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableNullableBoolean.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableNumber.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableRatio.snippet" />
+    <EmbeddedResource Include="Snippets\InsertCalculatableString.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeable.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableBoolean.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableCollection.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableCollectionSync.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableIndirectItem.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableMoney.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableNullableBoolean.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableNumber.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableRatio.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableString.snippet" />
+    <EmbeddedResource Include="Snippets\InsertChangeableSyncCollection.snippet" />
+    <EmbeddedResource Include="Snippets\InsertClassReference.snippet" />
+    <EmbeddedResource Include="Snippets\InsertConstant.snippet" />
+    <EmbeddedResource Include="Snippets\InsertConstructor.snippet" />
+    <EmbeddedResource Include="Snippets\InsertFilteredCollection.snippet" />
+    <EmbeddedResource Include="Snippets\InsertGuid.snippet" />
+    <EmbeddedResource Include="Snippets\InsertInUse.snippet" />
+    <EmbeddedResource Include="Snippets\InsertLinkedClassReference.snippet" />
+    <EmbeddedResource Include="Snippets\InsertNotEmpty.snippet" />
+    <EmbeddedResource Include="Snippets\InsertNullableClassReference.snippet" />
+    <EmbeddedResource Include="Snippets\InsertOffFormReferences.snippet" />
+    <EmbeddedResource Include="Snippets\InsertPropertyReference.snippet" />
+    <EmbeddedResource Include="Snippets\InsertReferences.snippet" />
+    <EmbeddedResource Include="Snippets\InsertRegion.snippet" />
+    <EmbeddedResource Include="Snippets\InsertValidationAttribute.snippet" />
+    <EmbeddedResource Include="Snippets\InsertValidationAttributeClass.snippet" />
+    <EmbeddedResource Include="Snippets\InsertValidationNew.snippet" />
+    <EmbeddedResource Include="Snippets\InsertValidationRegion.snippet" />
+    <EmbeddedResource Include="Snippets\InsertValidationTypeClass.snippet" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="output.txt" />

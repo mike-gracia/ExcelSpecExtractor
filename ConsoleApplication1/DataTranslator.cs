@@ -8,12 +8,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace ExcelSpecExtractor
 {
     class DataTranslator
     {
-        private string snippetDir = "../../Snippets/";
+        private string snippetDir = "~/Snippets/";
         string eol = Environment.NewLine;
         private string codeString;
 
@@ -24,38 +26,49 @@ namespace ExcelSpecExtractor
             codeString = GenerateCode(snippet, ld);
         }
 
+        public Stream GetResourceTextFile(string filename)
+        {
+
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "ExcelSpecExtractor.Snippets." + filename;
+            //do you see me?
+            return assembly.GetManifestResourceStream(resourceName);
+
+            
+        }
+
         private XDocument GetSnippet(DataType _dataType, bool _isChangeable)
         {
             switch (_dataType)
             {
                 case DataType.Text:
                     return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableString.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableString.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableString.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableString.snippet"));
                 case DataType.Money:
                     return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableMoney.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableMoney.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableMoney.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableMoney.snippet"));
                 case DataType.WholeNumber:
                     return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableNumber.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableNumber.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableNumber.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableNumber.snippet"));
                 case DataType.Ratio:
                     return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableRatio.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableRatio.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableRatio.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableRatio.snippet"));
                 case DataType.YesNo:
                    return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableBoolean.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableBoolean.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableBoolean.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableBoolean.snippet"));
                 case DataType.YesNoBlank:
                    return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeableNullableBoolean.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatableNullableBoolean.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeableNullableBoolean.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatableNullableBoolean.snippet"));
                 default:
                     return _isChangeable
-                        ? XDocument.Load(snippetDir + "InsertChangeable.Snippet")
-                        : XDocument.Load(snippetDir + "InsertCalculatable.Snippet");
+                        ? XDocument.Load(GetResourceTextFile("InsertChangeable.snippet"))
+                        : XDocument.Load(GetResourceTextFile("InsertCalculatable.snippet"));
 
             }
 
@@ -75,7 +88,7 @@ namespace ExcelSpecExtractor
 
             //insert values into snippet
             codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationString);
-            codeStr = codeStr.Replace("$FieldName$", _txtLineData.fieldName);
+            codeStr = codeStr.Replace("$FieldName$", _txtLineData.devFieldName);
             codeStr = codeStr.Replace("$Negative$", _txtLineData.allowNegativeString);
             codeStr = codeStr.Replace("$LineNumber$", _txtLineData.lineNumber);
             codeStr = codeStr.Replace("$InternalFieldName$", _txtLineData.InternalFieldName);

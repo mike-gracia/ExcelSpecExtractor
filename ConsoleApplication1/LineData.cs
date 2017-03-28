@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ExcelSpecExtractor
 {
@@ -11,9 +13,10 @@ namespace ExcelSpecExtractor
     {
         private string changeableIndicator = "*";
 
-        public string fieldName = "";
+        public string devFieldName = "";
         public string referenceId = "";
         public string lineNumber = "";
+        [JsonConverter(typeof(StringEnumConverter))]
         public DataType dataType;
         public bool isChangeable = false;
         public bool allowNegative = false;
@@ -26,7 +29,7 @@ namespace ExcelSpecExtractor
         public string categoryString = "Category";
         public string roundingString = "RoundedToTheNearestInteger";
 
-        public LineData(string[] stringInput, string _category)
+        public LineData(string[] stringInput, string _category, bool _hasDevFieldName = true)
         {
             
             
@@ -35,14 +38,18 @@ namespace ExcelSpecExtractor
                 categoryString = _category;
 
             int i = 0;
-            fieldName = stringInput[i++];
-            isChangeable = CheckForChangeable(fieldName);
+            if (_hasDevFieldName)
+                devFieldName = stringInput[i++];
+            else
+                devFieldName = stringInput[i]; // if no developer name given use the Reference#
+
+            isChangeable = CheckForChangeable(devFieldName);
             referenceId = stringInput[i++];
             lineNumber = stringInput[i++];
             dataTypeString = stringInput[i++];
             description = stringInput[i++];
             taCalcNotes = stringInput[i++];
-            calculationString = FormatCalculation(stringInput[i++]);
+            calculationString = FormatCalculation(stringInput[i]);
             //internalFieldNameString = FormatInternalFieldName(fieldName);
             //precisionType = precisionType;
 
@@ -103,7 +110,7 @@ namespace ExcelSpecExtractor
 
         public string InternalFieldName
         {
-            get { return fieldName.Substring(0, 1).ToLower() + fieldName.Substring(1, fieldName.Length - 1); }
+            get { return !String.IsNullOrEmpty(devFieldName) ? devFieldName.Substring(0, 1).ToLower() + devFieldName.Substring(1, devFieldName.Length - 1) : ""; }
         }
 
         private string FormatCalculation(string _calculation)
@@ -115,7 +122,7 @@ namespace ExcelSpecExtractor
         {
             if (_fieldName.StartsWith(changeableIndicator))
             {
-                fieldName = fieldName.TrimStart(changeableIndicator.ToCharArray());
+                devFieldName = devFieldName.TrimStart(changeableIndicator.ToCharArray());
                 return true;
             }
 
