@@ -23,7 +23,9 @@ namespace ExcelSpecExtractor
         public string dataTypeString = "";
         public string description = "";
         public string taCalcNotes = "";
-        public string calculationString = "";
+        public string calculationTaxAnalysisString = "";
+        public string calculationDeveloperString = "";
+        public string calculationTranslation;
         public string allowNegativeString = "false";
         public string precisionTypeString = ".Zero";
         public string categoryString = "Category";
@@ -41,15 +43,21 @@ namespace ExcelSpecExtractor
             if (_hasDevFieldName)
                 devFieldName = stringInput[i++];
             else
+            {
                 devFieldName = stringInput[i]; // if no developer name given use the Reference#
+                devFieldName = devFieldName.Replace("AGI", "AdjustedGrossIncome");
+                devFieldName = devFieldName.Replace("EIC", "EarnedIncomeCredit");
+                devFieldName = devFieldName.Replace("Fed", "Federal");
+            }
 
-            isChangeable = CheckForChangeable(devFieldName);
+            
             referenceId = stringInput[i++];
             lineNumber = stringInput[i++];
             dataTypeString = stringInput[i++];
             description = stringInput[i++];
             taCalcNotes = stringInput[i++];
-            calculationString = FormatCalculation(stringInput[i]);
+            calculationTaxAnalysisString = FormatCalculation(stringInput[i]);
+            isChangeable = CheckForChangeable(devFieldName);
             //internalFieldNameString = FormatInternalFieldName(fieldName);
             //precisionType = precisionType;
 
@@ -115,7 +123,7 @@ namespace ExcelSpecExtractor
 
         private string FormatCalculation(string _calculation)
         {
-            return "//" + _calculation.Replace("<br />", Environment.NewLine + "// ");
+            return "//*//" + _calculation.Replace("<br />", Environment.NewLine + "//*// ");
         }
 
         private bool CheckForChangeable(string _fieldName)

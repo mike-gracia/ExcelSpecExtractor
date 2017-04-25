@@ -14,6 +14,7 @@ namespace ExcelSpecExtractor
 {
     public class ExcelSpecExtractor
     {
+        static int categoryIndex = 1;
         static string category = "Category1";
         static string jsonFileLocation = @"../../fields.json";
         const int excelCellCount = 7;
@@ -55,15 +56,16 @@ namespace ExcelSpecExtractor
 
 
 
-            string category = "1 - Income";
+
             //category = GetCategoryFromUser();
             string rowLines = GetAndSanitizeInputFromTxt(File.ReadAllText(inputFileStr));
             File.WriteAllText(inputFileStr, rowLines);
             
-            StreamWriter outFile = new StreamWriter(outputFileStr);
-            StreamWriter jsonFile = new StreamWriter(jsonFileLocation);
+           
 
-            int currentRow = 1;
+            List<LineData> LineDataList = new List<LineData>();
+
+            int currentTextLine = 1;
             foreach (string line in rowLines.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
             {
                 string sanitizedLine = Regex.Replace(line, @"\t{2,}", "\t");  //remove excess tabs
@@ -72,32 +74,71 @@ namespace ExcelSpecExtractor
                 if (lineValues.Length == excelCellCount && lineValues[0] != string.Empty)
                 {
                     LineData ld = new LineData(lineValues, category);
+                    LineDataList.Add(ld);
                     DataTranslator dt = new DataTranslator(ld);
-                    outFile.WriteLine(dt.GetCode);
-                    jsonFile.WriteLine(JsonConvert.SerializeObject(ld) + ",");
+
+
+
+                    //outFile.WriteLine(dt.GetCode);
+                    //jsonFile.WriteLine(JsonConvert.SerializeObject(ld) + ",");
                 }
                 else if (lineValues.Length == excelCellCount - 1 && lineValues[0] != string.Empty)   //FieldName is missing
                 {
-                    Console.WriteLine("Warning!... {0} has no Developer created name", lineValues[0]);
+
+                    ConsoleExtensions.PrintConsoleWarning(currentTextLine, "No developer name");
+                    //Console.WriteLine("Line {0} - Warning!... {1} has no Developer created name", currentRow, lineValues[0]);
                     LineData ld = new LineData(lineValues, category, false);
-                    DataTranslator dt = new DataTranslator(ld);
-                    outFile.WriteLine(dt.GetCode);
-                    jsonFile.WriteLine(JsonConvert.SerializeObject(ld) + ",");
+                   
 
                 }
                 else
                 {
-                    outFile.WriteLine("/* " + line + "*/\r\n");
+                    GetCategoryFromLine(lineValues, currentTextLine);
                     Debug.WriteLine("Could not process " + inputFileStr 
-                        + " line number: " + currentRow
+                        + " line number: " + currentTextLine
                         + " expected cell count: " + excelCellCount
                         + " actual cell count: " + lineValues.Length);
                 }
 
-                currentRow++;
+
+                currentTextLine++;
 
 
             }
+
+
+            //translate TA calc
+            foreach(LineData outterLd in LineDataList)
+            {
+
+                string find = outterLd.referenceId;
+                string replace = outterLd.devFieldName;
+
+                foreach(LineData innerLd in LineDataList)
+                {
+
+                   innerLd.calculationTaxAnalysisString =  innerLd.calculationTaxAnalysisString.Replace(find, replace);
+                }
+            }
+
+            //print warnings and errors
+            foreach(LineData ld in LineDataList)
+            {
+                if (ld.calculationTaxAnalysisString.ToLower().Contains("direct entry") && !ld.isChangeable)
+                    ConsoleExtensions.PrintConsoleWarning(100, ld.referenceId + " Contains phrase 'direct entry' ");
+            }
+
+
+            //translate and write out to file
+            StreamWriter outFile = new StreamWriter(outputFileStr);
+            StreamWriter jsonFile = new StreamWriter(jsonFileLocation);
+            foreach(LineData ld in LineDataList)
+            {
+                DataTranslator dt = new DataTranslator(ld);
+                outFile.WriteLine(dt.GetCode);
+                jsonFile.WriteLine(JsonConvert.SerializeObject(ld) + ",");
+            }
+
             outFile.Close();
             jsonFile.Close();
 
@@ -105,21 +146,10 @@ namespace ExcelSpecExtractor
             Console.ReadLine();
         }
 
-        //public static string[] GetAndSanitizeInputFromTxt(string _inputFileString)
-        //{
-        //    //clean input file (remove \n and put everything on one line
-        //    string text = File.ReadAllText(_inputFileString);
-        //    text = Regex.Replace(text, @"(?<!\r)\n", "<br />");
-        //    //replace " with '
-        //    text = Regex.Replace(text, "\"", "'");
-        //    File.WriteAllText(_inputFileString, text);
-
-        //    return File.ReadAllLines(_inputFileString);
-        //}
 
         public static string GetAndSanitizeInputFromTxt(string _inputString)
         {
-            //clean input (remove \n and put everything on one line
+            //clean input (remove \n but preserve as <br /> and put everything on one line
             _inputString = Regex.Replace(_inputString, @"(?<!\r)\n", "<br />");
             //replace " with '
             _inputString = Regex.Replace(_inputString, "\"", "'");
@@ -133,6 +163,18 @@ namespace ExcelSpecExtractor
         {
             Console.WriteLine("Enter a Category:");
             return Console.ReadLine();
+        }
+
+        private static void GetCategoryFromLine(string[] _lineValues, int _lineNumber)
+        {
+            if (_lineValues.Where(s => s != string.Empty).Count() == 1)
+            {
+                string newCategory = string.Join("", _lineValues.Where(s => s != string.Empty).FirstOrDefault().Take(30));
+                //string message = "Changing category from {0} to {1}", category;
+                //ConsoleExtensions.PrintConsoleMessage(_lineNumber, message);
+                Console.WriteLine("Line {0} - Changing category from {1} to {2}", _lineNumber, category, newCategory);
+                category = categoryIndex++ + " - " + newCategory;
+            }
         }
 
    

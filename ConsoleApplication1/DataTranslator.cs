@@ -87,7 +87,7 @@ namespace ExcelSpecExtractor
             codeStr = Regex.Replace(codeStr, @" {2,}", "");
 
             //insert values into snippet
-            codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationString);
+            codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationTaxAnalysisString);
             codeStr = codeStr.Replace("$FieldName$", _txtLineData.devFieldName);
             codeStr = codeStr.Replace("$Negative$", _txtLineData.allowNegativeString);
             codeStr = codeStr.Replace("$LineNumber$", _txtLineData.lineNumber);

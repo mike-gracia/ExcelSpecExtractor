@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleExtensions.cs" />
     <Compile Include="DataTranslator.cs" />
     <Compile Include="DataTypeEnum.cs" />
     <Compile Include="LineData.cs" />
@@ -98,6 +99,7 @@
     <EmbeddedResource Include="Snippets\InsertValidationTypeClass.snippet" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cSharpInput.txt" />
     <Content Include="output.txt" />
     <Content Include="input.txt" />
   </ItemGroup>
