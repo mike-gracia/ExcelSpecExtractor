@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace ExcelSpecExtractor
+namespace Ihx
 {
 
     class LineData
@@ -57,6 +57,7 @@ namespace ExcelSpecExtractor
             description = stringInput[i++];
             taCalcNotes = stringInput[i++];
             calculationTaxAnalysisString = FormatCalculation(stringInput[i]);
+            calculationTranslation = calculationTaxAnalysisString;
             isChangeable = CheckForChangeable(devFieldName);
             //internalFieldNameString = FormatInternalFieldName(fieldName);
             //precisionType = precisionType;

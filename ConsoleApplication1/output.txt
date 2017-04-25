@@ -1,12 +1,12 @@
-#region bool IsPrimaryNonmilitary (Line None)
-internal Calculatable<bool> _isPrimaryNonmilitary;
+#region bool AmountExcludable (Line none)
+internal Calculatable<bool> _amountExcludable;
 /// <summary>
 /// Taxpayer is nonmilitary spouse (Calculatable)
 /// Reference Number RIMSRRAQ1Tp 
 /// </summary>
-[Description("Taxpayer is nonmilitary spouse"), Category("Category1"), ReferenceNumber("RIMSRRAQ1Tp"), LineNumber("None")]
-public bool IsPrimaryNonmilitary { get { return _isPrimaryNonmilitary.Calculate(IsPrimaryNonmilitary_Calculation); } }
-private bool IsPrimaryNonmilitary_Calculation()
+[Description("Taxpayer is nonmilitary spouse"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ1Tp"), LineNumber("none")]
+public bool AmountExcludable { get { return _amountExcludable.Calculate(AmountExcludable_Calculation); } }
+private bool AmountExcludable_Calculation()
 {
 //*//'IF MFJ AND 
 //*//     [FDAWCalc:AW9] = 0 AND
@@ -15,17 +15,17 @@ private bool IsPrimaryNonmilitary_Calculation()
 //*// ELSE RETURN NO'
 return default(bool);
 }
-#endregion IsPrimaryNonmilitary
+#endregion AmountExcludable
 
-#region bool IsSecondaryNonmilitary (Line None)
-internal Calculatable<bool> _isSecondaryNonmilitary;
+#region bool IsPrimaryNonmilitary (Line none)
+internal Calculatable<bool> _isPrimaryNonmilitary;
 /// <summary>
 /// Spouse is nonmilitary spouse (Calculatable)
 /// Reference Number RIMSRRAQ1Sp 
 /// </summary>
-[Description("Spouse is nonmilitary spouse"), Category("Category1"), ReferenceNumber("RIMSRRAQ1Sp"), LineNumber("None")]
-public bool IsSecondaryNonmilitary { get { return _isSecondaryNonmilitary.Calculate(IsSecondaryNonmilitary_Calculation); } }
-private bool IsSecondaryNonmilitary_Calculation()
+[Description("Spouse is nonmilitary spouse"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ1Sp"), LineNumber("none")]
+public bool IsPrimaryNonmilitary { get { return _isPrimaryNonmilitary.Calculate(IsPrimaryNonmilitary_Calculation); } }
+private bool IsPrimaryNonmilitary_Calculation()
 {
 //*//'IF MFJ AND 
 //*//     [FDAWCalc:AW10] = 0 AND 
@@ -34,17 +34,17 @@ private bool IsSecondaryNonmilitary_Calculation()
 //*// ELSE RETURN NO'
 return default(bool);
 }
-#endregion IsSecondaryNonmilitary
+#endregion IsPrimaryNonmilitary
 
-#region bool AreBothResidentOfSameState (Line None)
-internal Calculatable<bool> _areBothResidentOfSameState;
+#region bool IsSecondaryNonmilitary (Line none)
+internal Calculatable<bool> _isSecondaryNonmilitary;
 /// <summary>
 /// Both full resident of the same state (Calculatable)
 /// Reference Number RIMSRRAQ2 
 /// </summary>
-[Description("Both full resident of the same state"), Category("Category1"), ReferenceNumber("RIMSRRAQ2"), LineNumber("None")]
-public bool AreBothResidentOfSameState { get { return _areBothResidentOfSameState.Calculate(AreBothResidentOfSameState_Calculation); } }
-private bool AreBothResidentOfSameState_Calculation()
+[Description("Both full resident of the same state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ2"), LineNumber("none")]
+public bool IsSecondaryNonmilitary { get { return _isSecondaryNonmilitary.Calculate(IsSecondaryNonmilitary_Calculation); } }
+private bool IsSecondaryNonmilitary_Calculation()
 {
 //*//'IF MFJ AND 
 //*//     [FDAWCalc:PYNRAWRes] = R AND
@@ -53,18 +53,18 @@ private bool AreBothResidentOfSameState_Calculation()
 //*// ELSE RETURN NO'
 return default(bool);
 }
-#endregion AreBothResidentOfSameState
+#endregion IsSecondaryNonmilitary
 
-#region decimal PrimaryNonmilitaryWages (Line None)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _primaryNonmilitaryWages;
+#region decimal AreBothResidentOfSameState (Line none)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _areBothResidentOfSameState;
 /// <summary>
 /// Taxpayer's nonmilitary wage allocated to nonresident state (Calculatable)
 /// Reference Number RIMSRRAQ3Tp 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Taxpayer's nonmilitary wage allocated to nonresident state"), Category("Category1"), ReferenceNumber("RIMSRRAQ3Tp"), LineNumber("None")]
-public decimal PrimaryNonmilitaryWages { get { return _primaryNonmilitaryWages.Calculate(PrimaryNonmilitaryWages_Calculation); } }
-private decimal PrimaryNonmilitaryWages_Calculation()
+[Description("Taxpayer's nonmilitary wage allocated to nonresident state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ3Tp"), LineNumber("none")]
+public decimal AreBothResidentOfSameState { get { return _areBothResidentOfSameState.Calculate(AreBothResidentOfSameState_Calculation); } }
+private decimal AreBothResidentOfSameState_Calculation()
 {
 //*//'IF [FDAWCalc:AW9] = 0
 //*//        RETURN [FDAWCalc:PYNRAW3] 
@@ -73,18 +73,18 @@ private decimal PrimaryNonmilitaryWages_Calculation()
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion PrimaryNonmilitaryWages
+#endregion AreBothResidentOfSameState
 
-#region decimal SecondaryNonmilitaryWages (Line None)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _secondaryNonmilitaryWages;
+#region decimal PrimaryNonmilitaryWages (Line none)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _primaryNonmilitaryWages;
 /// <summary>
 /// Spouse's nonmilitary wage allocated to nonresident state (Calculatable)
 /// Reference Number RIMSRRAQ3Sp 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Spouse's nonmilitary wage allocated to nonresident state"), Category("Category1"), ReferenceNumber("RIMSRRAQ3Sp"), LineNumber("None")]
-public decimal SecondaryNonmilitaryWages { get { return _secondaryNonmilitaryWages.Calculate(SecondaryNonmilitaryWages_Calculation); } }
-private decimal SecondaryNonmilitaryWages_Calculation()
+[Description("Spouse's nonmilitary wage allocated to nonresident state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ3Sp"), LineNumber("none")]
+public decimal PrimaryNonmilitaryWages { get { return _primaryNonmilitaryWages.Calculate(PrimaryNonmilitaryWages_Calculation); } }
+private decimal PrimaryNonmilitaryWages_Calculation()
 {
 //*//'IF [FDAWCalc:AW10] = 0
 //*//         RETURN [FDAWCalc:PYNRAW4] 
@@ -93,20 +93,39 @@ private decimal SecondaryNonmilitaryWages_Calculation()
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion SecondaryNonmilitaryWages
+#endregion PrimaryNonmilitaryWages
 
-#region bool IsPrimaryQualified (Line None)
-internal Calculatable<bool> _isPrimaryQualified;
+#region bool SecondaryNonmilitaryWages (Line none)
+internal Calculatable<bool> _secondaryNonmilitaryWages;
 /// <summary>
 /// Taxpayer qualifies (Calculatable)
 /// Reference Number RIMSRRAQTp 
 /// </summary>
-[Description("Taxpayer qualifies"), Category("Category1"), ReferenceNumber("RIMSRRAQTp"), LineNumber("None")]
+[Description("Taxpayer qualifies"), Category("1 - Category"), ReferenceNumber("RIMSRRAQTp"), LineNumber("none")]
+public bool SecondaryNonmilitaryWages { get { return _secondaryNonmilitaryWages.Calculate(SecondaryNonmilitaryWages_Calculation); } }
+private bool SecondaryNonmilitaryWages_Calculation()
+{
+//*//'IF [AmountExcludable] = YES AND 
+//*//      [IsSecondaryNonmilitary] = YES AND
+//*//      [AreBothResidentOfSameState] > 0
+//*//         RETURN YES; 
+//*// ELSE RETURN NO'
+return default(bool);
+}
+#endregion SecondaryNonmilitaryWages
+
+#region bool IsPrimaryQualified (Line none)
+internal Calculatable<bool> _isPrimaryQualified;
+/// <summary>
+/// Spouse qualifies (Calculatable)
+/// Reference Number RIMSRRAQSp 
+/// </summary>
+[Description("Spouse qualifies"), Category("1 - Category"), ReferenceNumber("RIMSRRAQSp"), LineNumber("none")]
 public bool IsPrimaryQualified { get { return _isPrimaryQualified.Calculate(IsPrimaryQualified_Calculation); } }
 private bool IsPrimaryQualified_Calculation()
 {
-//*//'IF [IsPrimaryNonmilitary] = YES AND 
-//*//      [AreBothResidentOfSameState] = YES AND
+//*//'IF [IsPrimaryNonmilitary] = YES AND
+//*//      [IsSecondaryNonmilitary] = YES AND 
 //*//      [PrimaryNonmilitaryWages] > 0
 //*//         RETURN YES; 
 //*// ELSE RETURN NO'
@@ -114,94 +133,75 @@ return default(bool);
 }
 #endregion IsPrimaryQualified
 
-#region bool IsSecondaryQualified (Line None)
+#region bool IsSecondaryQualified (Line none)
 internal Calculatable<bool> _isSecondaryQualified;
 /// <summary>
-/// Spouse qualifies (Calculatable)
-/// Reference Number RIMSRRAQSp 
+/// Pre - qualifying MSRRA (Calculatable)
+/// Reference Number RIMSRRAPreQ 
 /// </summary>
-[Description("Spouse qualifies"), Category("Category1"), ReferenceNumber("RIMSRRAQSp"), LineNumber("None")]
+[Description("Pre - qualifying MSRRA"), Category("1 - Category"), ReferenceNumber("RIMSRRAPreQ"), LineNumber("none")]
 public bool IsSecondaryQualified { get { return _isSecondaryQualified.Calculate(IsSecondaryQualified_Calculation); } }
 private bool IsSecondaryQualified_Calculation()
 {
-//*//'IF [IsSecondaryNonmilitary] = YES AND
-//*//      [AreBothResidentOfSameState] = YES AND 
-//*//      [SecondaryNonmilitaryWages] > 0
-//*//         RETURN YES; 
+//*//'IF MFJ AND 
+//*//      ([SecondaryNonmilitaryWages] = YES OR [IsPrimaryQualified] = YES)
+//*//         RETURN YES;
 //*// ELSE RETURN NO'
 return default(bool);
 }
 #endregion IsSecondaryQualified
 
-#region bool IsPreQualifying (Line None)
-internal Calculatable<bool> _isPreQualifying;
-/// <summary>
-/// Pre - qualifying MSRRA (Calculatable)
-/// Reference Number RIMSRRAPreQ 
-/// </summary>
-[Description("Pre - qualifying MSRRA"), Category("Category1"), ReferenceNumber("RIMSRRAPreQ"), LineNumber("None")]
-public bool IsPreQualifying { get { return _isPreQualifying.Calculate(IsPreQualifying_Calculation); } }
-private bool IsPreQualifying_Calculation()
-{
-//*//'IF MFJ AND 
-//*//      ([IsPrimaryQualified] = YES OR [IsSecondaryQualified] = YES)
-//*//         RETURN YES;
-//*// ELSE RETURN NO'
-return default(bool);
-}
-#endregion IsPreQualifying
-
-#region string QualifyingPersonName (Line None)
-internal Calculatable<string> _qualifyingPersonName;
+#region string IsPreQualifying (Line none)
+internal Calculatable<string> _isPreQualifying;
 /// <summary>
 /// Qualifying person's name (Calculatable)
 /// Reference Number RIMSRRAQName 
 /// </summary>
-[Description("Qualifying person's name"), Category("Category1"), ReferenceNumber("RIMSRRAQName"), LineNumber("None")]
-public string QualifyingPersonName { get { return _qualifyingPersonName.Calculate(QualifyingPersonName_Calculation); } }
-private string QualifyingPersonName_Calculation()
+[Description("Qualifying person's name"), Category("1 - Category"), ReferenceNumber("RIMSRRAQName"), LineNumber("none")]
+public string IsPreQualifying { get { return _isPreQualifying.Calculate(IsPreQualifying_Calculation); } }
+private string IsPreQualifying_Calculation()
 {
-//*//'IF [IsPrimaryQualified] = YES
+//*//'IF [SecondaryNonmilitaryWages] = YES
 //*//         RETURN <TPName>; 
-//*// ELSE IF [IsSecondaryQualified] = YES
+//*// ELSE IF [IsPrimaryQualified] = YES
 //*//        RETURN <SPName>'
 return default(string);
 }
-#endregion QualifyingPersonName
+#endregion IsPreQualifying
 
-#region bool? DoYouMeetConditions (Line None)
-internal Calculatable<bool?> _doYouMeetConditions;
+#region bool? QualifyingPersonName (Line none)
+internal Calculatable<bool?> _qualifyingPersonName;
 /// <summary>
 /// Do you meet all of the following conditions? (Calculatable)
 /// Reference Number RIMSRRAQ 
 /// </summary>
-[Description("Do you meet all of the following conditions?"), Category("Category1"), ReferenceNumber("RIMSRRAQ"), LineNumber("None")]
-public bool? DoYouMeetConditions { get { return _doYouMeetConditions.Calculate(DoYouMeetConditions_Calculation); } }
-public bool DoYouMeetConditions_Value { get { return DoYouMeetConditions.GetValueOrDefault();}}
-private bool? DoYouMeetConditions_Calculation()
+[Description("Do you meet all of the following conditions?"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ"), LineNumber("none")]
+public bool? QualifyingPersonName { get { return _qualifyingPersonName.Calculate(QualifyingPersonName_Calculation); } }
+public bool QualifyingPersonName_Value { get { return QualifyingPersonName.GetValueOrDefault();}}
+private bool? QualifyingPersonName_Calculation()
 {
 //*//direct entry in UI
 return default(bool);
 }
-#endregion DoYouMeetConditions
+#endregion QualifyingPersonName
 
-#region decimal AmountExcludable (Line None)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _amountExcludable;
+#region decimal DoYouMeetConditions (Line none)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _doYouMeetConditions;
 /// <summary>
 /// MSRRA excludable amount (Calculatable)
 /// Reference Number RIMSRRAQAmt 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("MSRRA excludable amount"), Category("Category1"), ReferenceNumber("RIMSRRAQAmt"), LineNumber("None")]
-public decimal AmountExcludable { get { return _amountExcludable.Calculate(AmountExcludable_Calculation); } }
-private decimal AmountExcludable_Calculation()
+[Description("MSRRA excludable amount"), Category("1 - Category"), ReferenceNumber("RIMSRRAQAmt"), LineNumber("none")]
+public decimal DoYouMeetConditions { get { return _doYouMeetConditions.Calculate(DoYouMeetConditions_Calculation); } }
+private decimal DoYouMeetConditions_Calculation()
 {
-//*//'IF [DoYouMeetConditions] = YES AND [IsPrimaryQualified] = YES
-//*//          RETURN [PrimaryNonmilitaryWages]; 
-//*// ELSE IF [DoYouMeetConditions] = YES AND [IsSecondaryQualified] = YES
-//*//          RETURN [SecondaryNonmilitaryWages];
+//*//'IF [QualifyingPersonName] = YES AND [SecondaryNonmilitaryWages] = YES
+//*//          RETURN [AreBothResidentOfSameState]; 
+//*// ELSE IF [QualifyingPersonName] = YES AND [IsPrimaryQualified] = YES
+//*//          RETURN [PrimaryNonmilitaryWages];
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion AmountExcludable
+#endregion DoYouMeetConditions
 

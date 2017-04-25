@@ -1,4 +1,4 @@
-﻿using ExcelSpecExtractor;
+﻿using Ihx;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace ExcelSpecExtractor
+namespace Ihx
 {
     class DataTranslator
     {
@@ -30,7 +30,7 @@ namespace ExcelSpecExtractor
         {
 
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "ExcelSpecExtractor.Snippets." + filename;
+            var resourceName = "Ihx.Snippets." + filename;
             //do you see me?
             return assembly.GetManifestResourceStream(resourceName);
 
@@ -87,7 +87,7 @@ namespace ExcelSpecExtractor
             codeStr = Regex.Replace(codeStr, @" {2,}", "");
 
             //insert values into snippet
-            codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationTaxAnalysisString);
+            codeStr = codeStr.Replace("//TODO: Enter code for $FieldName$ calculation", _txtLineData.calculationTranslation);
             codeStr = codeStr.Replace("$FieldName$", _txtLineData.devFieldName);
             codeStr = codeStr.Replace("$Negative$", _txtLineData.allowNegativeString);
             codeStr = codeStr.Replace("$LineNumber$", _txtLineData.lineNumber);

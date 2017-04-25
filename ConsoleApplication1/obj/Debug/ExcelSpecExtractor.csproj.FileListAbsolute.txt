@@ -12,3 +12,7 @@ C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\bin\Debug
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\bin\Debug\ExcelSpecExtractor.exe
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ExcelSpecExtractor.exe
 C:\Users\michael.gracia\Desktop\ExcelSpecExtractor\ConsoleApplication1\obj\Debug\ExcelSpecExtractor.csprojResolveAssemblyReference.cache
+C:\Users\michael.gracia\Desktop\IHateExcel\ConsoleApplication1\bin\Debug\ExcelSpecExtractor.exe.config
+C:\Users\michael.gracia\Desktop\IHateExcel\ConsoleApplication1\obj\Debug\ExcelSpecExtractor.exe
+C:\Users\michael.gracia\Desktop\IHateExcel\ConsoleApplication1\obj\Debug\ExcelSpecExtractor.pdb
+C:\Users\michael.gracia\Desktop\IHateExcel\ConsoleApplication1\bin\Debug\ihx.exe.config

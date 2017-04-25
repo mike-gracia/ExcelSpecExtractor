@@ -5,17 +5,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ExcelSpecExtractor;
+using Ihx;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Reflection;
 
-namespace ExcelSpecExtractor
+namespace Ihx
 {
-    public class ExcelSpecExtractor
+    public class Ihx
     {
         static int categoryIndex = 1;
-        static string category = "Category1";
+        private static readonly string defaultCategory = "1 - Category";
+        static string category = defaultCategory;
+
         static string jsonFileLocation = @"../../fields.json";
         const int excelCellCount = 7;
 
@@ -44,7 +46,7 @@ namespace ExcelSpecExtractor
 
         static void Main(string[] args)
         {
-
+            
             string inputFileStr = @"../../input.txt";
             string outputFileStr = @"../../output.txt";
             
@@ -75,12 +77,6 @@ namespace ExcelSpecExtractor
                 {
                     LineData ld = new LineData(lineValues, category);
                     LineDataList.Add(ld);
-                    DataTranslator dt = new DataTranslator(ld);
-
-
-
-                    //outFile.WriteLine(dt.GetCode);
-                    //jsonFile.WriteLine(JsonConvert.SerializeObject(ld) + ",");
                 }
                 else if (lineValues.Length == excelCellCount - 1 && lineValues[0] != string.Empty)   //FieldName is missing
                 {
@@ -88,8 +84,7 @@ namespace ExcelSpecExtractor
                     ConsoleExtensions.PrintConsoleWarning(currentTextLine, "No developer name");
                     //Console.WriteLine("Line {0} - Warning!... {1} has no Developer created name", currentRow, lineValues[0]);
                     LineData ld = new LineData(lineValues, category, false);
-                   
-
+                    LineDataList.Add(ld);
                 }
                 else
                 {
@@ -100,10 +95,10 @@ namespace ExcelSpecExtractor
                         + " actual cell count: " + lineValues.Length);
                 }
 
+                if (category == defaultCategory)
+                    ConsoleExtensions.PrintConsoleWarning(currentTextLine, "Using default category");
 
                 currentTextLine++;
-
-
             }
 
 
@@ -116,8 +111,7 @@ namespace ExcelSpecExtractor
 
                 foreach(LineData innerLd in LineDataList)
                 {
-
-                   innerLd.calculationTaxAnalysisString =  innerLd.calculationTaxAnalysisString.Replace(find, replace);
+                    innerLd.calculationTranslation = innerLd.calculationTranslation.Replace(find, replace);
                 }
             }
 
