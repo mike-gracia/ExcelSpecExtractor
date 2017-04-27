@@ -15,7 +15,7 @@ namespace Ihx
 {
     class DataTranslator
     {
-        private string snippetDir = "~/Snippets/";
+        private string snippetDir = "~/Snippets/";  //TODO remove
         string eol = Environment.NewLine;
         private string codeString;
 
@@ -103,12 +103,21 @@ namespace Ihx
             if (_txtLineData.dataType == DataType.Unknown) codeStr = codeStr.Replace("$DataType$", _txtLineData.dataTypeString);
             codeStr = codeStr.Replace("$end$", "");
 
+
+            //special cases for ratio snipped because it is a snowflake
+            if (_txtLineData.dataType == DataType.Ratio)
+            {
+                codeStr = codeStr.Replace("$Category$", _txtLineData.categoryString);
+                codeStr = codeStr.Replace("$AttributeDescription$", _txtLineData.description);
+                
+            }
+
             return codeStr;
         }
 
         public string GetCode
         {
-            get { return this.codeString; }
+            get { return codeString; }
         }
 
         //old stuff no longer used

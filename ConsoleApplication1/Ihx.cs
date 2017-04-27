@@ -49,7 +49,8 @@ namespace Ihx
             
             string inputFileStr = @"../../input.txt";
             string outputFileStr = @"../../output.txt";
-            
+
+            ConsoleExtensions.Initizialize();
 
             if (args != null && args.Length > 0)
             {
@@ -57,9 +58,8 @@ namespace Ihx
             }
 
 
+            
 
-
-            //category = GetCategoryFromUser();
             string rowLines = GetAndSanitizeInputFromTxt(File.ReadAllText(inputFileStr));
             File.WriteAllText(inputFileStr, rowLines);
             
@@ -113,13 +113,34 @@ namespace Ihx
                 {
                     innerLd.calculationTranslation = innerLd.calculationTranslation.Replace(find, replace);
                 }
+
+            }
+
+
+            //aw translation test
+            string line2;
+            foreach(LineData outterLd in LineDataList)
+            {
+                System.IO.StreamReader awFile = new System.IO.StreamReader("../../aw.txt");
+                while ((line2 = awFile.ReadLine()) != null)
+                {
+                    string[] unit = line2.Split(':');
+                    string findAw = ":" + unit[0] + "]";
+                    string findPynr = ":PYNR" + unit[0] + "]";
+                    string replaceAw =   "(" + unit[1] + ")]";
+                    string replacePynr = "(" + unit[1] + ")]";
+
+                    //outterLd.calculationTranslation = outterLd.calculationTranslation.Replace(unit[0], unit[1]);
+                    outterLd.calculationTranslation = Regex.Replace(outterLd.calculationTranslation,  findAw, findAw + replaceAw);
+                    outterLd.calculationTranslation = Regex.Replace(outterLd.calculationTranslation, findPynr, findPynr + replacePynr);
+                }
             }
 
             //print warnings and errors
-            foreach(LineData ld in LineDataList)
+            foreach (LineData ld in LineDataList)
             {
                 if (ld.calculationTaxAnalysisString.ToLower().Contains("direct entry") && !ld.isChangeable)
-                    ConsoleExtensions.PrintConsoleWarning(100, ld.referenceId + " Contains phrase 'direct entry' ");
+                    ConsoleExtensions.PrintConsoleWarning(100, ld.devFieldName + " Contains phrase 'direct entry' ");
             }
 
 
@@ -152,7 +173,7 @@ namespace Ihx
         }
 
 
-
+        //abandoned
         public static string GetCategoryFromUser()
         {
             Console.WriteLine("Enter a Category:");
@@ -167,7 +188,7 @@ namespace Ihx
                 //string message = "Changing category from {0} to {1}", category;
                 //ConsoleExtensions.PrintConsoleMessage(_lineNumber, message);
                 Console.WriteLine("Line {0} - Changing category from {1} to {2}", _lineNumber, category, newCategory);
-                category = categoryIndex++ + " - " + newCategory;
+                category = newCategory;
             }
         }
 

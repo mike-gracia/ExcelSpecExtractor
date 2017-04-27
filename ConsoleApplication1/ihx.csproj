@@ -101,6 +101,7 @@
     <EmbeddedResource Include="Snippets\InsertValidationTypeClass.snippet" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aw.txt" />
     <Content Include="cSharpInput.txt" />
     <Content Include="output.txt" />
     <Content Include="input.txt" />

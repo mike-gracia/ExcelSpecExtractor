@@ -1,1 +1,23 @@
-﻿
+﻿		Nonresident Allocation of Business Income to Rhode Island												
+														
+		Do you have Rhode Island business income that is not separate and distinct from that of other states that needs to allocated?												
+		oYes oNo												RISchIIBusIncAllocate
+														
+		Select the Business Income items that need to be allocated:												
+			□	Interest and Dividends from Federal Form 1040 Lines 8a or 9a										RISchIIIntDivAllocate
+			□	Business Income from Federal Form 1040, Line 12										RISchIISchCAllocate
+			□	Sale or exchange of property from Federal Form 1040, Lines 13 or 14										RISchIISalePropAllocate
+			□	Rents, Royalties, etc. from Federal Form 1040, Line 17										RISchIIRentsAllocate
+			□	Farm Income from Federal Form 1040, Line 18										RISchIIFarmIncAllocate
+			□	Miscellaneous Income from Federal Form 1040, Lines 10, 11, 19, 20b and 21										RISchIIMiscIncAllocate
+														
+		Enter the amounts below that relate to all businesses:												
+		Description						Rhode Island Amount	Total Amount					
+		Real property						$: [RISch2RPRI]	$: [RISch2RPTot]					
+		Real Property rented from others (8 x annual net rental rate)						$: [RISch2RentRI]	$: [RISch2RentTot]					
+		Tangible Personal property owned						$: [RISch2TanProRI]	$: [RISch2TanPropTot]					
+		Wages, salaries and other personal service compensation paid during the year						$: [RISch2BWRI]	$: [RISch2BWTot]					
+		Gross sales of merchandise or charges for services during the year						$: [RISch2GSRI]	$: [RISch2GSB]					
+														
+														
+														

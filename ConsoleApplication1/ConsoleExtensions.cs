@@ -8,6 +8,13 @@ namespace Ihx
 {
     public static class ConsoleExtensions
     {
+
+        public static void Initizialize()
+        {
+            Console.WindowWidth = 100;
+        }
+
+
         public static void PrintConsoleWarning(int lineNumber, string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -21,6 +28,7 @@ namespace Ihx
             Console.WriteLine("Line {0} - {1}", lineNumber.ToString("D3"), message);
             Console.ResetColor();
         }
+
 
     }
 }

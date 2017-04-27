@@ -1,0 +1,589 @@
+AW1001	N/A	Money (non-negative)	Total Wages
+AW1	N/A	Money (non-negative)	Primary Wages
+AW2	N/A	Money (non-negative)	Secondary Wages
+AW1003	N/A	Money (non-negative)	Total W2 Wages
+AW3	N/A	Money (non-negative)	Primary W2 Wages
+AW4	N/A	Money (non-negative)	Secondary W2 Wages
+AW1005	N/A	Money (non-negative)	Total Statutory Wages
+AW5	N/A	Money (non-negative)	Primary Statutory Wages
+AW6	N/A	Money (non-negative)	Secondary Statutory Wages
+AW1007	N/A	Money (non-negative)	Total Nontaxable Combat Pay
+AW7	N/A	Money (non-negative)	Primary Nontaxable Combat Pay
+AW8	N/A	Money (non-negative)	Secondary Nontaxable Combat Pay
+AW1009	N/A	Money (non-negative)	Total Military Wages
+AW9	N/A	Money (non-negative)	Primary Military Wages
+AW10	N/A	Money (non-negative)	Secondary Military Wages
+AW1011	N/A	Money (non-negative)	Total Other Wages
+AW11	N/A	Money (non-negative)	Primary Other Wages
+AW12	N/A	Money (non-negative)	Secondary Other Wages
+AW1013	N/A	Money (non-negative)	Total 1099R Disability
+AW13	N/A	Money (non-negative)	Primary 1099R Disability
+AW14	N/A	Money (non-negative)	Secondary 1099R Disability
+AW1015	N/A	Money (non-negative)	Total FEC Wages
+AW15	N/A	Money (non-negative)	Primary FEC Wages
+AW16	N/A	Money (non-negative)	Secondary FEC Wages
+AW1017	N/A	Money (non-negative)	Total W-2GU Wages
+AW17	N/A	Money (non-negative)	Primary W-2GU Wages
+AW18	N/A	Money (non-negative)	Secondary W-2GU Wages
+AW1019	N/A	Money (non-negative)	Total W-2VI Wages
+AW19	N/A	Money (non-negative)	Primary W-2VI Wages
+AW20	N/A	Money (non-negative)	Secondary W-2VI Wages
+AW1021	N/A	Money (non-negative)	Total W-2AS Wages
+AW21	N/A	Money (non-negative)	Primary W-2AS Wages
+AW22	N/A	Money (non-negative)	Secondary W-2AS Wages
+AW1023	N/A	Money (non-negative)	Total Household Employee Wages
+AW23	N/A	Money (non-negative)	Primary Household Employee Wages
+AW24	N/A	Money (non-negative)	Secondary Household Employee Wages
+AW1025	N/A	Money (non-negative)	Total Taxable Scholarships and Grants
+AW25	N/A	Money (non-negative)	Primary Taxable Scholarships and Grants
+AW26	N/A	Money (non-negative)	Secondary Taxable Scholarships and Grants
+AW1027	N/A	Money (non-negative)	Total Wages incorrectly treated as Independent Contractor (Form 8919)
+AW27	N/A	Money (non-negative)	Primary Wages incorrectly treated as Independent Contractor (Form 8919)
+AW28	N/A	Money (non-negative)	Secondary Wages incorrectly treated as Independent Contractor (Form 8919)
+AW1029	N/A	Money (non-negative)	Total Excess Salary Deferrals
+AW29	N/A	Money (non-negative)	Primary Excess Salary Deferrals
+AW30	N/A	Money (non-negative)	Secondary Excess Salary Deferrals
+AW1031	N/A	Money (non-negative)	Total Nonqualified plans
+AW31	N/A	Money (non-negative)	Primary Nonqualified plans
+AW32	N/A	Money (non-negative)	Secondary Nonqualified plans
+AW1033	N/A	Money (non-negative)	Total Excess Employee Reimbursements (Form 2106)
+AW33	N/A	Money (non-negative)	Primary Excess Employee Reimbursements (Form 2106)
+AW34	N/A	Money (non-negative)	Secondary Excess Employee Reimbursements (Form 2106)
+AW1035	N/A	Money (non-negative)	Total Excess Dependent Care Benefits (Form 2441)
+AW35	N/A	Money (non-negative)	Primary Excess Dependent Care Benefits (Form 2441)
+AW36	N/A	Money (non-negative)	Secondary Excess Dependent Care Benefits (Form 2441)
+AW1037	N/A	Money (non-negative)	Total Excess Moving Expense Reimbursements (Form 3903)
+AW37	N/A	Money (non-negative)	Primary Excess Moving Expense Reimbursements (Form 3903)
+AW38	N/A	Money (non-negative)	Secondary Excess Moving Expense Reimbursements (Form 3903)
+AW1039	N/A	Money (non-negative)	Total Taxable Adoption Benefits (Form 8839)
+AW39	N/A	Money (non-negative)	Primary Taxable Adoption Benefits (Form 8839)
+AW40	N/A	Money (non-negative)	Secondary Taxable Adoption Benefits (Form 8839)
+AW1041	N/A	Money (non-negative)	Total Excess minister housing allowance
+AW41	N/A	Money (non-negative)	Primary Excess minister housing allowance
+AW42	N/A	Money (non-negative)	Secondary Excess minister housing allowance
+AW1043	N/A	Money (non-negative)	Total Excess minister utility allowance
+AW43	N/A	Money (non-negative)	Primary Excess minister utility allowance
+AW44	N/A	Money (non-negative)	Secondary Excess minister utility allowance
+AW1043-A	N/A	Money (non-negative)	Total Tips from Form 4137
+AW43-A	N/A	Money (non-negative)	Primary Tips from Form 4137
+AW44-A	N/A	Money (non-negative)	Secondary Tips from Form 4137
+AW1043B	N/A	Money (non-negative)	Total clergy wages
+AW43B	N/A	Money (non-negative)	Primary clergy wages
+AW44B	N/A	Money (non-negative)	Secondar clergy wages
+AW1043C	N/A	Money (non-negative)	Total church employee wages
+AW43C	N/A	Money (non-negative)	Primary church employee wages
+AW44C	N/A	Money (non-negative)	Secondar church employee wages
+AW1043D	N/A	Money (non-negative)	Total Prinson wages
+AW43D	N/A	Money (non-negative)	Primary Prison wages
+AW44D	N/A	Money (non-negative)	Secondar Prison wages
+AW1045	N/A	Money (non-negative)	Total Federal Taxable Interest
+AW45	N/A	Money (non-negative)	Primary Federal Taxable Interest
+AW46	N/A	Money (non-negative)	Secondary Federal Taxable Interest
+AW1047	N/A	Money (non-negative)	Total US Obligations Interest
+AW47	N/A	Money (non-negative)	Primary US Obligations Interest
+AW48	N/A	Money (non-negative)	Secondary US Obligations Interest
+AW1049	N/A	Money (non-negative)	Total Federal Exempt Interest
+AW49	N/A	Money (non-negative)	Primary Federal Exempt Interest
+AW50	N/A	Money (non-negative)	Secondary Federal Exempt Interest
+AW1051	N/A	Money (non-negative)	Total Resident State Muni
+AW51	N/A	Money (non-negative)	Primary Resident State Muni
+AW52	N/A	Money (non-negative)	Secondary Resident State Muni
+AW1053	N/A	Money (non-negative)	Total nonresident muni interest plus Other Federal Exempt Interest
+AW53	N/A	Money (non-negative)	Primary nonresident muni plus Other Federal Exempt Interest
+AW54	N/A	Money (non-negative)	Secondary nonresident muni plus Other Federal Exempt Interest
+AW1055	N/A	Money (non-negative)	Total Federal Taxable Dividends
+AW55	N/A	Money (non-negative)	Primary Federal Taxable Dividends
+AW56	N/A	Money (non-negative)	Secondary Federal Taxable Dividends
+AW1057	N/A	Money (non-negative)	Total US Obligations Dividends
+AW57	N/A	Money (non-negative)	Primary US Obligations Dividends
+AW58	N/A	Money (non-negative)	Secondary US Obligations Dividends
+AW1059	N/A	Money (non-negative)	Total Qualified dividends
+AW59	N/A	Money (non-negative)	Primary Qualified dividends
+AW60	N/A	Money (non-negative)	Secondary Qualified dividends
+AW1061	N/A	Money (non-negative)	Total Capital Gain Distributions
+AW61	N/A	Money (non-negative)	Primary Capital Gain Distributions
+AW62	N/A	Money (non-negative)	Secondary Capital Gain Distributions
+AW1063	N/A	Money (non-negative)	Total Taxable State Refunds
+AW63	N/A	Money (non-negative)	Primary Taxable State Refunds
+AW64	N/A	Money (non-negative)	Secondary Taxable State Refunds
+AW1065	N/A	Money (non-negative)	Total Alimony Received
+AW65	N/A	Money (non-negative)	Primary Alimony Received
+AW66	N/A	Money (non-negative)	Secondary Alimony Received
+AW1067	N/A	Money (allow negative)	Total Business Income/Loss
+AW67	N/A	Money (allow negative)	Primary Business Income/Loss
+AW68	N/A	Money (allow negative)	Secondary Business Income/Loss
+AW1067-a	N/A	Money (allow negative)	Total Business Income/Loss – not statutory
+AW67-a	N/A	Money (allow negative)	Primary Business Income/Loss – not statutory
+AW68-a	N/A	Money (allow negative)	Secondary Business Income/Loss – not statutory
+AW1067c	N/A	Money (non-negative)	Total Clergy and Religious worker SE income
+AW67c	N/A	Money (non-negative)	Primary Clergy and Religious worker SE income
+AW68c	N/A	Money (non-negative)	Secondary Clergy and Religious worker SE income
+AW1069	N/A	Money (allow negative)	Total Capital Gain/Loss
+AW69	N/A	Money (allow negative)	Primary Capital Gain/Loss
+AW70	N/A	Money (allow negative)	Secondary Capital Gain/Loss
+AW1069a1		Money (allow negative)	Total Short term capital gain from combined 1099B
+AW69a1		Money (allow negative)	Short term capital gain from combined 1099B for primary taxpayer
+AW70a1		Money (allow negative)	Short term capital gain from combined 1099B for secondary taxpayer
+AW1069a		Money (allow negative)	Total Short term capital gain from Form 8949 
+AW69a		Money (allow negative)	Short term capital gain from Form 8949 for primary taxpayer
+AW70a		Money (allow negative)	Short term capital gain from Form 8949 for secondary taxpayer
+AW1069b		Money (allow negative)	Total Short term capital gain from Form 6252 
+AW69b		Money (allow negative)	Short term capital gain from Form 6252 Primary Taxpayer
+AW70b		Money (allow negative)	Short term capital gain from Form 6252 Secondary Taxpayer
+AW1069c		Money (allow negative)	Total Short term capital  gain from Form 4684 
+AW69c		Money (allow negative)	Short term capital  gain from Form 4684 Primary Taxpayer
+AW70c		Money (allow negative)	Short term capital  gain from Form 4684 Secondary Taxpayer
+AW1069d		Money (allow negative)	Total Short term capital gain from Form 6781 
+AW69d		Money (allow negative)	Short term capital gain from Form 6781 Primary Taxpayer
+AW70d		Money (allow negative)	Short term capital gain from Form 6781 Secondary Taxpayer
+AW1069e		Money (allow negative)	Total Short term capital gain from Form 8824 
+AW69e		Money (allow negative)	Short term capital gain from Form 8824 Primary Taxpayer
+AW70e		Money (allow negative)	Short term capital gain from Form 8824 Secondary Taxpayer
+AW1069f		Money (allow negative)	Total Net short term capital gain or loss from S corporation Schedule K-1 
+AW69f		Money (allow negative)	Net short term capital gain or loss from S corporation Schedule K-1 Primary Taxpayer
+AW70f		Money (allow negative)	Net short term capital gain or loss from S corporation Schedule K-1 Secondary Taxpayer
+AW1069g		Money (allow negative)	Total Net short term capital gain or loss from partnership Schedule K-1 
+AW69g		Money (allow negative)	Net short term capital gain or loss from partnership Schedule K-1 Primary Taxpayer
+AW70g		Money (allow negative)	Net short term capital gain or loss from partnership Schedule K-1 Secondary Taxpayer
+AW1069h		Money (allow negative)	Total Net short term capital gain or loss from estates and trust Schedule K-1
+AW69h		Money (allow negative)	Net short term capital gain or loss from estates and trust Schedule K-1 Primary Taxpayer
+AW70h		Money (allow negative)	Net short term capital gain or loss from estates and trust Schedule K-1 Secondary Taxpayer
+AW1069i		Money (allow negative)	Total Short term capital gain carryover
+AW69i		Money (allow negative)	Short term capital gain carryover for taxpayer
+AW70i		Money (allow negative)	Short term capital gain carryover for spouse
+AW1069j1		Money (allow negative)	Total Long term capital gain from combined 1099B
+AW69j1		Money (allow negative)	Long term capital gain from combined 1099B for primary taxpayer
+AW70j1		Money (allow negative)	Long  term  capital gain from combined 1099B for secondary taxpayer
+AW1069j		Money (allow negative)	Total Long term capital gain from Form 8949
+AW69j		Money (allow negative)	Long term capital gain from Form 8949 for primary taxpayer
+AW70j		Money (allow negative)	Long  term  capital gain from Form 8949 for secondary taxpayer
+AW1069k		Money (allow negative)	Total Long term capital gain from Form 4797
+AW69k		Money (allow negative)	Long term capital gain from Form 4797 for primary taxpayer
+AW70k		Money (allow negative)	Long term capital gain from Form 4797 for secondary taxpayer
+AW1069l		Money (allow negative)	Total Long term capital gain from Form 2439 
+AW69l		Money (allow negative)	Long term capital gain from Form 2439 for primary taxpayer
+AW70l		Money (allow negative)	Long term capital gain from Form 2439 for secondary taxpayer
+AW1069m		Money (allow negative)	Total Long term capital gain from Form 6252
+AW69m		Money (allow negative)	Long term capital gain from Form 6252 for primary taxpayer
+AW70m		Money (allow negative)	Long term capital gain from Form 6252 for secondary taxpayer
+AW1069n		Money (allow negative)	Total Long term capital gain from Form 4684 
+AW69n		Money (allow negative)	Long term capital gain from Form 4684 for primary taxpayer
+AW70n		Money (allow negative)	Long term capital gain from Form 4684 for secondary taxpayer
+AW1069o		Money (allow negative)	Total Long term capital gain from Form 8824
+AW69o		Money (allow negative)	Long term capital gain from Form 8824 for primary taxpayer
+AW70o		Money (allow negative)	Long term capital gain from Form 8824 for secondary taxpayer
+AW1069p		Money (allow negative)	Total Net long term capital gain or loss from S corporation Schedule K-1 
+AW69p		Money (allow negative)	Net long term capital gain or loss from S corporation Schedule K-1 for primary taxpayer
+AW70p		Money (allow negative)	Net long term capital gain or loss from S corporation Schedule K-1 for secondary taxpayer
+AW1069q		Money (allow negative)	Total Net long term capital gain (loss) from partnership Schedule K-1 
+AW69q		Money (allow negative)	Net long term capital gain (loss) from partnership Schedule K-1 for primary taxpayer
+AW70q		Money (allow negative)	Net long term capital gain (loss) from partnership Schedule K-1 for secondary taxpayer
+AW1069r		Money (allow negative)	Total Net long term capital gain from trust and estate Schedule K-1 
+AW69r		Money (allow negative)	Net long term capital gain from trust and estate Schedule K-1 for primary taxpayer
+AW70r		Money (allow negative)	Net long term capital gain from trust and estate Schedule K-1 for secondary taxpayer
+AW1069s		Money (allow negative)	Total Long term capital loss carryover 
+AW69s		Money (allow negative)	Long term capital loss carryover for primary taxpayer
+AW70s		Money (allow negative)	Long term capital loss carryover for secondary taxpayer
+AW1071	N/A	Money (allow negative)	Total Other Gain/Loss
+AW71	N/A	Money (allow negative)	Primary Other Gain/Loss
+AW72	N/A	Money (allow negative)	Secondary Other Gain/Loss
+AW1073	N/A	Money (non-negative)	Total IRA Distribution
+AW73	N/A	Money (non-negative)	Primary Total IRA Distribution
+AW74	N/A	Money (non-negative)	Secondary Total IRA Distribution
+AW1075	N/A	Money (non-negative)	Total Taxable IRA Distribution
+AW75	N/A	Money (non-negative)	Primary Taxable IRA Distribution
+AW76	N/A	Money (non-negative)	Secondary Taxable IRA Distribution
+AW1077	N/A	Money (non-negative)	Total Pension
+AW77	N/A	Money (non-negative)	Primary Total Pension
+AW78	N/A	Money (non-negative)	Secondary Total Pension
+AW1079	N/A	Money (non-negative)	Total RR Tier II
+AW79	N/A	Money (non-negative)	Primary Total RR Tier II
+AW80	N/A	Money (non-negative)	Secondary Total RR Tier II
+AW1077a			Total Federal Government Employee Pension
+AW77a			Primary Total Federal Government Employee Pension
+AW78a			Secondary Total Federal Government Employee Pension
+AW1077b			Total Military Pension
+AW77b			Primary Total Military Pension
+AW78b			Secondary Total Military Pension
+AW1077c			Total State and Local Employee Pension
+AW77c			Primary Total State and Local Employee Pension
+AW78c			Secondary Total State and Local Employee Pension
+AW1077d			Total Police and Fireman Pension
+AW77d			Primary Total Police and Fireman Pension
+AW78d			Secondary Total Police and Fireman Pension
+AW1077e			Total Other  Pension
+AW77e			Primary Total Other  Pension
+AW78e			Secondary Total Other  Pension
+AW1081	N/A	Money (non-negative)	Total Taxable Pension
+AW81	N/A	Money (non-negative)	Primary Taxable Pension
+AW82	N/A	Money (non-negative)	Secondary Taxable Pension
+AW1083	N/A	Money (non-negative)	Total Taxable RR Tier II
+AW83	N/A	Money (non-negative)	Primary Taxable RR Tier II
+AW84	N/A	Money (non-negative)	Secondary Taxable RR Tier II
+AW1081a			Taxable Federal Government Employee Pension
+AW81a			Primary Taxable Federal Government Employee Pension
+AW82a			Secondary Taxable Federal Government Employee Pension
+AW1081b			Taxable Military Pension
+AW81b			Primary Taxable Military Pension
+AW82b			Primary Taxable Military Pension
+AW1081c			Taxable State and Local Employee Pension
+AW81c			Primary Taxable State and Local Employee Pension
+AW82c			Secondary Taxable State and Local Employee Pension
+AW1081d			Taxable Police and Firemen Pension
+AW81d			Primary Taxable Police and Firemen Pension
+AW82d			Secondary Taxable Police and Firemen Pension
+AW1081e			Taxable Other  Pension
+AW81e			Primary Taxable Other  Pension
+AW82e			Secondary Taxable Other  Pension
+AW1085	N/A	Money (allow negative)	Total Schedule E Total
+AW85	N/A	Money (allow negative)	Primary Schedule E Total
+AW86	N/A	Money (allow negative)	Secondary Schedule E Total
+AW1087	N/A	Money (allow negative)	Total Rent/Royalties
+AW87	N/A	Money (allow negative)	Primary Rents/Royalties
+AW88	N/A	Money (allow negative)	Secondary Rents/Royalties
+AW1089		Money (allow negative)	Total Partnerships 
+AW89	N/A	Money (allow negative)	Primary Partnerships
+AW90	N/A	Money (allow negative)	Secondary Partnerships
+AW1091	N/A	Money (allow negative)	Total Partner's SE Income
+AW91	N/A	Money (non-negative)	Primary Partner's SE Income
+AW92	N/A	Money (non-negative)	Secondary Partner's SE Income
+AW1093	N/A	Money (allow negative)	Total S Corps
+AW93	N/A	Money (allow negative)	Primary S Corps
+AW94	N/A	Money (allow negative)	Secondary S Corps
+AW1095	N/A	Money (allow negative)	Total Estate/Trusts
+AW95	N/A	Money (allow negative)	Primary Estates/Trusts
+AW96	N/A	Money (allow negative)	Secondary Estates/Trusts 
+AW1097	N/A	Money (allow negative)	Total REMICs
+AW97	N/A	Money (allow negative)	Primary REMICs
+AW98	N/A	Money (allow negative)	Secondary REMICs
+AW1099	N/A	Money (allow negative)	Total Farm Rental
+AW99	N/A	Money (allow negative)	Primary Farm Rental
+AW100	N/A	Money (allow negative)	Secondary Farm Rental
+AW1101	N/A	Money (allow negative)	Total Farm Income/Loss
+AW101	N/A	Money (allow negative)	Primary Farm Income/Loss
+AW102	N/A	Money (allow negative)	Secondary Farm Income/Loss
+AW1103	N/A	Money (non-negative)	Total Unemployment Compensation
+AW103	N/A	Money (non-negative)	Primary Unemployment Compensation
+AW104	N/A	Money (non-negative)	Secondary Unemployment Compensation
+AW1105	N/A	Money (non-negative)	Total Social Security
+AW105	N/A	Money (non-negative)	Primary Total Social Security
+AW106	N/A	Money (non-negative)	Secondary Total Social Security
+AW1107	N/A	Money (non-negative)	Total RR Tier I
+AW107	N/A	Money (non-negative)	Primary Total RR Tier I
+AW108	N/A	Money (non-negative)	Secondary Total RR Tier I
+AW1109	N/A	Money (non-negative)	Total Taxable Social Security
+AW109	N/A	Money (non-negative)	Primary Taxable Social Security
+AW110	N/A	Money (non-negative)	Secondary Taxable Social Security
+AW1111	N/A	Money (non-negative)	Total Taxable RR Tier I
+AW111	N/A	Money (non-negative)	Primary Taxable RR Tier I
+AW112	N/A	Money (non-negative)	Secondary Taxable RR Tier I
+AW1113	N/A	Money (allow negative)	Total Other Income
+AW113	N/A	Money (allow negative)	Primary Other Income
+AW114	N/A	Money (allow negative)	Secondary Other Income
+AW1115	N/A	Money (non-negative)	Total Gambling W2G and Other
+AW115	N/A	Money (non-negative)	Primary Gambling W2G and Other
+AW116	N/A	Money (non-negative)	Secondary Gambling W2G and Other
+AW1117	N/A	Money (non-negative)	Total In-State Lottery
+AW117	N/A	Money (non-negative)	Primary In-State Lottery
+AW118	N/A	Money (non-negative)	Secondary In-State Lottery
+AW1119	N/A	Money (non-negative)	Total 1099Misc
+AW119	N/A	Money (non-negative)	Primary 1099Misc
+AW120	N/A	Money (non-negative)	Secondary 1099Misc 
+AW1121	N/A	Money (allow negative)	Total Foreign Income Exclusion
+AW121	N/A	Money (allow negative)	Primary Foreign Income Exclusion
+AW122	N/A	Money (allow negative)	Secondary Foreign Income Exclusion
+AW1123	N/A	Money (allow negative)	Total Prior Year NOL
+AW123	N/A	Money (allow negative)	Primary Prior Year NOL
+AW124	N/A	Money (allow negative)	Secondary Prior Year NOL
+AW1125	N/A	Money (non-negative)	Total Cancelled Debt Income
+AW125	N/A	Money (non-negative)	Primary Cancelled Debt Income
+AW126	N/A	Money (non-negative)	Secondary Cancelled Debt Income
+AW1127	N/A	Money (allow negative)	Total Other
+AW127	N/A	Money (allow negative)	Primary Other
+AW128	N/A	Money (allow negative)	Secondary Other
+AW1127-1a	N/A	Money (non-negative)	Total HSA Distribution
+AW127-1a	N/A	Money (non-negative)	Primary HSA Distribution
+AW128-1b	N/A	Money (non-negative)	Secondary HSA Distribution
+AW1127-2a	N/A	Money (non-negative)	Total QTP Distribution
+AW127-2a	N/A	Money (non-negative)	Primary QTP Distribution
+AW128-2b	N/A	Money (non-negative)	Secondary QTP Distribution
+AW1127-3a	N/A	Money (non-negative)	Total Coverdell Distribution
+AW127-3a	N/A	Money (non-negative)	Primary Coverdell Distribution
+AW128-3b	N/A	Money (non-negative)	Secondary Coverdell Distribution
+AW1127-4a	N/A	Money (non-negative)	Total ABLE account distributions (Form 1099-QA)
+AW127-4a	N/A	Money (non-negative)	Primary ABLE account distributions (Form 1099-QA)
+AW128-4a	N/A	Money (non-negative)	Secondary ABLE account distributions (Form 1099-QA)
+AW1129	N/A	Money (allow negative)	Total Income
+AW129	N/A	Money (allow negative)	Primary Total Income
+AW130	N/A	Money (allow negative)	Secondary Total Income
+AW1131	N/A	Money (non-negative)	Total Earned Income for EIC
+AW131	N/A	Money (non-negative)	Primary Earned Income for EIC
+AW132	N/A	Money (non-negative)	Secondary Earned Income for EIC
+AW1133	N/A	Money (non-negative)	Total Earned Income With Combat Pay
+AW133	N/A	Money (non-negative)	Primary Earned Income With Combat Pay
+AW134	N/A	Money (non-negative)	Secondary Earned Income With Combat Pay
+AW1135	N/A	Money (non-negative)	Total Earned Income Without Combat Pay
+AW135	N/A	Money (non-negative)	Primary Earned Income Without Combat Pay
+AW136	N/A	Money (non-negative)	Secondary Earned Income Without Combat Pay
+AW1137	N/A	Money (non-negative)	Total Educator Expenses
+AW137	N/A	Money (non-negative)	Primary Educator Expenses
+AW138	N/A	Money (non-negative)	Secondary Educator Expenses
+AW1139	N/A	Money (non-negative)	Total Reservist, QPA, FBO Expenses
+AW139	N/A	Money (non-negative)	Primary Reservist, QPA, FBO Expenses
+AW140	N/A	Money (non-negative)	Secondary Reservist, QPA, FBO Expenses
+AW1141	N/A	Money (non-negative)	Total IRA Deduction
+AW141	N/A	Money (non-negative)	Primary IRA Deduction
+AW142	N/A	Money (non-negative)	Secondary IRA Deduction
+AW1143	N/A	Money (non-negative)	Total Student Loan Interest
+AW143	N/A	Money (non-negative)	Primary Student Loan Interest
+AW144	N/A	Money (non-negative)	Secondary Student Loan Interest
+AW1145	N/A	Money (non-negative)	Total Tuition and Fees
+AW145	N/A	Money (non-negative)	Primary Tuition and Fees
+AW146	N/A	Money (non-negative)	Secondary Tuition and Fees
+AW1147	N/A	Money (non-negative)	Total HSA Deduction
+AW147	N/A	Money (non-negative)	Primary HSA Deduction
+AW148	N/A	Money (non-negative)	Secondary HSA Deduction
+AW1149	N/A	Money (non-negative)	Total Moving Expenses
+AW149	N/A	Money (non-negative)	Primary Moving Expenses
+AW150	N/A	Money (non-negative)	Secondary Moving Expenses
+AW1151	N/A	Money (non-negative)	Total Half SE Tax
+AW151	N/A	Money (non-negative)	Primary Half SE Tax
+AW152	N/A	Money (non-negative)	Secondary Half SE Tax
+AW1153	N/A	Money (non-negative)	Total deductible SE Health Insurance
+AW153	N/A	Money (non-negative)	Primary deductible SE Health Insurance
+AW154	N/A	Money (non-negative)	Secondary deductible SE Health Insurance
+AW1153a	N/A	Money (non-negative)	Total SE Health Insurance paid
+AW153a	N/A	Money (non-negative)	Primary SE Health Insurance paid
+AW154a	N/A	Money (non-negative)	Secondary SE Health Insurance paid
+AW1155	N/A	Money (non-negative)	Total SEP Keogh Deduction
+AW155	N/A	Money (non-negative)	Primary SEP Keogh Deduction
+AW156	N/A	Money (non-negative)	Secondary SEP Keogh Deduction
+AW1157	N/A	Money (non-negative)	Total Penalty Savings WD
+AW157	N/A	Money (non-negative)	Primary Penalty Savings WD
+AW158	N/A	Money (non-negative)	Secondary Penalty Savings WD
+AW1159	N/A	Money (non-negative)	Total Alimony Paid
+AW159	N/A	Money (non-negative)	Primary Alimony Paid
+AW160	N/A	Money (non-negative)	Secondary Alimony Paid
+AW1161	N/A	Money (non-negative)	Total Domestic Production
+AW161	N/A	Money (non-negative)	Primary Domestic Production
+AW162	N/A	Money (non-negative)	Secondary Domestic Production
+AW1163	N/A	Money (non-negative)	Total Other Adjustments
+AW163	N/A	Money (non-negative)	Primary Other Adjustments
+AW164	N/A	Money (non-negative)	Secondary Other Adjustments
+AW1165	N/A	Money (non-negative)	Total Housing Deduction
+AW165	N/A	Money (non-negative)	Primary Housing Deduction
+AW166	N/A	Money (non-negative)	Secondary Housing Deduction
+AW1167	N/A	Money (non-negative)	Total Repayment of Unemployed Compensation
+AW167	N/A	Money (non-negative)	Primary Repayment of Unemployed Compensation
+AW168	N/A	Money (non-negative)	Secondary Repayment of Unemployed Compensation
+AW1169	N/A	Money (non-negative)	Total Jury Duty Repaid to Employer
+AW169	N/A	Money (non-negative)	Primary Jury Duty Repaid to Employer
+AW170	N/A	Money (non-negative)	Secondary Jury Duty Repaid to Employer
+AW1171	N/A	Money (non-negative)	Total Archer MSA
+AW171	N/A	Money (non-negative)	Primary Archer MSA
+AW172	N/A	Money (non-negative)	Secondary Archer MSA
+AW1173	N/A	Money (non-negative)	Total Adjustments
+AW173	N/A	Money (non-negative)	Primary Total Adjustments
+AW174	N/A	Money (non-negative)	Secondary Total Adjustments
+AW1175	N/A	Money (allow negative)	Total Adjusted Gross Income
+AW175	N/A	Money (allow negative)	Primary Adjusted Gross Income
+AW176	N/A	Money (allow negative)	Secondary Adjusted Gross Income
+AW1177	N/A	Whole number (non-negative)	Total Dependents Claimed
+AW177	N/A	Whole number (non-negative)	Primary Dependents Claimed
+AW178	N/A	Whole number (non-negative)	Secondary Dependents Claimed
+AW1177Group			Dependent collection
+AW1177DepInfo		Text	Dependent first name
+AW177DepTp		Yes/No	Primary's dependent
+AW178DepSp		Yes/No	Secondary's dependent
+AW1177Group			
+AW1179	N/A	Money (non-negative)	Total Dependent Care Expenses Paid
+AW179	N/A	Money (non-negative)	Primary Dependent Care Expenses Paid
+AW180	N/A	Money (non-negative)	Secondary Dependent Care Expenses Paid
+AW1181	N/A	Money (non-negative)	Total Medical and Dental Expenses
+AW181	N/A	Money (non-negative)	Primary Medical and Dental Expenses
+AW182	N/A	Money (non-negative)	Secondary Medical and Dental Expenses
+AW1183	N/A	Money (non-negative)	Total Medical Expenses over 7.5%
+AW183	N/A	Money (non-negative)	Primary Medical Expenses over 7.5%
+AW184	N/A	Money (non-negative)	Secondary Medical Expenses over 7.5%
+AW1187	N/A	Money (non-negative)	Total Deductible State Income Taxes
+AW187	N/A	Money (non-negative)	Primary Deductible State Income Taxes
+AW188	N/A	Money (non-negative)	Secondary Deductible State Income Taxes
+AW1189	N/A	Money (non-negative)	Total State Disability Insurance
+AW189	N/A	Money (non-negative)	Primary State Disability Insurance
+AW190	N/A	Money (non-negative)	Secondary State Disability Insurance
+AW1191	N/A	Money (non-negative)	Total Other deductible state related items that are not credited as “state payments”
+AW191	N/A	Money (non-negative)	Primary Other deductible state related items that are not credited as “state payments”
+AW192	N/A	Money (non-negative)	Secondary Other deductible state related items that are not credited as “state payments”
+AW1193	N/A	Money (non-negative)	Total Sales Tax Deduction
+AW193	N/A	Money (non-negative)	Primary Sales Tax Deduction
+AW194	N/A	Money (non-negative)	Secondary Sales Tax Deduction
+AW1195	N/A	Money (non-negative)	Total Real Estate Taxes Paid
+AW195	N/A	Money (non-negative)	Primary Real Estate Taxes Paid
+AW196	N/A	Money (non-negative)	Secondary Real Estate Taxes Paid
+AW1197	N/A	Money (non-negative)	Total Personal Property Tax
+AW197	N/A	Money (non-negative)	Primary Personal Property Tax
+AW198	N/A	Money (non-negative)	Secondary Personal Property Tax
+AW1199	N/A	Money (non-negative)	Total Other Taxes Paid
+AW199	N/A	Money (non-negative)	Primary Other Taxes Paid
+AW200	N/A	Money (non-negative)	Secondary Other Taxes Paid
+AW1201	N/A	Money (non-negative)	Total Taxes Paid
+AW201	N/A	Money (non-negative)	Primary Total Taxes Paid
+AW202	N/A	Money (non-negative)	Secondary Total Taxes Paid
+AW205a			Total Home Mortgage Interest From 1098
+AW205a1	N/A	Money (non-negative)	Primary Home Mortgage Interest From 1098
+AW205a2	N/A	Money (non-negative)	Secondary Home Mortgage Interest From 1098
+AW205b			Total Home Mortgage Interest Not 1098
+AW205b1	N/A	Money (non-negative)	Primary Home Mortgage Interest Not 1098
+AW205b2	N/A	Money (non-negative)	Secondary Home Mortgage Interest Not 1098
+AW205c			Total  Home Mortgage Points Not 1098
+AW205c1	N/A	Money (non-negative)	Primary Home Mortgage Points Not 1098
+AW205c2	N/A	Money (non-negative)	Secondary Home Mortgage Points Not 1098
+AW205d			Total Mortgage Insurance PMI
+AW205d1	N/A	Money (non-negative)	Primary Mortgage Insurance PMI
+AW205d2	N/A	Money (non-negative)	Secondary Mortgage Insurance PMI
+AW205e			Total Investment Interest From 4952
+AW205e1	N/A	Money (non-negative)	Primary Investment Interest From 4952
+AW205e2	N/A	Money (non-negative)	Secondary  Investment Interest From 4952
+AW1205	N/A	Money (non-negative)	Total Mortgage and Investment Interest
+AW205	N/A	Money (non-negative)	Primary Mortgage and Investment Interest
+AW206	N/A	Money (non-negative)	Secondary Mortgage and Investment Interest
+AW1209	N/A	Money (non-negative)	Total Charitable Contributions
+AW209	N/A	Money (non-negative)	Primary Charitable Contributions
+AW210	N/A	Money (non-negative)	Secondary Charitable Contributions
+AW1213	N/A	Money (non-negative)	Total Casualty Loss
+AW213	N/A	Money (non-negative)	Primary Casualty Loss
+AW214	N/A	Money (non-negative)	Secondary Casualty Loss
+AW1217	N/A	Money (non-negative)	Total 2106 Business Expenses
+AW217	N/A	Money (non-negative)	Primary 2106 Business Expenses
+AW218	N/A	Money (non-negative)	Secondary 2106 Business Expenses
+AW1219	N/A	Money (non-negative)	Total Other Business Expenses
+AW219	N/A	Money (non-negative)	Primary Other Business Expenses
+AW220	N/A	Money (non-negative)	Secondary Other Business Expenses
+AW1221	N/A	Money (non-negative)	Total Business Expenses
+AW221	N/A	Money (non-negative)	Primary Total Business Expenses
+AW222	N/A	Money (non-negative)	Secondary Total Business Expenses
+AW1223	N/A	Money (non-negative)	Total Other Miscellaneous Expense Deductions
+AW223	N/A	Money (non-negative)	Primary Other Miscellaneous Expense Deductions
+AW224	N/A	Money (non-negative)	Secondary Other Miscellaneous Expense Deductions
+AW1225	N/A	Money (non-negative)	Total Business and Miscellaneous Deductions
+AW225	N/A	Money (non-negative)	Primary Total Business and Miscellaneous Deductions
+AW226	N/A	Money (non-negative)	Secondary Total Business and Miscellaneous Deductions
+AW1227	N/A	Money (non-negative)	Total 2% Adjusted Gross Income Limitation
+AW227	N/A	Money (non-negative)	Primary 2% Adjusted Gross Income Limitation
+AW228	N/A	Money (non-negative)	Secondary 2% Adjusted Gross Income Limitation
+AW1229	N/A	Money (non-negative)	Total Net Business Miscellaneous Deductions
+AW229	N/A	Money (non-negative)	Primary Net Business Miscellaneous Deductions
+AW230	N/A	Money (non-negative)	Secondary Net Business Miscellaneous Deductions
+AW1231	N/A	Money (non-negative)	Total Other Miscellaneous Deductions
+AW231	N/A	Money (non-negative)	Primary Other Miscellaneous Deductions
+AW232	N/A	Money (non-negative)	Secondary Other Miscellaneous Deductions
+AW1233	N/A	Money (non-negative)	Total Itemized Deduction Before Limit
+AW233	N/A	Money (non-negative)	Primary Total Itemized Deduction Before Limit
+AW234	N/A	Money (non-negative)	Secondary Total Itemized Deduction Before Limit
+AW1235	N/A	Money (non-negative)	Total Limitation of Itemized Deduction
+AW235	N/A	Money (non-negative)	Primary Limitation of Itemized Deduction
+AW236	N/A	Money (non-negative)	Secondary Limitation of Itemized Deduction
+AW1237	N/A	Money (non-negative)	Total Itemized Deduction
+AW237	N/A	Money (non-negative)	Primary Total Itemized Deduction
+AW238	N/A	Money (non-negative)	Secondary Total Itemized Deduction
+AW1241	N/A	Money (non-negative)	Total State Withholdings
+AW241	N/A	Money (non-negative)	Primary Total State Withholdings
+AW242	N/A	Money (non-negative)	Secondary Total State Withholdings
+AW1243	N/A	Money (non-negative)	Total State withholdings from W-2
+AW243	N/A	Money (non-negative)	Primary State withholdings from W-2
+AW244	N/A	Money (non-negative)	Secondary State withholdings from W-2
+AW1245	N/A	Money (non-negative)	Total State withholdings from 1099s
+AW245	N/A	Money (non-negative)	Primary State withholdings from 1099s
+AW246	N/A	Money (non-negative)	Secondary State withholdings from 1099s
+AW1247	N/A	Money (non-negative)	Total Other state withholdings
+AW247	N/A	Money (non-negative)	Primary Other state withholdings
+AW248	N/A	Money (non-negative)	Secondary Other state withholdings
+AW1249	N/A	Money (non-negative)	Total Local Withholdings
+AW249	N/A	Money (non-negative)	Primary Total Local Withholdings
+AW250	N/A	Money (non-negative)	Secondary Total Local Withholdings
+AW1253	N/A	Money (non-negative)	Total Prior Year Balance Due Paid
+AW253	N/A	Money (non-negative)	Primary Prior Year Balance Due Paid
+AW254	N/A	Money (non-negative)	Secondary Prior Year Balance Due Paid
+AW1255	N/A	Money (non-negative)	Total Estimated Payments applied for Tax Year
+AW255	N/A	Money (non-negative)	"Primary Estimated Payments applied for Tax Year
+(includes all estimated payments made for the tax year, whether during the tax year, or in the current processing year)"
+AW256	N/A	Money (non-negative)	"Secondary Estimated Payments applied for Tax Year
+(includes all estimated payments made for the tax year, whether during the tax year, or in the current processing year)"
+AW1257	N/A	Money (non-negative)	Total Less: Estimated Payments applied for Tax Year paid in the processing year
+AW257	N/A	Money (non-negative)	Primary Less: Estimated Payments applied for Tax Year paid in the processing year
+AW258	N/A	Money (non-negative)	Secondary Less: Estimated Payments applied for Tax Year paid in the processing year
+AW1259	N/A	Money (non-negative)	Total Prior Year Estimated Payment applied to Prior Tax Year
+AW259	N/A	Money (non-negative)	Primary Prior Year Estimated Payment applied to Prior Tax Year
+AW260	N/A	Money (non-negative)	Secondary Prior Year Estimated Payment applied to Prior Tax Year
+AW1261	N/A	Money (non-negative)	Total Prior Year Refund Applied to Current Tax Year
+AW261	N/A	Money (non-negative)	Primary Prior Year Refund Applied to Current Tax Year
+AW262	N/A	Money (non-negative)	Secondary Prior Year Refund Applied to Current Tax Year
+AW1263	N/A	Money (non-negative)	L48 Total Foreign Tax Credit
+AW263	N/A	Money (non-negative)	L48 Primary Foreign Tax Credit
+AW264	N/A	Money (non-negative)	L48 Secondary Foreign Tax Credit
+AW1265	N/A	Money (non-negative)	L49 Total Child and Dependent Care
+AW265	N/A	Money (non-negative)	L49 Primary Child and dependent care
+AW266	N/A	Money (non-negative)	L49 Secondary Child and dependent care
+AW1267	N/A	Money (non-negative)	L54 Total Credit for the Elderly/Disabled
+AW267	N/A	Money (non-negative)	L54 Primary Credit for elderly/disabled
+AW268	N/A	Money (non-negative)	L54 Secondary Credit for elderly/disabled
+AW1269	N/A	Money (non-negative)	L50 Total Nonrefundable Education Credit
+AW269	N/A	Money (non-negative)	L50 Primary Nonrefundable Education credit
+AW270	N/A	Money (non-negative)	L50 Secondary Nonrefundable Education credit
+AW1271	N/A	Money (non-negative)	L51 Total Retirement Savings Credit
+AW271	N/A	Money (non-negative)	L51 Primary Retirement savings credit
+AW272	N/A	Money (non-negative)	L51 Secondary Retirement savings credit
+AW1273	N/A	Money (non-negative)	L52 Total Child Tax Credit
+AW273	N/A	Money (non-negative)	L52 Primary Child tax credit
+AW274	N/A	Money (non-negative)	L52 Secondary Child tax credit
+AW1275	N/A	Money (non-negative)	L53 Total Residential Energy Credit
+AW275	N/A	Money (non-negative)	L53 Primary Residential Energy Credit
+AW276	N/A	Money (non-negative)	L53 Secondary Residential Energy Credit
+AW1277	N/A	Money (non-negative)	L54 Total Adoption Credit
+AW277	N/A	Money (non-negative)	L54 Primary Adoption credit
+AW278	N/A	Money (non-negative)	L54 Secondary Adoption credit
+AW1277a	N/A	Money (non-negative)	Total qualified adoption expenses
+AW277a	N/A	Money (non-negative)	Primary qualified adoption expenses
+AW278a	N/A	Money (non-negative)	Secondary qualified adoption expenses
+AW1279	N/A	Money (non-negative)	L54 Total Other Nonrefundable Credits
+AW279	N/A	Money (non-negative)	L54 Primary Other Nonrefundable Credits
+AW280	N/A	Money (non-negative)	L54 Secondary Other Nonrefundable Credits
+AW1281	N/A	Money (non-negative)	L66a Total Earned Income Credit
+AW281	N/A	Money (non-negative)	L66a Primary Earned income Credit
+AW282	N/A	Money (non-negative)	L66a Secondary Earned income Credit
+AW1283	N/A	Money (non-negative)	L67 Total Additional Child Tax Credit
+AW283	N/A	Money (non-negative)	L67 Primary Additional Child Tax Credit
+AW284	N/A	Money (non-negative)	L67 Secondary Additional Child Tax Credit
+AW1285	N/A	Money (non-negative)	L68 Total American Opportunity Credit
+AW285	N/A	Money (non-negative)	L68 Primary American Opportunity Credit
+AW286	N/A	Money (non-negative)	L68 Secondary American Opportunity Credit
+AW1287	N/A	Money (non-negative)	L72 Total Fuel Tax Credit
+AW287	N/A	Money (non-negative)	L72 Primary Fuel Tax Credit
+AW288	N/A	Money (non-negative)	L72 Secondary Fuel Tax Credit
+AW1289	N/A	Money (non-negative)	L73 Total Other Refundable Credits
+AW289	N/A	Money (non-negative)	L73 Primary Other Refundable Credits
+AW290	N/A	Money (non-negative)	L73 Secondary Other Refundable Credits
+AW1291	N/A	Money (non-negative)	L64 Total Federal Tax Withheld
+AW291	N/A	Money (non-negative)	L64 Primary Federal Tax Withheld
+AW292	N/A	Money (non-negative)	L64 Secondary Federal Tax Withheld
+AW1293	N/A	Money (non-negative)	Total Federal Tax Withheld From W-2
+AW293	N/A	Money (non-negative)	Primary Federal Tax Withheld From W-2
+AW294	N/A	Money (non-negative)	Secondary Federal Tax Withheld From W-2
+AW1295	N/A	Money (non-negative)	Total Federal Tax Withheld From 1099
+AW295	N/A	Money (non-negative)	Primary Federal Tax Withheld From 1099
+AW296	N/A	Money (non-negative)	Secondary Federal Tax Withheld From 1099
+AW1297	N/A	Money (non-negative)	Total Federal Tax Withheld Other
+AW297	N/A	Money (non-negative)	Primary Federal Tax Withheld Other
+AW298	N/A	Money (non-negative)	Secondary Federal Tax Withheld Other
+AW1299	N/A	Money (non-negative)	L65 Total Estimated Payments applied to Tax Year
+AW299	N/A	Money (non-negative)	L65 Primary Estimated Payments applied to Tax Year
+AW300	N/A	Money (non-negative)	L65 Secondary Estimated Payments applied to Tax Year
+AW1301	N/A	Money (non-negative)	L70 Total Amount Paid with Extension
+AW301	N/A	Money (non-negative)	L70 Primary Amount Paid with Extension
+AW302	N/A	Money (non-negative)	L70 Secondary Amount Paid with Extension
+AW1303	N/A	Money (non-negative)	L71 Total Excess FICA taxes paid
+AW303	N/A	Money (non-negative)	L71 Primary Excess FICA taxes paid
+AW304	N/A	Money (non-negative)	L71 Secondary Excess FICA taxes paid
+AW1305	N/A	Money (non-negative)	L74 Total Payments and Refundable Credits
+AW305	N/A	Money (non-negative)	L74 Primary Total Payments and Refundable Credits
+AW306	N/A	Money (non-negative)	L74 Secondary Total Payments and Refundable Credits

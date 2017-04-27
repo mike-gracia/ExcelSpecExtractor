@@ -1,207 +1,1242 @@
-#region bool AmountExcludable (Line none)
-internal Calculatable<bool> _amountExcludable;
+#region decimal WagesState (Line RI Schedule II, Line 1 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _wagesState;
 /// <summary>
-/// Taxpayer is nonmilitary spouse (Calculatable)
-/// Reference Number RIMSRRAQ1Tp 
-/// </summary>
-[Description("Taxpayer is nonmilitary spouse"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ1Tp"), LineNumber("none")]
-public bool AmountExcludable { get { return _amountExcludable.Calculate(AmountExcludable_Calculation); } }
-private bool AmountExcludable_Calculation()
-{
-//*//'IF MFJ AND 
-//*//     [FDAWCalc:AW9] = 0 AND
-//*//     [FDAWCalc:AW10] > 0
-//*//         RETURN YES;
-//*// ELSE RETURN NO'
-return default(bool);
-}
-#endregion AmountExcludable
-
-#region bool IsPrimaryNonmilitary (Line none)
-internal Calculatable<bool> _isPrimaryNonmilitary;
-/// <summary>
-/// Spouse is nonmilitary spouse (Calculatable)
-/// Reference Number RIMSRRAQ1Sp 
-/// </summary>
-[Description("Spouse is nonmilitary spouse"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ1Sp"), LineNumber("none")]
-public bool IsPrimaryNonmilitary { get { return _isPrimaryNonmilitary.Calculate(IsPrimaryNonmilitary_Calculation); } }
-private bool IsPrimaryNonmilitary_Calculation()
-{
-//*//'IF MFJ AND 
-//*//     [FDAWCalc:AW10] = 0 AND 
-//*//     [FDAWCalc:AW9] > 0
-//*//         RETURN YES;
-//*// ELSE RETURN NO'
-return default(bool);
-}
-#endregion IsPrimaryNonmilitary
-
-#region bool IsSecondaryNonmilitary (Line none)
-internal Calculatable<bool> _isSecondaryNonmilitary;
-/// <summary>
-/// Both full resident of the same state (Calculatable)
-/// Reference Number RIMSRRAQ2 
-/// </summary>
-[Description("Both full resident of the same state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ2"), LineNumber("none")]
-public bool IsSecondaryNonmilitary { get { return _isSecondaryNonmilitary.Calculate(IsSecondaryNonmilitary_Calculation); } }
-private bool IsSecondaryNonmilitary_Calculation()
-{
-//*//'IF MFJ AND 
-//*//     [FDAWCalc:PYNRAWRes] = R AND
-//*//     [FDAWCalc:PYNRAWstate] <> 'RI'
-//*//        RETURN YES; 
-//*// ELSE RETURN NO'
-return default(bool);
-}
-#endregion IsSecondaryNonmilitary
-
-#region decimal AreBothResidentOfSameState (Line none)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _areBothResidentOfSameState;
-/// <summary>
-/// Taxpayer's nonmilitary wage allocated to nonresident state (Calculatable)
-/// Reference Number RIMSRRAQ3Tp 
+/// Wages, salaries, tips, etc from Federal Form 1040 or 1040A, line 7, or 1040EZ, line 1 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIWages 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Taxpayer's nonmilitary wage allocated to nonresident state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ3Tp"), LineNumber("none")]
-public decimal AreBothResidentOfSameState { get { return _areBothResidentOfSameState.Calculate(AreBothResidentOfSameState_Calculation); } }
-private decimal AreBothResidentOfSameState_Calculation()
+[Description("Wages, salaries, tips, etc from Federal Form 1040 or 1040A, line 7, or 1040EZ, line 1 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIWages"), LineNumber("RI Schedule II, Line 1 Column A")]
+public decimal WagesState { get { return _wagesState.Calculate(WagesState_Calculation); } }
+private decimal WagesState_Calculation()
 {
-//*//'IF [FDAWCalc:AW9] = 0
-//*//        RETURN [FDAWCalc:PYNRAW3] 
-//*//                          WHERE [FDAWCalc:PYNRAWState] = 'RI' AND
-//*//                                         [FDAWCalc:PYNRAWRes] = N;
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//         RETURN [RhodeIslandAmount];
+//*// ELSE IF MFJ
+//*//         RETURN ([FDAWCalc:PYNRAW1](PrimaryWageAmount)] + [FDAWCalc:PYNRAW2](SecondaryWageAmount)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI'; 
+//*// ELSE RETURN [FDAWCalc:PYNRAW1](PrimaryWageAmount)]
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion WagesState
+
+#region decimal WagesFederal (Line RI Schedule II, Line 1 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _wagesFederal;
+/// <summary>
+/// Wages, salaries, tips, etc from Federal Form 1040 or 1040A, line 7, or 1040EZ, line 1 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedWages 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Wages, salaries, tips, etc from Federal Form 1040 or 1040A, line 7, or 1040EZ, line 1 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedWages"), LineNumber("RI Schedule II, Line 1 Column B")]
+public decimal WagesFederal { get { return _wagesFederal.Calculate(WagesFederal_Calculation); } }
+private decimal WagesFederal_Calculation()
+{
+//*//'IF MFJ
+//*//         RETURN [FDAWCalc:AW1001](TotalWageAmount)];
+//*// ELSE RETURN [FDAWCalc:AW1](PrimaryWageAmount)]'
+return default(decimal);
+}
+#endregion WagesFederal
+
+#region decimal InterestAndDividendsState (Line RI Schedule II, Line 2 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _interestAndDividendsState;
+/// <summary>
+/// Interest and dividends from Federal Form 1040 or 1040A, lines 8a and 9a, or 1040EZ, line 2 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2R2ntDiv 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Interest and dividends from Federal Form 1040 or 1040A, lines 8a and 9a, or 1040EZ, line 2 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2R2ntDiv"), LineNumber("RI Schedule II, Line 2 Column A")]
+public decimal InterestAndDividendsState { get { return _interestAndDividendsState.Calculate(InterestAndDividendsState_Calculation); } }
+private decimal InterestAndDividendsState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasInterestAndDividendsSeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 2);
+//*// ELSE IF MFJ
+//*//         RETURN ([FDAWCalc:PYNRAW45](PrimaryTaxableInterest)] + [FDAWCalc:PYNRAW46](SecondaryTaxableInterest)] +
+//*//                           [FDAWCalc:PYNRAW55](PrimaryTaxableDividends)] + [FDAWCalc:PYNRAW56](SecondaryTaxableDividends)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN [FDAWCalc:PYNRAW45](PrimaryTaxableInterest)] +  [FDAWCalc:PYNRAW55](PrimaryTaxableDividends)]
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion InterestAndDividendsState
+
+#region decimal InterestAndDividendsFederal (Line RI Schedule II, Line 2 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _interestAndDividendsFederal;
+/// <summary>
+/// Interest and dividends from Federal Form 1040 or 1040A, lines 8a and 9a, or 1040EZ, line 2 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedIntDiv 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Interest and dividends from Federal Form 1040 or 1040A, lines 8a and 9a, or 1040EZ, line 2 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedIntDiv"), LineNumber("RI Schedule II, Line 2 Column B")]
+public decimal InterestAndDividendsFederal { get { return _interestAndDividendsFederal.Calculate(InterestAndDividendsFederal_Calculation); } }
+private decimal InterestAndDividendsFederal_Calculation()
+{
+//*//'IF MFJ 
+//*//         RETURN [FDAWCalc:AW1045](TotalTaxableInterest)] + [FDAWCalc:AW1055](TotalTaxableDividends)]; 
+//*// ELSE RETURN [FDAWCalc:AW45](PrimaryTaxableInterest)] + [FDAWCalc:AW55](PrimaryTaxableDividends)]'
+return default(decimal);
+}
+#endregion InterestAndDividendsFederal
+
+#region decimal BusinessIncomeState (Line RI Schedule II, Line 3 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _businessIncomeState;
+/// <summary>
+/// Business income from Federal Form 1040, line 12 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIBus 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Business income from Federal Form 1040, line 12 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIBus"), LineNumber("RI Schedule II, Line 3 Column A")]
+public decimal BusinessIncomeState { get { return _businessIncomeState.Calculate(BusinessIncomeState_Calculation); } }
+private decimal BusinessIncomeState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasBusinessIncomeSeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 3);
+//*// ELSE IF MFJ
+//*//        RETURN ([FDAWCalc:PYNRAW67](PrimaryBusinessIncomeOrLoss)] + [FDAWCalc:PYNRAW68](SecondaryBusinessIncomeOrLoss)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN [FDAWCalc:PYNRAW67](PrimaryBusinessIncomeOrLoss)]
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion BusinessIncomeState
+
+#region decimal BusinessIncomeFederal (Line RI Schedule II, Line 3 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _businessIncomeFederal;
+/// <summary>
+/// Business income from Federal Form 1040, line 12 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedBus 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Business income from Federal Form 1040, line 12 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedBus"), LineNumber("RI Schedule II, Line 3 Column B")]
+public decimal BusinessIncomeFederal { get { return _businessIncomeFederal.Calculate(BusinessIncomeFederal_Calculation); } }
+private decimal BusinessIncomeFederal_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN [FDAWCalc:AW1067](TotalBusinessIncomeOrLoss)];
+//*// ELSE RETURN [FDAWCalc:AW67](PrimaryBusinessIncomeOrLoss)]'
+return default(decimal);
+}
+#endregion BusinessIncomeFederal
+
+#region decimal SaleExchangeState (Line RI Schedule II, Line 4 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _saleExchangeState;
+/// <summary>
+/// Sale or exchange of property from Federal Form 1040, lines 13 or 14, or 1040A, line 10 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RICG 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Sale or exchange of property from Federal Form 1040, lines 13 or 14, or 1040A, line 10 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RICG"), LineNumber("RI Schedule II, Line 4 Column A")]
+public decimal SaleExchangeState { get { return _saleExchangeState.Calculate(SaleExchangeState_Calculation); } }
+private decimal SaleExchangeState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasSalePropertySeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 4);
+//*// ELSE IF MFJ
+//*//       RETURN ([FDAWCalc:PYNRAW69](PrimaryCapitalGainOrLossUnlimited)](PrimaryCapitalGainOrLoss)] + [FDAWCalc:PYNRAW70](SecondaryCapitalGainOrLoss)] +
+//*//                          [FDAWCalc:PYNRAW71](PrimaryOtherGainOrLoss)] + [FDAWCalc:PYNRAW72](SecondaryOtherGainOrLoss)])
+//*//                           WHERE [FDAWCalc:PYNRAWState] = 'RI'; 
+//*// ELSE RETURN ([FDAWCalc:PYNRAW69](PrimaryCapitalGainOrLossUnlimited)](PrimaryCapitalGainOrLoss)] + [FDAWCalc:PYNRAW71](PrimaryOtherGainOrLoss)])
+//*//                              WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion SaleExchangeState
+
+#region decimal SaleExchangeFederal (Line RI Schedule II, Line 4 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _saleExchangeFederal;
+/// <summary>
+/// Sale or exchange of property from Federal Form 1040, lines 13 or 14, or 1040A, line 10 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedCG 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Sale or exchange of property from Federal Form 1040, lines 13 or 14, or 1040A, line 10 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedCG"), LineNumber("RI Schedule II, Line 4 Column B")]
+public decimal SaleExchangeFederal { get { return _saleExchangeFederal.Calculate(SaleExchangeFederal_Calculation); } }
+private decimal SaleExchangeFederal_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN [FDAWCalc:AW1069](TotalCapitalGainOrLoss)] + [FDAWCalc:AW1071](TotalOtherGainOrLoss)];
+//*// ELSE RETURN [FDAWCalc:AW69](PrimaryCapitalGainOrLossUnlimited)](PrimaryCapitalGainOrLoss)] + [FDAWCalc:AW71](PrimaryOtherGainOrLoss)]'
+return default(decimal);
+}
+#endregion SaleExchangeFederal
+
+#region decimal PensionAnnuitiesFederalBackground (Line Background Calc)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _pensionAnnuitiesFederalBackground;
+/// <summary>
+/// Pension and annuities (Calculatable)
+/// Reference Number RISchIIPenAnnuitiesFed 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Pension and annuities"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISchIIPenAnnuitiesFed"), LineNumber("Background Calc")]
+public decimal PensionAnnuitiesFederalBackground { get { return _pensionAnnuitiesFederalBackground.Calculate(PensionAnnuitiesFederalBackground_Calculation); } }
+private decimal PensionAnnuitiesFederalBackground_Calculation()
+{
+//*//'IF MFJ
+//*//         RETURN ([FDAWCalc:AW1075](TotalTaxableIndividualRetirementAccount)] + [FDAWCalc:AW1081](TotalTaxablePension)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN ([FDAWCalc:AW75](PrimaryTaxableIndividualRetirementAccount)] + [FDAWCalc:AW81](PrimaryTaxablePension)])
+//*//                              WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion PensionAnnuitiesFederalBackground
+
+#region decimal RentRoyaltyFederalBackground (Line Background Calc)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _rentRoyaltyFederalBackground;
+/// <summary>
+/// Rents, Royalties, etc. - to be used if business allocation occurs (Calculatable)
+/// Reference Number RISchIIRentRoyaltyFed 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Rents, Royalties, etc. - to be used if business allocation occurs"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISchIIRentRoyaltyFed"), LineNumber("Background Calc")]
+public decimal RentRoyaltyFederalBackground { get { return _rentRoyaltyFederalBackground.Calculate(RentRoyaltyFederalBackground_Calculation); } }
+private decimal RentRoyaltyFederalBackground_Calculation()
+{
+//*//'IF MFJ
+//*//         RETURN [FDAWCalc:AW1085](TotalScheduleETotal)];
+//*// ELSE RETURN [FDAWCalc:AW85](PrimaryScheduleETotal)]'
+return default(decimal);
+}
+#endregion RentRoyaltyFederalBackground
+
+#region decimal PensionState (Line RI Schedule II, Line 5 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _pensionState;
+/// <summary>
+/// Pension and annuities; rents, royalties, etc. from Federal Form 1040, lines 15b, 16b, and 17, or 1040A, lines 11b and 12b - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIPen 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Pension and annuities; rents, royalties, etc. from Federal Form 1040, lines 15b, 16b, and 17, or 1040A, lines 11b and 12b - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIPen"), LineNumber("RI Schedule II, Line 5 Column A")]
+public decimal PensionState { get { return _pensionState.Calculate(PensionState_Calculation); } }
+private decimal PensionState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasPensionAndAnnutiesSeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 5) + [PensionAnnuitiesFederalBackground];
+//*// ELSE IF MFJ
+//*//        RETURN ([FDAWCalc:PYNRAW75](PrimaryTaxableIndividualRetirementAccount)] + [FDAWCalc:PYNRAW76](SecondaryTaxableIndividualRetirementAccount)] + 
+//*//                           [FDAWCalc:PYNRAW81](PrimaryTaxablePension)] + [FDAWCalc:PYNRAW82](SecondaryTaxablePension)] +
+//*//                           [FDAWCalc:PYNRAW85](PrimaryScheduleETotal)] + [FDAWCalc:PYNRAW86](SecondaryScheduleETotal)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN ([FDAWCalc:PYNRAW75](PrimaryTaxableIndividualRetirementAccount)] + [FDAWCalc:PYNRAW81](PrimaryTaxablePension)] +
+//*//                             [FDAWCalc:PYNRAW85](PrimaryScheduleETotal)]
+//*//                             WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion PensionState
+
+#region decimal PensionFederal (Line RI Schedule II, Line 5 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _pensionFederal;
+/// <summary>
+/// Pension and annuities; rents, royalties, etc. from Federal Form 1040, lines 15b, 16b, and 17, or 1040A, lines 11b and 12b - Column B Federal (Calculatable)
+/// Reference Number RISch2FedPen 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Pension and annuities; rents, royalties, etc. from Federal Form 1040, lines 15b, 16b, and 17, or 1040A, lines 11b and 12b - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedPen"), LineNumber("RI Schedule II, Line 5 Column B")]
+public decimal PensionFederal { get { return _pensionFederal.Calculate(PensionFederal_Calculation); } }
+private decimal PensionFederal_Calculation()
+{
+//*//[PensionAnnuitiesFederalBackground] + [RentRoyaltyFederalBackground]
+return default(decimal);
+}
+#endregion PensionFederal
+
+#region decimal FarmState (Line RI Schedule II, Line 6 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _farmState;
+/// <summary>
+/// Farm income from Federal Form 1040, line 18 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIFarm 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Farm income from Federal Form 1040, line 18 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIFarm"), LineNumber("RI Schedule II, Line 6 Column A")]
+public decimal FarmState { get { return _farmState.Calculate(FarmState_Calculation); } }
+private decimal FarmState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasFarmsSeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 6)
+//*// ELSE IF MFJ 
+//*//        RETURN ([FDAWCalc:PYNRAW101](PrimaryFarmIncomeOrLoss)] + [FDAWCalc:PYNRAW102](SecondaryFarmIncomeOrLoss)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN [FDAWCalc:PYNRAW101](PrimaryFarmIncomeOrLoss)]
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion FarmState
+
+#region decimal FarmFederal (Line RI Schedule II, Line 6 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _farmFederal;
+/// <summary>
+/// Farm income from Federal Form 1040, line 18 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedFarm 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Farm income from Federal Form 1040, line 18 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedFarm"), LineNumber("RI Schedule II, Line 6 Column B")]
+public decimal FarmFederal { get { return _farmFederal.Calculate(FarmFederal_Calculation); } }
+private decimal FarmFederal_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN [FDAWCalc:AW1101](TotalFarmIncomeOrLoss)];
+//*// ELSE RETURN [FDAWCalc:AW101](PrimaryFarmIncomeOrLoss)]'
+return default(decimal);
+}
+#endregion FarmFederal
+
+#region decimal MiscState (Line RI Schedule II, Line 7 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _miscState;
+/// <summary>
+/// Miscellaneous income from Federal Form 1040, lines 10, 11, 19, 20b and 21; 1040A, lines 13 and 14b; or 1040EZ, line 3 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIMisc 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Miscellaneous income from Federal Form 1040, lines 10, 11, 19, 20b and 21; 1040A, lines 13 and 14b; or 1040EZ, line 3 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIMisc"), LineNumber("RI Schedule II, Line 7 Column A")]
+public decimal MiscState { get { return _miscState.Calculate(MiscState_Calculation); } }
+private decimal MiscState_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasMiscSeperateUi] = YES
+//*//         RETURN ([ColumnC]
+//*//                           WHERE [Number] = 7)
+//*// ELSE IF MFJ
+//*//        RETURN ([FDAWCalc:PYNRAW63](PrimaryTaxableStateRefunds)] + [FDAWCalc:PYNRAW64](SecondaryTaxableStateRefunds)] +
+//*//                           [FDAWCalc:PYNRAW65](PrimaryAlimonyReceivedAmount)] + [FDAWCalc:PYNRAW66](SecondaryAlimonyReceivedAmount)] + 
+//*//                           [FDAWCalc:PYNRAW103](PrimaryUnemploymentCompensation)] + [FDAWCalc:PYNRAW104](SecondaryUnemploymentCompensation)] +
+//*//                           [FDAWCalc:PYNRAW109](PrimaryTaxableSocialSecurity)] + [FDAWCalc:PYNRAW110](SecondaryTaxableSocialSecurity)] +
+//*//                           [FDAWCalc:PYNRAW127](PrimaryOther)] + [FDAWCalc:PYNRAW128](SecondaryOther)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN ([FDAWCalc:PYNRAW63](PrimaryTaxableStateRefunds)] + [FDAWCalc:PYNRAW65](PrimaryAlimonyReceivedAmount)] +
+//*//                              [FDAWCalc:PYNRAW103](PrimaryUnemploymentCompensation)] + [FDAWCalc:PYNRAW109](PrimaryTaxableSocialSecurity)] + 
+//*//                              [FDAWCalc:PYNRAW127](PrimaryOther)])
+//*//                               WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion MiscState
+
+#region decimal MiscFederal (Line RI Schedule II, Line 7 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _miscFederal;
+/// <summary>
+/// Miscellaneous income from Federal Form 1040, lines 10, 11, 19, 20b and 21; 1040A, lines 13 and 14b; or 1040EZ, line 3 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedMisc 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Miscellaneous income from Federal Form 1040, lines 10, 11, 19, 20b and 21; 1040A, lines 13 and 14b; or 1040EZ, line 3 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedMisc"), LineNumber("RI Schedule II, Line 7 Column B")]
+public decimal MiscFederal { get { return _miscFederal.Calculate(MiscFederal_Calculation); } }
+private decimal MiscFederal_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN [FDAWCalc:AW1063](TotalTaxableStateRefunds)] + [FDAWCalc:AW1065](TotalAlimonyReceivedAmount)] +  
+//*//                         [FDAWCalc:AW1103](TotalUnemploymentCompensation)] + [FDAWCalc:AW1109](TotalTaxableSocialSecurity)] +  
+//*//                         [FDAWCalc:AW1127](TotalOther)];
+//*// ELSE RETURN [FDAWCalc:AW63](PrimaryTaxableStateRefunds)] + [FDAWCalc:AW65](PrimaryAlimonyReceivedAmount)] + 
+//*//                            [FDAWCalc:AW103](PrimaryUnemploymentCompensation)]  + [FDAWCalc:AW109](PrimaryTaxableSocialSecurity)] +  
+//*//                            [FDAWCalc:AW127](PrimaryOther)]'
+return default(decimal);
+}
+#endregion MiscFederal
+
+#region decimal TotalIncomeState (Line RI Schedule II, Line 8 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _totalIncomeState;
+/// <summary>
+/// TOTAL. Add lines 1 through 7 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RITotInc 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("TOTAL. Add lines 1 through 7 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RITotInc"), LineNumber("RI Schedule II, Line 8 Column A")]
+public decimal TotalIncomeState { get { return _totalIncomeState.Calculate(TotalIncomeState_Calculation); } }
+private decimal TotalIncomeState_Calculation()
+{
+//*//'[WagesState] + [InterestAndDividendsState] + 
+//*// [BusinessIncomeState] + [SaleExchangeState]+ 
+//*// [PensionState] + [FarmState] + [MiscState]'
+return default(decimal);
+}
+#endregion TotalIncomeState
+
+#region decimal TotalIncomeFederal (Line RI Schedule II, Line 8 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _totalIncomeFederal;
+/// <summary>
+/// TOTAL. Add lines 1 through 7 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedTotInc 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("TOTAL. Add lines 1 through 7 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedTotInc"), LineNumber("RI Schedule II, Line 8 Column B")]
+public decimal TotalIncomeFederal { get { return _totalIncomeFederal.Calculate(TotalIncomeFederal_Calculation); } }
+private decimal TotalIncomeFederal_Calculation()
+{
+//*//'[WagesFederal] + [InterestAndDividendsFederal] +  
+//*// [BusinessIncomeState] + [SaleExchangeFederal] + 
+//*// [PensionFederal] + [FarmFederal] + [MiscFederal]'
+return default(decimal);
+}
+#endregion TotalIncomeFederal
+
+#region decimal AdjustmentsState (Line RI Schedule II, Line 9 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _adjustmentsState;
+/// <summary>
+/// Adjustments to AGI from Federal Form 1040, line 36, or 1040A, line 20 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIAdj 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Adjustments to AGI from Federal Form 1040, line 36, or 1040A, line 20 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIAdj"), LineNumber("RI Schedule II, Line 9 Column A")]
+public decimal AdjustmentsState { get { return _adjustmentsState.Calculate(AdjustmentsState_Calculation); } }
+private decimal AdjustmentsState_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN ([FDAWCalc:PYNRAW173](PrimaryTotalAdjustments)] + [FDAWCalc:PYNRAW174](SecondaryTotalAdjustments)])
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI';
+//*// ELSE RETURN [FDAWCalc:PYNRAW173](PrimaryTotalAdjustments)]
+//*//                            WHERE [FDAWCalc:PYNRAWState] = 'RI''
+return default(decimal);
+}
+#endregion AdjustmentsState
+
+#region decimal AdjustmentsFederal (Line RI Schedule II, Line 9 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _adjustmentsFederal;
+/// <summary>
+/// Adjustments to AGI from Federal Form 1040, line 36, or 1040A, line 20 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedAdj 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Adjustments to AGI from Federal Form 1040, line 36, or 1040A, line 20 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedAdj"), LineNumber("RI Schedule II, Line 9 Column B")]
+public decimal AdjustmentsFederal { get { return _adjustmentsFederal.Calculate(AdjustmentsFederal_Calculation); } }
+private decimal AdjustmentsFederal_Calculation()
+{
+//*//'IF MFJ
+//*//        RETURN [FDAWCalc:AW1173](TotalAdjustments)];
+//*// ELSE RETURN [FDAWCalc:AW173](PrimaryTotalAdjustments)]'
+return default(decimal);
+}
+#endregion AdjustmentsFederal
+
+#region decimal AdjustedGrossIncomeState (Line RI Schedule II, Line 10 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _adjustedGrossIncomeState;
+/// <summary>
+/// Adjusted gross income. Subtract line 9 from line 8 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIAGI 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Adjusted gross income. Subtract line 9 from line 8 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIAGI"), LineNumber("RI Schedule II, Line 10 Column A")]
+public decimal AdjustedGrossIncomeState { get { return _adjustedGrossIncomeState.Calculate(AdjustedGrossIncomeState_Calculation); } }
+private decimal AdjustedGrossIncomeState_Calculation()
+{
+//*//[TotalIncomeState] - [AdjustmentsState]
+return default(decimal);
+}
+#endregion AdjustedGrossIncomeState
+
+#region decimal AdjustedGrossIncomeFederal (Line RI Schedule II, Line 10 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _adjustedGrossIncomeFederal;
+/// <summary>
+/// Adjusted gross income. Subtract line 9 from line 8 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedAGI  
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Adjusted gross income. Subtract line 9 from line 8 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedAGI "), LineNumber("RI Schedule II, Line 10 Column B")]
+public decimal AdjustedGrossIncomeFederal { get { return _adjustedGrossIncomeFederal.Calculate(AdjustedGrossIncomeFederal_Calculation); } }
+private decimal AdjustedGrossIncomeFederal_Calculation()
+{
+//*//[TotalIncomeFederal] - [AdjustmentsFederal]
+return default(decimal);
+}
+#endregion AdjustedGrossIncomeFederal
+
+#region decimal NetModificationsUi (Line UI Question)
+internal Changeable<decimal> _netModificationsUi;
+/// <summary>
+/// Net modifications to Federal AGI from RI-1040NR, page 5, RI Schedule M, line 3 (Changeable)
+/// Reference Number RISch2ModDE 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Net modifications to Federal AGI from RI-1040NR, page 5, RI Schedule M, line 3"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2ModDE"), LineNumber("UI Question")]
+public decimal NetModificationsUi { get { return _netModificationsUi.Value; } set {_netModificationsUi.Value = value;}}
+#endregion NetModificationsUi
+
+#region bool? VerifyAdjustments (Line UI Question)
+internal Changeable<bool?> _verifyAdjustments;
+/// <summary>
+/// Checkbox to verify adjustments and modifications (Changeable)
+/// Reference Number RISch2YN 
+/// </summary>
+[Description("Checkbox to verify adjustments and modifications"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2YN"), LineNumber("UI Question")]
+public bool? VerifyAdjustments { get { return _verifyAdjustments.Value; } set {_verifyAdjustments.Value = value;}}
+public bool VerifyAdjustments_Value { get { return VerifyAdjustments.GetValueOrDefault();}}
+#endregion VerifyAdjustments
+
+#region decimal NetModificationsState (Line RI Schedule II, Line 11 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _netModificationsState;
+/// <summary>
+/// Net modifications to Federal AGI from RI-1040NR, RI Schedule M, line 3 - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIMod 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Net modifications to Federal AGI from RI-1040NR, RI Schedule M, line 3 - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIMod"), LineNumber("RI Schedule II, Line 11 Column A")]
+public decimal NetModificationsState { get { return _netModificationsState.Calculate(NetModificationsState_Calculation); } }
+private decimal NetModificationsState_Calculation()
+{
+//*//[NetModificationsUi]
+return default(decimal);
+}
+#endregion NetModificationsState
+
+#region decimal NetModificationsFederal (Line RI Schedule II, Line 11 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _netModificationsFederal;
+/// <summary>
+/// Net modifications to Federal AGI from RI-1040NR, RI Schedule M, line 3 - Column B Federal (Calculatable)
+/// Reference Number RISch2FedMod 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Net modifications to Federal AGI from RI-1040NR, RI Schedule M, line 3 - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedMod"), LineNumber("RI Schedule II, Line 11 Column B")]
+public decimal NetModificationsFederal { get { return _netModificationsFederal.Calculate(NetModificationsFederal_Calculation); } }
+private decimal NetModificationsFederal_Calculation()
+{
+//*//[RISchMCalc:RISchMNet]
+return default(decimal);
+}
+#endregion NetModificationsFederal
+
+#region decimal ModifiedAdjustedGrossIncomeState (Line RI Schedule II, Line 12 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _modifiedAdjustedGrossIncomeState;
+/// <summary>
+/// Modified Federal AGI. Combine lines 10 and 11. - Column A Rhode Island (Calculatable)
+/// Reference Number RISch2RIMAGI 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Modified Federal AGI. Combine lines 10 and 11. - Column A Rhode Island"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2RIMAGI"), LineNumber("RI Schedule II, Line 12 Column A")]
+public decimal ModifiedAdjustedGrossIncomeState { get { return _modifiedAdjustedGrossIncomeState.Calculate(ModifiedAdjustedGrossIncomeState_Calculation); } }
+private decimal ModifiedAdjustedGrossIncomeState_Calculation()
+{
+//*//[AdjustedGrossIncomeState] + [NetModificationsState]
+return default(decimal);
+}
+#endregion ModifiedAdjustedGrossIncomeState
+
+#region decimal ModifiedAdjustedGrossIncomeFederal (Line RI Schedule II, Line 12 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _modifiedAdjustedGrossIncomeFederal;
+/// <summary>
+/// Modified Federal AGI. Combine lines 10 and 11 The amount in column B must equal the amount on RI-1040NR, page 1, line 3. - Column B Federal (Calculatable)
+/// Reference Number RISch2FedMAGI 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Modified Federal AGI. Combine lines 10 and 11 The amount in column B must equal the amount on RI-1040NR, page 1, line 3. - Column B Federal"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2FedMAGI"), LineNumber("RI Schedule II, Line 12 Column B")]
+public decimal ModifiedAdjustedGrossIncomeFederal { get { return _modifiedAdjustedGrossIncomeFederal.Calculate(ModifiedAdjustedGrossIncomeFederal_Calculation); } }
+private decimal ModifiedAdjustedGrossIncomeFederal_Calculation()
+{
+//*//[RISch2FedAGI] + [NetModificationsFederal]
+return default(decimal);
+}
+#endregion ModifiedAdjustedGrossIncomeFederal
+
+#region decimal AllocationRatio (Line RI Schedule II, Line 13)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _allocationRatio;
+/// <summary>
+/// Allocation. Divide line 12, col. A by Line 12, col. B. If line 12, col. A is greater than line 12, col. B, enter 1.0000. (Calculatable)
+/// Reference Number RISch2Alloc 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2Alloc"), LineNumber("RI Schedule II, Line 13")]
+public decimal AllocationRatio { get { return _allocationRatio.Calculate(AllocationRatio_Calculation); } }
+private decimal AllocationRatio_Calculation()
+{
+//*//'IF [ModifiedAdjustedGrossIncomeState] > = [ModifiedAdjustedGrossIncomeFederal]
+//*//      RETURN 1.0000;
+//*// ELSE RETURN [ModifiedAdjustedGrossIncomeState] / [ModifiedAdjustedGrossIncomeFederal]'
+return default(decimal);
+}
+#endregion AllocationRatio
+
+#region decimal TaxBeforeAllocation (Line RI Schedule II, Line 14)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _taxBeforeAllocation;
+/// <summary>
+/// RI tax after allowable federal credits before allocation from RI-1040NR, page 1, line 10 (Calculatable)
+/// Reference Number RISch2Taxb4Alloc 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("RI tax after allowable federal credits before allocation from RI-1040NR, page 1, line 10"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2Taxb4Alloc"), LineNumber("RI Schedule II, Line 14")]
+public decimal TaxBeforeAllocation { get { return _taxBeforeAllocation.Calculate(TaxBeforeAllocation_Calculation); } }
+private decimal TaxBeforeAllocation_Calculation()
+{
+//*//[RI1040NRCalc:RINRTaxAftFedCr]
+return default(decimal);
+}
+#endregion TaxBeforeAllocation
+
+#region bool IsNonResident (Line Background Calc)
+internal Calculatable<bool> _isNonResident;
+/// <summary>
+/// Condition to determine if the bottom line of the schedule should be calculated (Calculatable)
+/// Reference Number RISchIINR 
+/// </summary>
+[Description("Condition to determine if the bottom line of the schedule should be calculated"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISchIINR"), LineNumber("Background Calc")]
+public bool IsNonResident { get { return _isNonResident.Calculate(IsNonResident_Calculation); } }
+private bool IsNonResident_Calculation()
+{
+//*//'IF [PYNRAWState] = ''RI'' and [PYNRAWRes] = ''N'' 
+//*//        RETURN YES;
+//*// ELSE RETURN NO'
+return default(bool);
+}
+#endregion IsNonResident
+
+#region decimal IncomeTax (Line RI Schedule II, Line 15)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _incomeTax;
+/// <summary>
+/// RI INCOME TAX. Multiply line 14 by line 13. Enter here and on RI-1040NR, page 1, line11. Check the Nonresident box (Calculatable)
+/// Reference Number RISch2Tax 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("RI INCOME TAX. Multiply line 14 by line 13. Enter here and on RI-1040NR, page 1, line11. Check the Nonresident box"), Category("01: ALLOCATION AND TAX WORKSHE"), ReferenceNumber("RISch2Tax"), LineNumber("RI Schedule II, Line 15")]
+public decimal IncomeTax { get { return _incomeTax.Calculate(IncomeTax_Calculation); } }
+private decimal IncomeTax_Calculation()
+{
+//*//'IF [IsNonResident] = YES
+//*//         RETURN [TaxBeforeAllocation] * [AllocationRatio];
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion AreBothResidentOfSameState
+#endregion IncomeTax
 
-#region decimal PrimaryNonmilitaryWages (Line none)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _primaryNonmilitaryWages;
+#region bool? IsWorkForSameEmployeerMoreThanOneState (Line UI Question)
+internal Changeable<bool?> _isWorkForSameEmployeerMoreThanOneState;
 /// <summary>
-/// Spouse's nonmilitary wage allocated to nonresident state (Calculatable)
-/// Reference Number RIMSRRAQ3Sp 
+/// Did you work for the same employer in more than one state, and your wages or salary income has not been allocated on your W-2, and you would like to allocate your wages, salaries, tips, etc by the number of days you worked in Rhode Island? (Changeable)
+/// Reference Number RISchIIAllocateWages 
+/// </summary>
+[Description("Did you work for the same employer in more than one state, and your wages or salary income has not been allocated on your W-2, and you would like to allocate your wages, salaries, tips, etc by the number of days you worked in Rhode Island?"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISchIIAllocateWages"), LineNumber("UI Question")]
+public bool? IsWorkForSameEmployeerMoreThanOneState { get { return _isWorkForSameEmployeerMoreThanOneState.Value; } set {_isWorkForSameEmployeerMoreThanOneState.Value = value;}}
+public bool IsWorkForSameEmployeerMoreThanOneState_Value { get { return IsWorkForSameEmployeerMoreThanOneState.GetValueOrDefault();}}
+#endregion IsWorkForSameEmployeerMoreThanOneState
+
+#region decimal WagesToMoreThanOneState (Line RI Schedule II, Part 2, Line 1)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _wagesToMoreThanOneState;
+/// <summary>
+/// Wages, salaries, tips, etc (Calculatable)
+/// Reference Number RISch2AlcWage 
 /// </summary>
 [Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("Spouse's nonmilitary wage allocated to nonresident state"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ3Sp"), LineNumber("none")]
-public decimal PrimaryNonmilitaryWages { get { return _primaryNonmilitaryWages.Calculate(PrimaryNonmilitaryWages_Calculation); } }
-private decimal PrimaryNonmilitaryWages_Calculation()
+[Description("Wages, salaries, tips, etc"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2AlcWage"), LineNumber("RI Schedule II, Part 2, Line 1")]
+public decimal WagesToMoreThanOneState { get { return _wagesToMoreThanOneState.Calculate(WagesToMoreThanOneState_Calculation); } }
+private decimal WagesToMoreThanOneState_Calculation()
 {
-//*//'IF [FDAWCalc:AW10] = 0
-//*//         RETURN [FDAWCalc:PYNRAW4] 
-//*//                           WHERE [FDAWCalc:PYNRAWState] = 'RI' AND
-//*//                                           [FDAWCalc:PYNRAWRes] = N;
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES AND [IsNonResident] = YES AND MFJ
+//*//        RETURN [FDAWCalc:AW1](PrimaryWageAmount)] + [FDAWCalc:AW2](SecondaryWageAmount)];
+//*// ELSE IF [IsWorkForSameEmployeerMoreThanOneState] = YES AND [IsNonResident] = YES
+//*//        RETURN [FDAWCalc:AW1](PrimaryWageAmount)]
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion PrimaryNonmilitaryWages
+#endregion WagesToMoreThanOneState
 
-#region bool SecondaryNonmilitaryWages (Line none)
-internal Calculatable<bool> _secondaryNonmilitaryWages;
+#region int TotalDaysInYear (Line RI Schedule II, Part 2, Line 2)
+internal Calculatable<int> _totalDaysInYear;
 /// <summary>
-/// Taxpayer qualifies (Calculatable)
-/// Reference Number RIMSRRAQTp 
+/// Total days in the year (Calculatable)
+/// Reference Number RISch2DayYR 
 /// </summary>
-[Description("Taxpayer qualifies"), Category("1 - Category"), ReferenceNumber("RIMSRRAQTp"), LineNumber("none")]
-public bool SecondaryNonmilitaryWages { get { return _secondaryNonmilitaryWages.Calculate(SecondaryNonmilitaryWages_Calculation); } }
-private bool SecondaryNonmilitaryWages_Calculation()
+[Number(AllowNegative = false)]
+[Description("Total days in the year"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2DayYR"), LineNumber("RI Schedule II, Part 2, Line 2")]
+public int TotalDaysInYear { get { return _totalDaysInYear.Calculate(TotalDaysInYear_Calculation); } }
+private int TotalDaysInYear_Calculation()
 {
-//*//'IF [AmountExcludable] = YES AND 
-//*//      [IsSecondaryNonmilitary] = YES AND
-//*//      [AreBothResidentOfSameState] > 0
-//*//         RETURN YES; 
-//*// ELSE RETURN NO'
-return default(bool);
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES AND Leap Year
+//*//        RETURN 366;
+//*// ELSE IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN 365;
+//*// ELSE RETURN Blank'
+return default(int);
 }
-#endregion SecondaryNonmilitaryWages
+#endregion TotalDaysInYear
 
-#region bool IsPrimaryQualified (Line none)
-internal Calculatable<bool> _isPrimaryQualified;
+#region int SickLeaveDaysUi (Line UI Question)
+internal Changeable<int> _sickLeaveDaysUi;
 /// <summary>
-/// Spouse qualifies (Calculatable)
-/// Reference Number RIMSRRAQSp 
+/// Sick Leave Days - user entry (Changeable)
+/// Reference Number SickLeaveDaysRISchIISickUI 
 /// </summary>
-[Description("Spouse qualifies"), Category("1 - Category"), ReferenceNumber("RIMSRRAQSp"), LineNumber("none")]
-public bool IsPrimaryQualified { get { return _isPrimaryQualified.Calculate(IsPrimaryQualified_Calculation); } }
-private bool IsPrimaryQualified_Calculation()
+[Money(AllowNegative = false)]
+[Description("Sick Leave Days - user entry"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("SickLeaveDaysRISchIISickUI"), LineNumber("UI Question")]
+public int SickLeaveDaysUi { get { return _sickLeaveDaysUi.Value; } set {_sickLeaveDaysUi.Value = value;}}
+#endregion SickLeaveDaysUi
+
+#region int SickLeaveDaysCalculated (Line RI Schedule II, Part 2, Line 3)
+internal Calculatable<int> _sickLeaveDaysCalculated;
+/// <summary>
+/// Sick leave days (Calculatable)
+/// Reference Number RISch2SickDay 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Sick leave days"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2SickDay"), LineNumber("RI Schedule II, Part 2, Line 3")]
+public int SickLeaveDaysCalculated { get { return _sickLeaveDaysCalculated.Calculate(SickLeaveDaysCalculated_Calculation); } }
+private int SickLeaveDaysCalculated_Calculation()
 {
-//*//'IF [IsPrimaryNonmilitary] = YES AND
-//*//      [IsSecondaryNonmilitary] = YES AND 
-//*//      [PrimaryNonmilitaryWages] > 0
-//*//         RETURN YES; 
-//*// ELSE RETURN NO'
-return default(bool);
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [RISchIISickUI];
+//*// ELSE RETURN Blank'
+return default(int);
 }
-#endregion IsPrimaryQualified
+#endregion SickLeaveDaysCalculated
 
-#region bool IsSecondaryQualified (Line none)
-internal Calculatable<bool> _isSecondaryQualified;
+#region int VacationDaysUi (Line UI Question)
+internal Changeable<int> _vacationDaysUi;
 /// <summary>
-/// Pre - qualifying MSRRA (Calculatable)
-/// Reference Number RIMSRRAPreQ 
+/// Vacation Days - user entry (Changeable)
+/// Reference Number RISchIIVacationUI 
 /// </summary>
-[Description("Pre - qualifying MSRRA"), Category("1 - Category"), ReferenceNumber("RIMSRRAPreQ"), LineNumber("none")]
-public bool IsSecondaryQualified { get { return _isSecondaryQualified.Calculate(IsSecondaryQualified_Calculation); } }
-private bool IsSecondaryQualified_Calculation()
+[Money(AllowNegative = false)]
+[Description("Vacation Days - user entry"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISchIIVacationUI"), LineNumber("UI Question")]
+public int VacationDaysUi { get { return _vacationDaysUi.Value; } set {_vacationDaysUi.Value = value;}}
+#endregion VacationDaysUi
+
+#region int VacationDaysCalculated (Line RI Schedule II, Part 2, Line 4)
+internal Calculatable<int> _vacationDaysCalculated;
+/// <summary>
+/// Vacation days (Calculatable)
+/// Reference Number RISch2VacDay 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Vacation days"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2VacDay"), LineNumber("RI Schedule II, Part 2, Line 4")]
+public int VacationDaysCalculated { get { return _vacationDaysCalculated.Calculate(VacationDaysCalculated_Calculation); } }
+private int VacationDaysCalculated_Calculation()
 {
-//*//'IF MFJ AND 
-//*//      ([SecondaryNonmilitaryWages] = YES OR [IsPrimaryQualified] = YES)
-//*//         RETURN YES;
-//*// ELSE RETURN NO'
-return default(bool);
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [VacationDaysUi];
+//*// ELSE RETURN Blank'
+return default(int);
 }
-#endregion IsSecondaryQualified
+#endregion VacationDaysCalculated
 
-#region string IsPreQualifying (Line none)
-internal Calculatable<string> _isPreQualifying;
+#region int OtherNonworkingDaysUi (Line UI Question)
+internal Changeable<int> _otherNonworkingDaysUi;
 /// <summary>
-/// Qualifying person's name (Calculatable)
-/// Reference Number RIMSRRAQName 
+/// Other nonworking days (Saturdays, Sundays, holidays, etc.) - user entry (Changeable)
+/// Reference Number RISchIIOtherNonWorkUI 
 /// </summary>
-[Description("Qualifying person's name"), Category("1 - Category"), ReferenceNumber("RIMSRRAQName"), LineNumber("none")]
-public string IsPreQualifying { get { return _isPreQualifying.Calculate(IsPreQualifying_Calculation); } }
-private string IsPreQualifying_Calculation()
+[Money(AllowNegative = false)]
+[Description("Other nonworking days (Saturdays, Sundays, holidays, etc.) - user entry"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISchIIOtherNonWorkUI"), LineNumber("UI Question")]
+public int OtherNonworkingDaysUi { get { return _otherNonworkingDaysUi.Value; } set {_otherNonworkingDaysUi.Value = value;}}
+#endregion OtherNonworkingDaysUi
+
+#region int OtherNonworkingDaysCalculated (Line RI Schedule II, Part 2, Line 5)
+internal Calculatable<int> _otherNonworkingDaysCalculated;
+/// <summary>
+/// Other nonworking days (Saturdays, Sundays, holidays, etc.) (Calculatable)
+/// Reference Number RISch2OthDay 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Other nonworking days (Saturdays, Sundays, holidays, etc.)"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2OthDay"), LineNumber("RI Schedule II, Part 2, Line 5")]
+public int OtherNonworkingDaysCalculated { get { return _otherNonworkingDaysCalculated.Calculate(OtherNonworkingDaysCalculated_Calculation); } }
+private int OtherNonworkingDaysCalculated_Calculation()
 {
-//*//'IF [SecondaryNonmilitaryWages] = YES
-//*//         RETURN <TPName>; 
-//*// ELSE IF [IsPrimaryQualified] = YES
-//*//        RETURN <SPName>'
-return default(string);
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [OtherNonworkingDaysUi];
+//*// ELSE RETURN Blank'
+return default(int);
 }
-#endregion IsPreQualifying
+#endregion OtherNonworkingDaysCalculated
 
-#region bool? QualifyingPersonName (Line none)
-internal Calculatable<bool?> _qualifyingPersonName;
+#region int TotalNonworkingDays (Line RI Schedule II, Part 2, Line 6)
+internal Calculatable<int> _totalNonworkingDays;
 /// <summary>
-/// Do you meet all of the following conditions? (Calculatable)
-/// Reference Number RIMSRRAQ 
+/// Total nonworking days. Add lines 3, 4 and 5. (Calculatable)
+/// Reference Number RISch2TotNW 
 /// </summary>
-[Description("Do you meet all of the following conditions?"), Category("1 - Category"), ReferenceNumber("RIMSRRAQ"), LineNumber("none")]
-public bool? QualifyingPersonName { get { return _qualifyingPersonName.Calculate(QualifyingPersonName_Calculation); } }
-public bool QualifyingPersonName_Value { get { return QualifyingPersonName.GetValueOrDefault();}}
-private bool? QualifyingPersonName_Calculation()
+[Number(AllowNegative = false)]
+[Description("Total nonworking days. Add lines 3, 4 and 5."), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2TotNW"), LineNumber("RI Schedule II, Part 2, Line 6")]
+public int TotalNonworkingDays { get { return _totalNonworkingDays.Calculate(TotalNonworkingDays_Calculation); } }
+private int TotalNonworkingDays_Calculation()
 {
-//*//direct entry in UI
-return default(bool);
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [SickLeaveDaysCalculated] + [SickLeaveDaysCalculated] + [OtherNonworkingDaysCalculated];
+//*// ELSE RETURN Blank'
+return default(int);
 }
-#endregion QualifyingPersonName
+#endregion TotalNonworkingDays
 
-#region decimal DoYouMeetConditions (Line none)
-internal Calculatable<decimal, RoundedToTheNearestInteger> _doYouMeetConditions;
+#region int TotalWorkingDays (Line RI Schedule II, Part 2, Line 7)
+internal Calculatable<int> _totalWorkingDays;
 /// <summary>
-/// MSRRA excludable amount (Calculatable)
-/// Reference Number RIMSRRAQAmt 
+/// Total days worked in the year. Subtract line 6 from line 2. (Calculatable)
+/// Reference Number RISch2TotW 
 /// </summary>
-[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
-[Description("MSRRA excludable amount"), Category("1 - Category"), ReferenceNumber("RIMSRRAQAmt"), LineNumber("none")]
-public decimal DoYouMeetConditions { get { return _doYouMeetConditions.Calculate(DoYouMeetConditions_Calculation); } }
-private decimal DoYouMeetConditions_Calculation()
+[Number(AllowNegative = false)]
+[Description("Total days worked in the year. Subtract line 6 from line 2."), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2TotW"), LineNumber("RI Schedule II, Part 2, Line 7")]
+public int TotalWorkingDays { get { return _totalWorkingDays.Calculate(TotalWorkingDays_Calculation); } }
+private int TotalWorkingDays_Calculation()
 {
-//*//'IF [QualifyingPersonName] = YES AND [SecondaryNonmilitaryWages] = YES
-//*//          RETURN [AreBothResidentOfSameState]; 
-//*// ELSE IF [QualifyingPersonName] = YES AND [IsPrimaryQualified] = YES
-//*//          RETURN [PrimaryNonmilitaryWages];
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [TotalDaysInYear] - [TotalNonworkingDays];
+//*// ELSE RETURN Blank'
+return default(int);
+}
+#endregion TotalWorkingDays
+
+#region int TotalDaysWorkedOutsideStateUi (Line UI Question)
+internal Changeable<int> _totalDaysWorkedOutsideStateUi;
+/// <summary>
+/// Total days worked outside Rhode Island - user entry (Changeable)
+/// Reference Number RISchIIOutsideUI 
+/// </summary>
+[Money(AllowNegative = false)]
+[Description("Total days worked outside Rhode Island - user entry"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISchIIOutsideUI"), LineNumber("UI Question")]
+public int TotalDaysWorkedOutsideStateUi { get { return _totalDaysWorkedOutsideStateUi.Value; } set {_totalDaysWorkedOutsideStateUi.Value = value;}}
+#endregion TotalDaysWorkedOutsideStateUi
+
+#region int TotalDaysWorkedOutsideStateCalculated (Line RI Schedule II, Part 2, Line 8)
+internal Calculatable<int> _totalDaysWorkedOutsideStateCalculated;
+/// <summary>
+/// Total days worked outside Rhode Island (Calculatable)
+/// Reference Number RISch2OutDay 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Total days worked outside Rhode Island"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2OutDay"), LineNumber("RI Schedule II, Part 2, Line 8")]
+public int TotalDaysWorkedOutsideStateCalculated { get { return _totalDaysWorkedOutsideStateCalculated.Calculate(TotalDaysWorkedOutsideStateCalculated_Calculation); } }
+private int TotalDaysWorkedOutsideStateCalculated_Calculation()
+{
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [TotalDaysWorkedOutsideStateUi];
+//*// ELSE RETURN Blank'
+return default(int);
+}
+#endregion TotalDaysWorkedOutsideStateCalculated
+
+#region int TotalDaysWorkedInState (Line RI Schedule II, Part 2, Line 9)
+internal Calculatable<int> _totalDaysWorkedInState;
+/// <summary>
+/// Days worked in Rhode Island. Subtract line 8 from line 7. (Calculatable)
+/// Reference Number RISch2InDay 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Days worked in Rhode Island. Subtract line 8 from line 7."), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2InDay"), LineNumber("RI Schedule II, Part 2, Line 9")]
+public int TotalDaysWorkedInState { get { return _totalDaysWorkedInState.Calculate(TotalDaysWorkedInState_Calculation); } }
+private int TotalDaysWorkedInState_Calculation()
+{
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [TotalWorkingDays] - [TotalDaysWorkedOutsideStateCalculated];
+//*// ELSE RETURN Blank'
+return default(int);
+}
+#endregion TotalDaysWorkedInState
+
+#region decimal Allocation (Line RI Schedule II, Part 2, Line 10)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _allocation;
+/// <summary>
+/// Allocation. Divide line 9 by line 7. (Calculatable)
+/// Reference Number RISch2AlocPerc 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2AlocPerc"), LineNumber("RI Schedule II, Part 2, Line 10")]
+public decimal Allocation { get { return _allocation.Calculate(Allocation_Calculation); } }
+private decimal Allocation_Calculation()
+{
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [TotalDaysWorkedInState] /[TotalWorkingDays];
 //*// ELSE RETURN Blank'
 return default(decimal);
 }
-#endregion DoYouMeetConditions
+#endregion Allocation
+
+#region decimal RhodeIslandAmount (Line RI Schedule II, Part 2, Line 11)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _rhodeIslandAmount;
+/// <summary>
+/// RI AMOUNT. Multiply line 1 by line 10. Enter here and include on RI-1040NR, page 7, Schedule II, line 1, column A (Calculatable)
+/// Reference Number RISch2WageAlloc 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("RI AMOUNT. Multiply line 1 by line 10. Enter here and include on RI-1040NR, page 7, Schedule II, line 1, column A"), Category("02: ALLOCATION OF WAGE AND SAL"), ReferenceNumber("RISch2WageAlloc"), LineNumber("RI Schedule II, Part 2, Line 11")]
+public decimal RhodeIslandAmount { get { return _rhodeIslandAmount.Calculate(RhodeIslandAmount_Calculation); } }
+private decimal RhodeIslandAmount_Calculation()
+{
+//*//'IF [IsWorkForSameEmployeerMoreThanOneState] = YES
+//*//        RETURN [WagesToMoreThanOneState] * [Allocation];
+//*// ELSE RETURN Blank'
+return default(decimal);
+}
+#endregion RhodeIslandAmount
+
+#region bool? DoYouHaveBusinessIncomeNotSeperateUi (Line UI Question)
+internal Changeable<bool?> _doYouHaveBusinessIncomeNotSeperateUi;
+/// <summary>
+/// Do you have Rhode Island business income that is not separate and distinct from that of other states that needs to be allocated? (Changeable)
+/// Reference Number RISchIIBusIncAllocate 
+/// </summary>
+[Description("Do you have Rhode Island business income that is not separate and distinct from that of other states that needs to be allocated?"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIIBusIncAllocate"), LineNumber("UI Question")]
+public bool? DoYouHaveBusinessIncomeNotSeperateUi { get { return _doYouHaveBusinessIncomeNotSeperateUi.Value; } set {_doYouHaveBusinessIncomeNotSeperateUi.Value = value;}}
+public bool DoYouHaveBusinessIncomeNotSeperateUi_Value { get { return DoYouHaveBusinessIncomeNotSeperateUi.GetValueOrDefault();}}
+#endregion DoYouHaveBusinessIncomeNotSeperateUi
+
+#region bool? HasInterestAndDividendsSeperateUi (Line UI Question)
+internal Changeable<bool?> _hasInterestAndDividendsSeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Interest and Dividends from Federal Form 1040 Lines 8a or 9a (Changeable)
+/// Reference Number RISchIIIntDivAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Interest and Dividends from Federal Form 1040 Lines 8a or 9a"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIIIntDivAllocate"), LineNumber("UI Question")]
+public bool? HasInterestAndDividendsSeperateUi { get { return _hasInterestAndDividendsSeperateUi.Value; } set {_hasInterestAndDividendsSeperateUi.Value = value;}}
+public bool HasInterestAndDividendsSeperateUi_Value { get { return HasInterestAndDividendsSeperateUi.GetValueOrDefault();}}
+#endregion HasInterestAndDividendsSeperateUi
+
+#region bool? HasBusinessIncomeSeperateUi (Line UI Question)
+internal Changeable<bool?> _hasBusinessIncomeSeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Business Income from Federal Form 1040, Line 12 (Changeable)
+/// Reference Number RISchIISchCAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Business Income from Federal Form 1040, Line 12"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIISchCAllocate"), LineNumber("UI Question")]
+public bool? HasBusinessIncomeSeperateUi { get { return _hasBusinessIncomeSeperateUi.Value; } set {_hasBusinessIncomeSeperateUi.Value = value;}}
+public bool HasBusinessIncomeSeperateUi_Value { get { return HasBusinessIncomeSeperateUi.GetValueOrDefault();}}
+#endregion HasBusinessIncomeSeperateUi
+
+#region bool? HasSalePropertySeperateUi (Line UI Question)
+internal Changeable<bool?> _hasSalePropertySeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Sale or exchange of property from Federal Form 1040, Lines 13 or 14 (Changeable)
+/// Reference Number RISchIISalePropAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Sale or exchange of property from Federal Form 1040, Lines 13 or 14"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIISalePropAllocate"), LineNumber("UI Question")]
+public bool? HasSalePropertySeperateUi { get { return _hasSalePropertySeperateUi.Value; } set {_hasSalePropertySeperateUi.Value = value;}}
+public bool HasSalePropertySeperateUi_Value { get { return HasSalePropertySeperateUi.GetValueOrDefault();}}
+#endregion HasSalePropertySeperateUi
+
+#region bool? HasPensionAndAnnutiesSeperateUi (Line UI Question)
+internal Changeable<bool?> _hasPensionAndAnnutiesSeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Rents, Royalties, etc. from Federal Form 1040, Line 17 (Changeable)
+/// Reference Number RISchIIRentsAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Rents, Royalties, etc. from Federal Form 1040, Line 17"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIIRentsAllocate"), LineNumber("UI Question")]
+public bool? HasPensionAndAnnutiesSeperateUi { get { return _hasPensionAndAnnutiesSeperateUi.Value; } set {_hasPensionAndAnnutiesSeperateUi.Value = value;}}
+public bool HasPensionAndAnnutiesSeperateUi_Value { get { return HasPensionAndAnnutiesSeperateUi.GetValueOrDefault();}}
+#endregion HasPensionAndAnnutiesSeperateUi
+
+#region bool? HasFarmsSeperateUi (Line UI Question)
+internal Changeable<bool?> _hasFarmsSeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Farm Income from Federal Form 1040, Line 18 (Changeable)
+/// Reference Number RISchIIFarmIncAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Farm Income from Federal Form 1040, Line 18"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIIFarmIncAllocate"), LineNumber("UI Question")]
+public bool? HasFarmsSeperateUi { get { return _hasFarmsSeperateUi.Value; } set {_hasFarmsSeperateUi.Value = value;}}
+public bool HasFarmsSeperateUi_Value { get { return HasFarmsSeperateUi.GetValueOrDefault();}}
+#endregion HasFarmsSeperateUi
+
+#region bool? HasMiscSeperateUi (Line UI Question)
+internal Changeable<bool?> _hasMiscSeperateUi;
+/// <summary>
+/// Select the Business Income items that need to be allocated: Miscellaneous Income from Federal Form 1040, Lines 10, 11, 19, 20b and 21 (Changeable)
+/// Reference Number RISchIIMiscIncAllocate 
+/// </summary>
+[Description("Select the Business Income items that need to be allocated: Miscellaneous Income from Federal Form 1040, Lines 10, 11, 19, 20b and 21"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISchIIMiscIncAllocate"), LineNumber("UI Question")]
+public bool? HasMiscSeperateUi { get { return _hasMiscSeperateUi.Value; } set {_hasMiscSeperateUi.Value = value;}}
+public bool HasMiscSeperateUi_Value { get { return HasMiscSeperateUi.GetValueOrDefault();}}
+#endregion HasMiscSeperateUi
+
+#region decimal RealPropertyOwnedColumnAUi (Line RI Schedule II, Part 3, Line 1 Column A)
+internal Changeable<decimal> _realPropertyOwnedColumnAUi;
+/// <summary>
+/// Real property owned - Column A RI Amounts (Changeable)
+/// Reference Number RISch2RPRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Real property owned - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2RPRI"), LineNumber("RI Schedule II, Part 3, Line 1 Column A")]
+public decimal RealPropertyOwnedColumnAUi { get { return _realPropertyOwnedColumnAUi.Value; } set {_realPropertyOwnedColumnAUi.Value = value;}}
+#endregion RealPropertyOwnedColumnAUi
+
+#region decimal RealPropertyOwnedColumnBUi (Line RI Schedule II, Part 3, Line 1 Column B)
+internal Changeable<decimal> _realPropertyOwnedColumnBUi;
+/// <summary>
+/// Real property owned - Column B Total amounts (Changeable)
+/// Reference Number RISch2RPTot 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Real property owned - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2RPTot"), LineNumber("RI Schedule II, Part 3, Line 1 Column B")]
+public decimal RealPropertyOwnedColumnBUi { get { return _realPropertyOwnedColumnBUi.Value; } set {_realPropertyOwnedColumnBUi.Value = value;}}
+#endregion RealPropertyOwnedColumnBUi
+
+#region decimal RealPropertyRentedColumnAUi (Line RI Schedule II, Part 3, Line 2 Column A)
+internal Changeable<decimal> _realPropertyRentedColumnAUi;
+/// <summary>
+/// Real property rented from others (8 x annual net rental rate) - Column A RI Amounts (Changeable)
+/// Reference Number RISch2RentRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Real property rented from others (8 x annual net rental rate) - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2RentRI"), LineNumber("RI Schedule II, Part 3, Line 2 Column A")]
+public decimal RealPropertyRentedColumnAUi { get { return _realPropertyRentedColumnAUi.Value; } set {_realPropertyRentedColumnAUi.Value = value;}}
+#endregion RealPropertyRentedColumnAUi
+
+#region decimal RealPropertyRentedColumnBUi (Line RI Schedule II, Part 3, Line 2 Column B)
+internal Changeable<decimal> _realPropertyRentedColumnBUi;
+/// <summary>
+/// Real property rented from others (8 x annual net rental rate)  - Column B Total amounts (Changeable)
+/// Reference Number RISch2RentTot 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Real property rented from others (8 x annual net rental rate)  - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2RentTot"), LineNumber("RI Schedule II, Part 3, Line 2 Column B")]
+public decimal RealPropertyRentedColumnBUi { get { return _realPropertyRentedColumnBUi.Value; } set {_realPropertyRentedColumnBUi.Value = value;}}
+#endregion RealPropertyRentedColumnBUi
+
+#region decimal TangablePropertyOwnedColumnAUi (Line RI Schedule II, Part 3, Line 3 Column A)
+internal Changeable<decimal> _tangablePropertyOwnedColumnAUi;
+/// <summary>
+/// Tangible personal property owned - Column A RI Amounts (Changeable)
+/// Reference Number RISch2TanProRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Tangible personal property owned - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2TanProRI"), LineNumber("RI Schedule II, Part 3, Line 3 Column A")]
+public decimal TangablePropertyOwnedColumnAUi { get { return _tangablePropertyOwnedColumnAUi.Value; } set {_tangablePropertyOwnedColumnAUi.Value = value;}}
+#endregion TangablePropertyOwnedColumnAUi
+
+#region decimal TangablePropertyOwnedColumnBUi (Line RI Schedule II, Part 3, Line 3 Column B)
+internal Changeable<decimal> _tangablePropertyOwnedColumnBUi;
+/// <summary>
+/// Tangible personal property owned - Column B Total amounts (Changeable)
+/// Reference Number RISch2TanPropTot 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Tangible personal property owned - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2TanPropTot"), LineNumber("RI Schedule II, Part 3, Line 3 Column B")]
+public decimal TangablePropertyOwnedColumnBUi { get { return _tangablePropertyOwnedColumnBUi.Value; } set {_tangablePropertyOwnedColumnBUi.Value = value;}}
+#endregion TangablePropertyOwnedColumnBUi
+
+#region decimal TotalPropertyColumnA (Line RI Schedule II, Part 3, Line 4 Column A)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _totalPropertyColumnA;
+/// <summary>
+/// Total property. Add lines 1, 2 and 3 - Column A RI Amounts (Calculatable)
+/// Reference Number RISch2TotPropRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Total property. Add lines 1, 2 and 3 - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2TotPropRI"), LineNumber("RI Schedule II, Part 3, Line 4 Column A")]
+public decimal TotalPropertyColumnA { get { return _totalPropertyColumnA.Calculate(TotalPropertyColumnA_Calculation); } }
+private decimal TotalPropertyColumnA_Calculation()
+{
+//*//[RealPropertyOwnedColumnAUi] + [RealPropertyRentedColumnAUi] + [TangablePropertyOwnedColumnAUi] 
+return default(decimal);
+}
+#endregion TotalPropertyColumnA
+
+#region decimal TotalPropertyColumnB (Line RI Schedule II, Part 3, Line 4 Column B)
+internal Calculatable<decimal, RoundedToTheNearestInteger> _totalPropertyColumnB;
+/// <summary>
+/// Total property. Add lines 1, 2 and 3 - Column B Total amounts (Calculatable)
+/// Reference Number RISch2TotPropB 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Total property. Add lines 1, 2 and 3 - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2TotPropB"), LineNumber("RI Schedule II, Part 3, Line 4 Column B")]
+public decimal TotalPropertyColumnB { get { return _totalPropertyColumnB.Calculate(TotalPropertyColumnB_Calculation); } }
+private decimal TotalPropertyColumnB_Calculation()
+{
+//*//[RealPropertyOwnedColumnBUi] + [RealPropertyRentedColumnBUi] + [TangablePropertyOwnedColumnBUi]
+return default(decimal);
+}
+#endregion TotalPropertyColumnB
+
+#region decimal TotalPropertyColumnC (Line RI Schedule II, Part 3, Line 4 Column C)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _totalPropertyColumnC;
+/// <summary>
+/// Total property. Divide column A by column B. - Column C (Column A / Column B) (Calculatable)
+/// Reference Number RISch2TotPropAllc 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2TotPropAllc"), LineNumber("RI Schedule II, Part 3, Line 4 Column C")]
+public decimal TotalPropertyColumnC { get { return _totalPropertyColumnC.Calculate(TotalPropertyColumnC_Calculation); } }
+private decimal TotalPropertyColumnC_Calculation()
+{
+//*//[TotalPropertyColumnA] divided by [TotalPropertyColumnB]
+return default(decimal);
+}
+#endregion TotalPropertyColumnC
+
+#region decimal WagesSalariesAndPersonalColumnA (Line RI Schedule II, Part 3, Line 5 Column A)
+internal Changeable<decimal> _wagesSalariesAndPersonalColumnA;
+/// <summary>
+/// Wages salaries and other personal service compensation - Column A RI Amounts (Changeable)
+/// Reference Number RISch2BWRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Wages salaries and other personal service compensation - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2BWRI"), LineNumber("RI Schedule II, Part 3, Line 5 Column A")]
+public decimal WagesSalariesAndPersonalColumnA { get { return _wagesSalariesAndPersonalColumnA.Value; } set {_wagesSalariesAndPersonalColumnA.Value = value;}}
+#endregion WagesSalariesAndPersonalColumnA
+
+#region decimal WagesSalariesAndPersonaColumnB (Line RI Schedule II, Part 3, Line 5 Column B)
+internal Changeable<decimal> _wagesSalariesAndPersonaColumnB;
+/// <summary>
+/// Wages salaries and other personal service compensation - Column B Total amounts (Changeable)
+/// Reference Number RISch2BWTot 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Wages salaries and other personal service compensation - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2BWTot"), LineNumber("RI Schedule II, Part 3, Line 5 Column B")]
+public decimal WagesSalariesAndPersonaColumnB { get { return _wagesSalariesAndPersonaColumnB.Value; } set {_wagesSalariesAndPersonaColumnB.Value = value;}}
+#endregion WagesSalariesAndPersonaColumnB
+
+#region decimal WagesSalariesAndPersonalColumnC (Line RI Schedule II, Part 3, Line 5 Column C)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _wagesSalariesAndPersonalColumnC;
+/// <summary>
+///  Wages salaries and other personal service compensation Divide line 5 column A by column B.  - Column C (Column A / Column B) (Calculatable)
+/// Reference Number RISch2BWAllc 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2BWAllc"), LineNumber("RI Schedule II, Part 3, Line 5 Column C")]
+public decimal WagesSalariesAndPersonalColumnC { get { return _wagesSalariesAndPersonalColumnC.Calculate(WagesSalariesAndPersonalColumnC_Calculation); } }
+private decimal WagesSalariesAndPersonalColumnC_Calculation()
+{
+//*//[WagesSalariesAndPersonalColumnA] divided by [WagesSalariesAndPersonaColumnB]
+return default(decimal);
+}
+#endregion WagesSalariesAndPersonalColumnC
+
+#region decimal GrossSalesColumnA (Line RI Schedule II, Part 3, Line 6 Column A)
+internal Changeable<decimal> _grossSalesColumnA;
+/// <summary>
+/// Gross sales - Column A RI Amounts (Changeable)
+/// Reference Number RISch2GSRI 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Gross sales - Column A RI Amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2GSRI"), LineNumber("RI Schedule II, Part 3, Line 6 Column A")]
+public decimal GrossSalesColumnA { get { return _grossSalesColumnA.Value; } set {_grossSalesColumnA.Value = value;}}
+#endregion GrossSalesColumnA
+
+#region decimal GrossSalesColumnB (Line RI Schedule II, Part 3, Line 6 Column B)
+internal Changeable<decimal> _grossSalesColumnB;
+/// <summary>
+/// Gross sales - Column B Total amounts (Changeable)
+/// Reference Number RISch2GSB 
+/// </summary>
+[Money(AllowNegative = false, Precision = PrecisionType.Zero)]
+[Description("Gross sales - Column B Total amounts"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2GSB"), LineNumber("RI Schedule II, Part 3, Line 6 Column B")]
+public decimal GrossSalesColumnB { get { return _grossSalesColumnB.Value; } set {_grossSalesColumnB.Value = value;}}
+#endregion GrossSalesColumnB
+
+#region decimal GrossSalesRatioColumnC (Line RI Schedule II, Part 3, Line 6 Column C)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _grossSalesRatioColumnC;
+/// <summary>
+/// Gross sales - Column C (Column A / Column B) (Calculatable)
+/// Reference Number RISch2GSAllc 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2GSAllc"), LineNumber("RI Schedule II, Part 3, Line 6 Column C")]
+public decimal GrossSalesRatioColumnC { get { return _grossSalesRatioColumnC.Calculate(GrossSalesRatioColumnC_Calculation); } }
+private decimal GrossSalesRatioColumnC_Calculation()
+{
+//*//[GrossSalesColumnA] divided by [GrossSalesColumnB]
+return default(decimal);
+}
+#endregion GrossSalesRatioColumnC
+
+#region decimal TotalPercentagesColumnC (Line RI Schedule II, Part 3, Line 7)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _totalPercentagesColumnC;
+/// <summary>
+/// Total of Percentages in column C. Add lines 4, 5, and 6 (Calculatable)
+/// Reference Number RISch2BusTotPer 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2BusTotPer"), LineNumber("RI Schedule II, Part 3, Line 7")]
+public decimal TotalPercentagesColumnC { get { return _totalPercentagesColumnC.Calculate(TotalPercentagesColumnC_Calculation); } }
+private decimal TotalPercentagesColumnC_Calculation()
+{
+//*//[TotalPropertyColumnC] + [WagesSalariesAndPersonalColumnC] + [GrossSalesRatioColumnC] 
+return default(decimal);
+}
+#endregion TotalPercentagesColumnC
+
+#region decimal BusinessAllocationPercentage (Line RI Schedule II, Part 3, Line 8)
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _businessAllocationPercentage;
+/// <summary>
+/// BUSINESS ALLOCATION PERCENTAGE. Divide Line 7 by three (3), or the number of percentages on lines 4, 5, and 6. Enter here and in column B below. (Calculatable)
+/// Reference Number RISch2BusAllcPer 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category(" 03: BUSINESS ALLOCATION PERCE"), ReferenceNumber("RISch2BusAllcPer"), LineNumber("RI Schedule II, Part 3, Line 8")]
+public decimal BusinessAllocationPercentage { get { return _businessAllocationPercentage.Calculate(BusinessAllocationPercentage_Calculation); } }
+private decimal BusinessAllocationPercentage_Calculation()
+{
+//*//[TotalPercentagesColumnC] divided by the number of line entries on 4 ,5, and 6. ( 1 ,2, or 3)
+return default(decimal);
+}
+#endregion BusinessAllocationPercentage
+
+#region int Number (Line Line 9, 10, 11, 12, and 13 (line number of income))
+internal Calculatable<int> _number;
+/// <summary>
+/// Line number from RI-1040NR, Sch II, Col B, Line (Calculatable)
+/// Reference Number RI2ColNum 
+/// </summary>
+[Number(AllowNegative = false)]
+[Description("Line number from RI-1040NR, Sch II, Col B, Line"), Category("1 - Other Income Allocations"), ReferenceNumber("RI2ColNum"), LineNumber("Line 9, 10, 11, 12, and 13 (line number of income)")]
+public int Number { get { return _number.Calculate(Number_Calculation); } }
+private int Number_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasInterestAndDividendsSeperateUi] = YES RETURN 2;
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasBusinessIncomeSeperateUi] = YES
+//*//           RETURN 3;
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasSalePropertySeperateUi] = YES
+//*//           RETURN 4;
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasPensionAndAnnutiesSeperateUi] = YES
+//*//           RETURN 5;
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasFarmsSeperateUi] = YES
+//*//          RETURN 6;
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [HasMiscSeperateUi] = YES
+//*//          RETURN 7;
+//*// ELSE RETURN Blank'
+return default(int);
+}
+#endregion Number
+
+#region decimal ColumnA (Line Line 9, 10, 11, 12, and 13 Column A (line amount of income))
+internal Calculatable<decimal, RoundedToTheNearestInteger> _columnA;
+/// <summary>
+/// Column A Income to be allocated (Calculatable)
+/// Reference Number RI2CollA 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Column A Income to be allocated"), Category("1 - Other Income Allocations"), ReferenceNumber("RI2CollA"), LineNumber("Line 9, 10, 11, 12, and 13 Column A (line amount of income)")]
+public decimal ColumnA { get { return _columnA.Calculate(ColumnA_Calculation); } }
+private decimal ColumnA_Calculation()
+{
+//*//'IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 2 
+//*//         RETURN [InterestAndDividendsFederal];
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 3 
+//*//         RETURN [BusinessIncomeFederal];
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 4 
+//*//         RETURN [SaleExchangeFederal];
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 5 
+//*//         RETURN [RentRoyaltyFederalBackground];
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 6 
+//*//         RETURN [FarmFederal];
+//*// ELSE IF [DoYouHaveBusinessIncomeNotSeperateUi] = YES AND [Number] = 7 
+//*//         RETURN [MiscFederal];
+//*// ELSE RETURN Blank'
+return default(decimal);
+}
+#endregion ColumnA
+
+#region decimal ColumnB (Line Line 9, 10, 11, 12, and 13 Column B (pecentage of income))
+internal Calculatable<decimal, RoundedToFourDecimalPlaces> _columnB;
+/// <summary>
+/// the percentage from part 3 line 8 (Calculatable)
+/// Reference Number RI2CollB 
+/// </summary>
+[Ratio(Precision = PrecisionType.Zero)]
+[Description("$Description$"), Category("1 - Other Income Allocations"), ReferenceNumber("RI2CollB"), LineNumber("Line 9, 10, 11, 12, and 13 Column B (pecentage of income)")]
+public decimal ColumnB { get { return _columnB.Calculate(ColumnB_Calculation); } }
+private decimal ColumnB_Calculation()
+{
+//*//'IF [ColumnA] <> Blank 
+//*//        RETURN [BusinessAllocationPercentage]'
+return default(decimal);
+}
+#endregion ColumnB
+
+#region decimal ColumnC (Line Line 9, 10, 11, 12, and 13 Col C  (allocated income))
+internal Calculatable<decimal, RoundedToTheNearestInteger> _columnC;
+/// <summary>
+/// Column A times Column B (Calculatable)
+/// Reference Number RI2CollC 
+/// </summary>
+[Money(AllowNegative = true, Precision = PrecisionType.Zero)]
+[Description("Column A times Column B"), Category("1 - Other Income Allocations"), ReferenceNumber("RI2CollC"), LineNumber("Line 9, 10, 11, 12, and 13 Col C  (allocated income)")]
+public decimal ColumnC { get { return _columnC.Calculate(ColumnC_Calculation); } }
+private decimal ColumnC_Calculation()
+{
+//*//([ColumnA] * [ColumnB])
+return default(decimal);
+}
+#endregion ColumnC
 

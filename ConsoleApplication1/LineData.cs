@@ -79,6 +79,7 @@ namespace Ihx
                     break;
                 case "Ratio/Percentage":
                     dataType = DataType.Ratio;
+                    roundingString = "RoundedToFourDecimalPlaces";
                     break;
                 case "Yes/No":
                     dataType = DataType.YesNo;
